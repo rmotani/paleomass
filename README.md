@@ -51,5 +51,6 @@ This package first builds two 3D models of a marine vertebrate based on two orth
 
 ## Detailed Guide
 ### 1. Prepare body silhouette images
+Make
+* When saving, adjust the resolution so that the body length is about 1000 pixels or greater. Motani (2001) found that the accuracy improves up to about 1-- pixels and then the improvement slows down.. 
 
-1. 
