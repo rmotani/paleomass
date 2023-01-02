@@ -20,7 +20,7 @@ This package first builds two 3D models of a marine vertebrate based on two orth
 4. Run paleomass.   
 `paleomass()`
 5. You will have the 3D models displayed and also saved as .ply files, so that  you can open it later in software of your choice.
-![Image](./Stenopterygius.jpg "3D models displayed in an rgl window of R")
+![Image](./img/Stenopterygius.jpg "3D models displayed in an rgl window of R")
 6. You will also get calculation results displayed and also save in .csv files.
 ![Image](./img/Stenopterygius_result.jpg "3D models displayed in an rgl window of R")  
 ![Image](./img/Stenopterygius_centroid.jpg "3D models displayed in an rgl window of R")
