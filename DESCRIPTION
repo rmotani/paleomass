@@ -1,0 +1,23 @@
+Package: paleomass
+Title: Paleomass: Volume and surface area estimation of vertebrates through 3D models with superelliptical cross-sections
+Version: 0.9.5.0000
+Authors@R: 
+    person("Ryosuke", "Motani", , "rmotani@ucdavis.edu", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0001-5022-1053"))
+Description: Build two 3D models of a vertebrate from its silhouettes, in a trial to bracket the true body volume and surface area between those of the two models. The models have superelliptical cross-sections, and the two differ from each other in superelliptical exponents. See Motani (2001) for details. Motani, R. Estimating body mass from silhouettes: Testing the assumption of elliptical body cross-sections. Paleobiology 27, 735–750 (2001). https://doi.org/10.1666/0094-8373(2001)027%3C0735:EBMFST%3E2.0.CO;2
+License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
+    license
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.2
+Imports: 
+    imager,
+    locfit,
+    Morpho,
+    plot3D,
+    rgl,
+    Rvcg
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr

@@ -1,0 +1,19 @@
+---
+title: "Getting started with Paleomass"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Get started with Paleomass}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(paleomass)
+```
