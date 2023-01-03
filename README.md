@@ -86,6 +86,7 @@ Make sure of the following when preparing silhouette images.
 - Orient all body parts so that the left is anterior and right is posterior.
 - Orient lateral-view silhouettes so that the top is dorsal and bottom is ventral.
 - When saving, adjust the resolution so that the body length is about 1000 pixels or greater. Save the fins with the same resolution,i.e., they are smaller than 1000 pixels across.
+- Branching in silhouettes is not supported. Vertical embayment in a fin, for example, is ignorred, and so is any horizontal incisions of the main body. 
 
 Motani (2001: Fig. 5) found that the accuracy improves up to about 1000 pixels and then the improvement slows down quickly.
 
