@@ -11,3 +11,7 @@ In RStudio, open the package installtion dialog. In the top pulldown menu named 
 
 ## Option 2.
 Not available yet.
+
+`library(devtools)`
+
+`devtools::install_github("rmotani/paleomass")`
