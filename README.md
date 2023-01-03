@@ -11,6 +11,10 @@ Motani, R. Estimating body mass from silhouettes: Testing the assumption of elli
 [Link](https://doi.org/10.1666/0094-8373(2001)027%3C0735:EBMFST%3E2.0.CO;2)   
 [PDF](./img/Motani_2001_Body_Mass.pdf)
 
+## Installation
+Follow this 
+[Link.](./install.md)
+
 ## Quick Start
 
 ### Simplest Example Run
