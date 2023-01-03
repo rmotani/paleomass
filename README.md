@@ -112,7 +112,9 @@ Don't close the 3D dsiplay window because you can eyeball the position of each e
 
 
 ### 4. Adjust the positions of body parts
-Now you can adjust the position of the flippers and fins relative to the body. There are three kinds of options per fin, although not all three are available for all fins. These are:
+Steps from here on do not affect the volume and area estiamtes.
+
+Let us start by adjusting the position of the flippers and fins relative to the body. There are three kinds of options per fin, although not all three are available for all fins. These are:
 - .onset .....Position adjustment along the Z axis (=body axis)
 - .adj.up ....Position adjustment along the Y axis (=dorso-ventral axis)
 - .adj.med ...Position adjustment along the X axis (=bilateral axis)
@@ -125,6 +127,8 @@ The flippers should move ventrally by about 160, resulting in the options:
 
 The flippers should move laterally, so:  
 `ffin.adj.med = 10, hfin.adj.med = 40`
+
+It may be counter-intuitive that positive values are for lateral rather than medial movements.
 
 ### 5. Adjust the angles of body parts
 Nex is the adjustment of angles. You can adjust two kinds of angles per fin, although not both are available for all fins.
@@ -141,8 +145,12 @@ The pectoral flippers shoudl spread out by about 60 degrees and the pelvic ones 
 Now that you have updated option values, let us try running paleomass again. Make sure to input everything you listed above.  
 `paleomass(Folder = "Plesiosaurus", fork.l = 2.94, Cfin = F, Dfin = F, ffin.onset = 450, hfin.onset = 650, ffin.adj.med = 10, hfin.adj.med = 40, ffin.adj.up = -160, hfin.adj.up = -160, ffin.sweep = pi/6, hfin.sweep =  pi/7, ffin.spread = pi/3, hfin.spread = pi/4)`
 
+You will get a model looking like below:
+
+![Image](./img/Plesiosaurus_LD.jpg "Test run result")
+
 ### 7. Re-adjustment
 After step 6, you probably found that the result is satisfactory. If not, it is up to you to adjust the position.
 
 ### 8. Final notes
-Remember, positions and rotations do not affect the volume estimates at this point, since there is no R function to enable 3D union of meshes easily. There is a Linux-based package rvtkStatismo that implements such a funciton but it is not for everybody.
+Remember, positions and rotations do not affect the volume and area estimates at this point, since there is no R function to enable 3D union of meshes easily. There is a Linux-based package rvtkStatismo that implements such a funciton but it is not for everybody.
