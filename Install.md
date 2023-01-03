@@ -10,8 +10,10 @@ Install from the pakcage file.
 In RStudio, open the package installtion dialog. In the top pulldown menu named "Install from" choose "Package Archive File".
 
 ## Option 2.
-Not available yet.
+Not available yet. Once the repository is public, try:
 
-`library(devtools)`
-
+``` 
+`library(devtools)
 `devtools::install_github("rmotani/paleomass")`
+```
+

@@ -20,13 +20,21 @@ Follow this
 ### Simplest Example Run
 
 1. Load the paleomass package in R.  
+```
 `library(paleomass)`
+```
 2. If you haven't, move to the working directory that you want to use.  
+```
 `setwd("YourDirectory")`
+```
 3. Save example data on your hard drive.  
+```
 `save_Stenopterygius()`
+```
 4. Run paleomass.   
+```
 `paleomass()`
+```
 5. You will have the 3D models displayed and also saved as .ply files, so that  you can open it later in software of your choice.
 
 	![Image](./img/Stenopterygius.jpg "3D models displayed in an rgl window of R")
@@ -42,9 +50,13 @@ Follow this
 1. As in the simplest example above.
 2. As in the simplest example above.
 3. Save Plesiosaurus example files.  
+```
 `save_Plesiosaurus()`
+```
 4. Run paleomass. You need to specify the data folder, length of the animal, and the positions/rotations of the flippers as below.  
+```
 `paleomass(Folder = "Plesiosaurus", fork.l = 2.94, Cfin = F, Dfin = F, ffin.onset = 450, hfin.onset = 650, ffin.adj.med = 10, hfin.adj.med = 40, ffin.adj.up = -160, hfin.adj.up = -160, ffin.sweep = pi/6, hfin.sweep =  pi/7, ffin.spread = pi/3, hfin.spread = pi/4)`
+```
 5. You will get estiamted volumes and surface areas, as well as the 3D models. Apart from being displayed in R, the values are saved in a .csv file while the models are saved as .ply files so that you can open it later in software of your choice.
 
 	![Image](./img/Plesiosaurus.jpg "3D models displayed in an rgl window of R")
@@ -55,9 +67,13 @@ Follow this
 1. As in the simplest example above.
 2. As in the simplest example above.
 3. Save Plesiosaurus example files.  
+```
 `save_Sphyrna()`
+```
 4. Run paleomass. You need to specify the data folder, length of the animal, and the positions/rotations of the paired fins, median fins, and cephalofoil as below.  
+```
 `paleomass(Folder="Sphyrna", fork.l = 2, n2 = 1.8, Afin = T, D2fin = T, Ceph = T, ffin.onset = 300, ffin.adj.up = -120, ffin.adj.med = 40, ffin.spread = pi/4, ffin.sweep = -pi*0/180, hfin.onset = 550, hfin.adj.up = 10, hfin.adj.med = 40, hfin.spread = pi/4, hfin.thick = 10, hfin.sweep = pi*5/180, cfin.onset = 920, cfin.adj.up = 35, dfin.onset = 350, dfin.adj.up = 190, dfin.sweep = pi*5/180, d2fin.onset = 800, d2fin.adj.up = 200, d2fin.sweep=pi*5/180, d2fin.thick=10, afin.onset = 800, afin.adj.up = 60, afin.sweep = pi*20/180, afin.thick = 10, ceph.onset = -45, ceph.adj.up = 120, ceph.rot = pi/2)`
+```
 5. You will get estiamted volumes and surface areas, as well as the 3D models. Apart from being displayed in R, the values are saved in a .csv file while the models are saved as .ply files so that you can open it later in software of your choice.
 
 	![Image](./img/Sphyrna.jpg "3D models displayed in an rgl window of R")
@@ -97,8 +113,9 @@ Once the silhouette images are made, make a sub-directory within your working di
 
 ### 3. Test run
 Next step is to test run the files. For example, for Plesiosaurus, try:  
+```
 `paleomass(Folder = "Plesiosaurus", Dfin = F, Cfin = F)`
-
+```
 The last two options are there because Plesiosaurus lacks the dorsal and caudal fins. If you forget to specify them, paleomass will look for the images files for these fins and complain that there is no file. 
 
 This command will result in a 3D model where all body parts are not placed in the right position or orientation.  
@@ -106,8 +123,9 @@ This command will result in a 3D model where all body parts are not placed in th
 ![Image](./img/Plesiosaurus_initial.jpg "Test run result")
 
 As you can tell from this image, the flippers are placed and roated as in the default model of *Stenopterygius*. That is not very helpful in the next step, when you need to adjust positions and angles. So let us try another run, where all the positoin variables are set to 0:  
+```
 `paleomass(Folder = "Plesiosaurus", Dfin = F, Cfin = F, Test.Run=T)`
-
+```
 Note that all position and angle variables are set to 0 except the positions along the Z axis (=body axis), so as to make it easy for the next step. Fins are spread along the body axis for easier viewing. 
 
 ![Image](./img/Plesiosaurus_test.jpg "Test run result")
@@ -147,8 +165,9 @@ The pectoral flippers shoudl spread out by about 60 degrees and the pelvic ones 
 
 ### 6. Run the command again with new options
 Now that you have updated option values, let us try running paleomass again. Make sure to input everything you listed above.  
+```
 `paleomass(Folder = "Plesiosaurus", fork.l = 2.94, Cfin = F, Dfin = F, ffin.onset = 450, hfin.onset = 650, ffin.adj.med = 10, hfin.adj.med = 40, ffin.adj.up = -160, hfin.adj.up = -160, ffin.sweep = pi/6, hfin.sweep =  pi/7, ffin.spread = pi/3, hfin.spread = pi/4)`
-
+```
 You will get a model looking like below:
 
 ![Image](./img/Plesiosaurus_LD.jpg "Test run result")
