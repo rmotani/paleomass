@@ -75,7 +75,8 @@ Below is the categorized list of options for paleomass().
 	![Image](./img/spread.jpg "Test run result")
 - ffin.sweep ...... Sweep angle of the forefin around the X axis (bilateral axis).
 
-	![Image](./img/sweep.jpg "Test run result")- ffin.adj.lat ...... Position adjustment along the X axis (bilateral axis) for the forefin, in pixels.
+	![Image](./img/sweep.jpg "Test run result")
+- ffin.adj.lat ...... Position adjustment along the X axis (bilateral axis) for the forefin, in pixels.
 - ffin.adj.up ...... Position adjustment along the Y axis (dorso-ventral axis) for the forefin, in pixels.
 - ffin.onset ...... Position adjustment along the Z axis (cranio-caudal axis) for the forefin, in pixels.
 - ffin.thick ...... Maximum thickness of the forefin relative to the chord in percentage.
