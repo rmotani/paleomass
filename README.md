@@ -113,9 +113,10 @@ Make sure of the following when preparing silhouette images.
 Motani (2001: Fig. 5) found that the accuracy improves up to about 1000 pixels and then the improvement slows down quickly.
 
 Here is an examle of how the body parts of Plesiosaurus was separated. I used CorelDraw to do this but it can be any drawing software.
+
 ![Image](./img/Plesiosaurus_parts.jpg "Silhouettes of Plesiosaurus")
 
-Anotehr example here, of how the hammer head body parts were separated. 
+Another example here, of how the hammer head body parts were separated. 
 
 ![Image](./img/Sphyrna_parts.jpg "Silhouettes of hammerhead")
 
