@@ -38,13 +38,6 @@ paleomass(
   n.body.slice = 1000,
   N.Fin.Slice = c("asis", "round", "provided"),
   n.fin.slice = 500,
-  Cfin = T,
-  Dfin = T,
-  D2fin = F,
-  Ffin = T,
-  Hfin = T,
-  Afin = F,
-  Ceph = F,
   cfin.adj.up = -5,
   cfin.onset = 870,
   cfin.rot = 0,
@@ -82,157 +75,6 @@ paleomass(
   Test.Run = F
 )
 }
-\arguments{
-\item{Folder}{Name of the subdirectory of the working directory storing image files}
-
-\item{File.Ext}{File extension of the image file. Either ".bmp",".jpg",".png", or "", the last one for without extensions.}
-
-\item{BodyL.File}{Name of the image file for the lateral silhouette of the body.}
-
-\item{BodyV.File}{Name of the image file for the ventral silhouette of the body.}
-
-\item{Cfin.File}{Name of the image file for the planar silhouette of the caudal fin.}
-
-\item{Dfin.File}{Name of the image file for the planar silhouette of the dorsal fin, if any.}
-
-\item{D2fin.File}{Name of the image file for the planar silhouette of the second dorsal fin, if any.}
-
-\item{Ffin.File}{Name of the image file for the planar silhouette of the forefin or pectoral flipper.}
-
-\item{Hfin.File}{Name of the image file for the planar silhouette of the hindfin or pelvic flipper.}
-
-\item{Afin.File}{Name of the image file for the planar silhouette of the anal fin, if any.}
-
-\item{Ceph.File}{Name of the image file for the planar silhouette of the cephalofoil, if any.}
-
-\item{n1}{Superelliptical exponent used in the first model.2.0 is recommended for marine tetrapods.}
-
-\item{n2}{Superelliptical exponent used in the second model. 3.0 is recommended for marine tetrapods.}
-
-\item{fork.l}{Fork length of the marine vertebrate in meters.}
-
-\item{dens}{Arbitrary specific gravity of whole body in g/cm^3.}
-
-\item{Save.Csv}{Logical. Whether to save a CSV file containing measurement results.}
-
-\item{Interpolate}{Logical. Whether to smooth the outline coordinates with local regression.}
-
-\item{nn.b}{Nearest neighbor component of locfit() used for body reconstrurciton.}
-
-\item{nn.f}{Nearest neighbor component of locfit() used for fin/flipper reconstrurciton.}
-
-\item{Use.Weight}{Logical. Whether to add weight to the tips when using locfit()}
-
-\item{Add.Tip}{Logical. Whether to add tips to the coordinates. TRUE is recommended.}
-
-\item{tip.radius}{Radius of the tip to be added. 0.0001 is recommended.}
-
-\item{a.per.slice}{Number of angular division per slice.}
-
-\item{Plot.Result.Mesh}{Logical. Whether to plot resulting meshes.}
-
-\item{Save.Part.Mesh}{Logical. Whether to save .ply files of each body part}
-
-\item{Save.Total.Mesh}{Logical. Whether to save .ply files of combined body parts.}
-
-\item{N.Mesh.Window}{A string of "two" or "one". Whether to plot two models side by side in one window or not. One window would often kill R.}
-
-\item{Mesh.Col}{Color of the mesh.}
-
-\item{Body.Y.Centering}{Logical. Whether to center the body along the Y axis.}
-
-\item{N.Body.Slice}{How to set the number of longitudinal segments. Possible values are: "asis"--use the pixel count from input image; "round"(default)--round the value to the closest 100; " provided"--use the value provided in n.body.slice}
-
-\item{n.body.slice}{Number of segments along the body axis. Moot unless N.Body.Slice = "provided".}
-
-\item{N.Fin.Slice}{How to set the number of spanwise segments. Possible values are: "asis"--use the pixel count from input image; "round"(default)--round the value to the closest 100; " provided"--use the value provided in n.fin.slice}
-
-\item{n.fin.slice}{Number of segments along the span of the fin. Moot unless N.Fin.Slice = "provided".}
-
-\item{Cfin}{Logical. If the caudal fin is present.}
-
-\item{Dfin}{Logical. If the dorsal fin is present.}
-
-\item{D2fin}{Logical. If the second dorsal fin is present.}
-
-\item{Ffin}{Logical. If the forefin/pectoral flipper is present.}
-
-\item{Hfin}{Logical. If the hindfin/pelvic flipper is present.}
-
-\item{Afin}{Logical. If the anal fin is present.}
-
-\item{Ceph}{Logical. If the cephalofoil fin is present.}
-
-\item{cfin.adj.up}{Position adjustment along the Y axis (dorso-ventral axis) for the caudal fin, in pixels.}
-
-\item{cfin.onset}{Position adjustment along the Z axis (cranio-caudal axis) for the caudal fin, in pixels.}
-
-\item{cfin.rot}{Rotation angle of the caudal fin around Z axis (cranio-caudal axis). 0 for vertical, pi/2 for horizontal fins.}
-
-\item{cfin.sweep}{Sweep angle of the caudal fin around the X axis (bilateral axis).}
-
-\item{cfin.thick}{Maximum thickness of the caudal fin relative to the chord in percentage.}
-
-\item{dfin.adj.up}{Position adjustment along the Y axis (dorso-ventral axis) for the dorsal fin, in pixels.}
-
-\item{dfin.onset}{Position adjustment along the Z axis (cranio-caudal axis) for the dorsal fin, in pixels.}
-
-\item{dfin.sweep}{Sweep angle of the dorsal fin around the X axis (bilateral axis).}
-
-\item{dfin.thick}{Maximum thickness of the dorsal fin relative to the chord in percentage.}
-
-\item{d2fin.adj.up}{Position adjustment along the Y (dorso-ventral axis) axis for the second dorsal fin, in pixels.}
-
-\item{d2fin.onset}{Position adjustment along the Z axis (cranio-caudal axis) for the secod dorsal fin, in pixels.}
-
-\item{d2fin.sweep}{Sweep angle of the second dorsal fin around the X axis (bilateral axis).}
-
-\item{d2fin.thick}{Maximum thickness of the second dorsal fin relative to the chord in percentage.}
-
-\item{ffin.spread}{Rotation angle of the forefin around the Z axis (cranio-caudal axis).}
-
-\item{ffin.sweep}{Sweep angle of the forefin around the X axis (bilateral axis).}
-
-\item{ffin.adj.med}{Position adjustment along the X axis (bilateral axis) for the forefin, in pixels.}
-
-\item{ffin.adj.up}{Position adjustment along the Y axis (dorso-ventral axis) for the forefin, in pixels.}
-
-\item{ffin.onset}{Position adjustment along the Z axis (cranio-caudal axis) for the forefin, in pixels.}
-
-\item{ffin.thick}{Maximum thickness of the forefin relative to the chord in percentage.}
-
-\item{hfin.spread}{Rotation angle of the hindfin around the Z axis (cranio-caudal axis).}
-
-\item{hfin.sweep}{Sweep angle of the hindfin around the X axis (bilateral axis).}
-
-\item{hfin.adj.med}{Position adjustment along the X axis (bilateral axis) for the hindfin, in pixels.}
-
-\item{hfin.adj.up}{Position adjustment along the Y axis (dorso-ventral axis) for the hindfin, in pixels.}
-
-\item{hfin.onset}{Position adjustment along the Z axis (cranio-caudal axis) for the hindfin, in pixels.}
-
-\item{hfin.thick}{Maximum thickness of the hindfin relative to the chord in percentage.}
-
-\item{afin.adj.up}{Position adjustment along the Y axis (dorso-ventral axis) for the anal fin, in pixels.}
-
-\item{afin.onset}{Position adjustment along the Z axis (cranio-caudal axis) for the anal fin, in pixels.}
-
-\item{afin.sweep}{Sweep angle of the anal fin around the X axis (bilateral axis).}
-
-\item{afin.thick}{Maximum thickness of the anal fin relative to the chord in percentage.}
-
-\item{ceph.adj.up}{Position adjustment along the Y axis (dorso-ventral axis) for the cephalofoil, in pixels.}
-
-\item{ceph.onset}{Position adjustment along the Z axis (cranio-caudal axis) for the cephalofoil, in pixels.}
-
-\item{ceph.rot}{Rotation angle of the cephalofoil around Z axis (cranio-caudal axis). pi/2 for horizontal cephalfoil.}
-
-\item{ceph.sweep}{Sweep angle of the cephalofoil around the X axis (bilateral axis).}
-
-\item{ceph.thick}{Maximum thickness of the cephalofoil relative to the chord in percentage.}
-
-\item{Test.Run}{Whether to set the positions and rotations of fins for a test run}
-}
 \value{
 A matrix containing measurement results.
 }
@@ -244,26 +86,23 @@ Main function to build two 3D models from silhouettes of a marine vertebrate in 
 # Save the silhouette images for Stenopterygius in the current
 # directory and make 3D models using them.
 save_Stenopterygius()
-rm(Stenopterygius)
 paleomass()
 #
 # Plesiosaur Example
 # Save the silhouette images for Plesiosaurus and make 3D models using them
 save_Plesiosaurus()
-rm(Plesiosaurus)
-paleomass(Folder="Plesiosaurus",fork.l=2.94,Cfin=F,Dfin=F,ffin.onset=450,
+paleomass(Folder="Plesiosaurus",fork.l=2.94,ffin.onset=450,
     hfin.onset=650,ffin.adj.med=10,hfin.adj.med=40,ffin.adj.up=-160,
     hfin.adj.up=-160,ffin.spread=pi/3,hfin.spread=pi/4)
 #
 # Hammerhead Example
 # Save the silhouette images for Sphyrna and make 3D models using them
 save_Sphryna()
-rm(Sphyrna)
-paleomass(Folder="Sphyrna",fork.l=2,n2=1.8,Afin=T,D2fin=T,Ceph=T,
+paleomass(Folder="Sphyrna",fork.l=2,n2=1.8,
     ffin.onset=300, ffin.adj.up=-120,ffin.adj.med=40,ffin.spread=pi/4,
     ffin.sweep=-pi*0/180,
-    hfin.onset=550,hfin.adj.up=10,hfin.adj.med=40,hfin.spread=pi/4,hfin.thick=10,
-    hfin.sweep=pi*5/180,
+    hfin.onset=550,hfin.adj.up=10,hfin.adj.med=40,hfin.spread=pi/4,
+    hfin.thick=10,hfin.sweep=pi*5/180,
     cfin.onset=920,cfin.adj.up=35,
     dfin.onset=350,dfin.adj.up=190,dfin.sweep=pi*5/180,
     d2fin.onset=800,d2fin.adj.up=200,,d2fin.sweep=pi*5/180,d2fin.thick=10,
