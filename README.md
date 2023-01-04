@@ -140,17 +140,15 @@ Once the silhouette images are made, make a sub-directory within your working di
 ### 3. Test run
 Next step is to test run the files. For example, for Plesiosaurus, try:  
 ```
-paleomass(Folder = "Plesiosaurus", Dfin = F, Cfin = F)
+paleomass(Folder = "Plesiosaurus")
 ```
-The last two options are there because Plesiosaurus lacks the dorsal and caudal fins. If you forget to specify them, paleomass will look for the images files for these fins and complain that there is no file. 
-
 This command will result in a 3D model where all body parts are not placed in the right position or orientation.  
 
 ![Image](./img/Plesiosaurus_initial.jpg "Test run result")
 
 As you can tell from this image, the flippers are placed and roated as in the default model of *Stenopterygius*. That is not very helpful in the next step, when you need to adjust positions and angles. So let us try another run, where all the positoin variables are set to 0:  
 ```
-paleomass(Folder = "Plesiosaurus", Dfin = F, Cfin = F, Test.Run=T)
+paleomass(Folder = "Plesiosaurus", Test.Run=T)
 ```
 Note that all position and angle variables are set to 0 except the positions along the Z axis (=body axis), so as to make it easy for the next step. Fins are spread along the body axis for easier viewing. 
 
