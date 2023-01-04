@@ -75,6 +75,143 @@ paleomass(
   Test.Run = F
 )
 }
+\arguments{
+\item{Folder}{Name of the sub-directory of the working directory storing image files.}
+
+\item{File.Ext}{File extension of the image file. Either ".bmp",".jpg",".png", or "", the last one for without extensions.}
+
+\item{BodyL.File}{Name of the image file for the lateral silhouette of the body, without extension.}
+
+\item{BodyV.File}{Name of the image file for the ventral silhouette of the body, without extension.}
+
+\item{Cfin.File}{Name of the image file for the planar silhouette of the caudal fin, without extension.}
+
+\item{Dfin.File}{. Name of the image file for the planar silhouette of the dorsal fin, if any, without extension.}
+
+\item{D2fin.File}{Name of the image file for the planar silhouette of the second dorsal fin, if any, without extension.}
+
+\item{Ffin.File}{Name of the image file for the planar silhouette of the forefin/pectoral fin/pectoral flipper.}
+
+\item{Hfin.File}{Name of the image file for the planar silhouette of the hindfin/pelvic fin/pelvic flipper, without extension.}
+
+\item{Afin.File}{Name of the image file for the planar silhouette of the anal fin, if any, without extension.}
+
+\item{Ceph.File}{Name of the image file for the planar silhouette of the cephalofoil, if any, without extension.}
+
+\item{n1}{Superelliptical exponent used in the first model. A value of 2.0 is recommended for marine tetrapods.}
+
+\item{n2}{Superelliptical exponent used in the second model. A value of 3.0 is recommended for marine tetrapods.}
+
+\item{fork.l}{Fork length of the marine vertebrate in meters.}
+
+\item{dens}{Arbitrary specific gravity of whole body in g/cm^3.}
+
+\item{Save.Csv}{Logical. Whether to save a CSV file containing measurement results.}
+
+\item{Interpolate}{Logical. Whether to smooth the outline coordinates with local regression. TRUE is recommended.}
+
+\item{nn.b}{Nearest neighbor component of locfit() used for body reconstruction when interpolating.}
+
+\item{nn.f}{Nearest neighbor component of locfit() used for fin/flipper reconstruction when interpolating.}
+
+\item{Use.Weight}{Logical. Whether to add weight to the tips when using locfit()}
+
+\item{Add.Tip}{Logical. Whether to add tips and the two ends of an object. TRUE is recommended to close the holes generated at the tips. If TRUE, then a small circle of a radius specified by tip.radius (0.0001 pixel by default) is added, while the existing points are shifted inward by tip.radius. This affects the shape minimally while closing the tips.}
+
+\item{tip.radius}{Radius of the tip to be added. A value of 0.0001 is recommended.}
+
+\item{a.per.slice}{Number of angular division per superelliptical slice plus 1, that is, how many points are placed around a superellipse with one pair of redundant points. The default value is 181, i.e., there is a point every 2 degrees.}
+
+\item{Plot.Result.Mesh}{Logical. Whether to plot resulting meshes.}
+
+\item{Save.Part.Mesh}{Logical. Whether to save .ply files of each body part}
+
+\item{Save.Total.Mesh}{Logical. Whether to save .ply files of combined body parts.}
+
+\item{N.Mesh.Window}{A string of "two" or "one". Whether to plot two models side by side in one window or not. One window would often kill R.}
+
+\item{Mesh.Col}{Color of the mesh in rgl window. Not reflected in the saved .ply files.}
+
+\item{Body.Y.Centering}{Logical. Whether to center the body along the Y axis.}
+
+\item{N.Body.Slice}{How to set the number of longitudinal segments. Possible values are: "asis"#’ @param #’ @param use the pixel count from input image; "round"(default)#’ @param #’ @param round the value to the closest 100; " provided"#’ @param #’ @param use the value provided in n.body.slice}
+
+\item{n.body.slice}{Number of segments along the body axis. Moot unless N.Body.Slice = "provided".}
+
+\item{N.Fin.Slice}{How to set the number of spanwise segments. Possible values are: "asis"#’ @param #’ @param use the pixel count from input image; "round"(default)#’ @param #’ @param round the value to the closest 100; " provided"#’ @param #’ @param use the value provided in n.fin.slice}
+
+\item{n.fin.slice}{umber of segments along the span of the fin. Moot unless N.Fin.Slice = "provided".}
+
+\item{cfin.adj.up}{Position adjustment along the Y axis (dorso-ventral axis) for the caudal fin, in pixels.}
+
+\item{cfin.onset}{Position adjustment along the Z axis ( cranio-caudal axis) for the caudal fin, in pixels.}
+
+\item{cfin.rot}{Rotation angle of the caudal fin around Z axis ( cranio-caudal axis). 0 for #’ @param vertical, pi/2 for horizontal fins.}
+
+\item{cfin.sweep}{Sweep angle of the caudal fin around the X axis (bilateral axis).}
+
+\item{cfin.thick}{Maximum thickness of the caudal fin relative to the chord in percentage.}
+
+\item{dfin.adj.up}{Position adjustment along the Y axis (dorso-ventral axis) for the dorsal fin, in pixels.}
+
+\item{dfin.onset}{Position adjustment along the Z axis ( cranio-caudal axis) for the dorsal fin, in pixels.}
+
+\item{dfin.sweep}{Sweep angle of the dorsal fin around the X axis (bilateral axis).}
+
+\item{dfin.thick}{Maximum thickness of the dorsal fin relative to the chord in percentage.}
+
+\item{d2fin.adj.up}{Position adjustment along the Y (dorso-ventral axis) axis for the second dorsal fin, in pixels.}
+
+\item{d2fin.onset}{Position adjustment along the Z axis ( cranio-caudal axis) for the secod dorsal fin, in pixels.}
+
+\item{d2fin.sweep}{Sweep angle of the second dorsal fin around the X axis (bilateral axis).}
+
+\item{d2fin.thick}{Maximum thickness of the second dorsal fin relative to the chord in percentage.}
+
+\item{ffin.spread}{Rotation angle of the forefin around the Z axis ( cranio-caudal axis).}
+
+\item{ffin.sweep}{Sweep angle of the forefin around the X axis (bilateral axis).}
+
+\item{ffin.adj.med}{Position adjustment along the X axis (bilateral axis) for the forefin, in pixels.}
+
+\item{ffin.adj.up}{Position adjustment along the Y axis (dorso-ventral axis) for the forefin, in pixels.}
+
+\item{ffin.onset}{Position adjustment along the Z axis ( cranio-caudal axis) for the forefin, in pixels.}
+
+\item{ffin.thick}{Maximum thickness of the forefin relative to the chord in percentage.}
+
+\item{hfin.spread}{Rotation angle of the hindfin around the Z axis ( cranio-caudal axis).}
+
+\item{hfin.sweep}{Sweep angle of the hindfin around the X axis (bilateral axis).}
+
+\item{hfin.adj.med}{Position adjustment along the X axis (bilateral axis) for the hindfin, in pixels.}
+
+\item{hfin.adj.up}{Position adjustment along the Y axis (dorso-ventral axis) for the hindfin, in pixels.}
+
+\item{hfin.onset}{Position adjustment along the Z axis ( cranio-caudal axis) for the hindfin, in pixels.}
+
+\item{hfin.thick}{Maximum thickness of the hindfin relative to the chord in percentage.}
+
+\item{afin.adj.up}{Position adjustment along the Y axis (dorso-ventral axis) for the anal fin, in pixels.}
+
+\item{afin.onset}{Position adjustment along the Z axis (cranio-caudal axis) for the anal fin, in pixels.}
+
+\item{afin.sweep}{Sweep angle of the anal fin around the X axis (bilateral axis).}
+
+\item{afin.thick}{Maximum thickness of the anal fin relative to the chord in percentage.}
+
+\item{ceph.adj.up}{Position adjustment along the Y axis (dorso#-ventral axis) for the cephalofoil, in pixels.}
+
+\item{ceph.onset}{Position adjustment along the Z axis (cranio-caudal axis) for the cephalofoil, in pixels.}
+
+\item{ceph.rot}{Rotation angle of the cephalofoil around Z axis (cranio-caudal axis). pi/2 for horizontal cephalfoil.}
+
+\item{ceph.sweep}{Sweep angle of the cephalofoil around the X axis (bilateral axis).}
+
+\item{ceph.thick}{Maximum thickness of the cephalofoil relative to the chord in percentage.}
+
+\item{Test.Run}{Whether to set the positions and rotations of fins for a test run}
+}
 \value{
 A matrix containing measurement results.
 }

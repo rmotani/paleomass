@@ -1,80 +1,73 @@
 #' Main function to build two 3D models from silhouettes of a marine vertebrate in a trial to bracket the body volume and surface area between the two.
 #'
-#’ @param  a.per.slice  Number of angular division per superelliptical slice plus 1, that is, how many points are placed around a superellipse with one pair of redundant points. The default value is 181, i.e., there is a point every 2 degrees.
-#’ @param  Add.Tip  Logical. Whether to add tips and the two ends of an object. TRUE is recommended to close the holes generated at the tips. If TRUE, then a small circle of a radius specified by tip.radius (0.0001 pixel by default) is added, while the existing points are shifted inward by tip.radius. This affects the shape minimally while closing the tips.
-#’ @param  Afin  Logical. If the anal fin is present.
-#’ @param  afin.adj.up  Position adjustment along the Y axis (dorso#’ @param ventral axis) for the anal fin, in pixels.
-#’ @param  Afin.File  Name of the image file for the planar silhouette of the anal fin, if any, without extension.
-#’ @param  afin.onset  Position adjustment along the Z axis (cranio#’ @param caudal axis) for the anal fin, in pixels.
-#’ @param  afin.sweep  Sweep angle of the anal fin around the X axis (bilateral axis).
-#’ @param  afin.thick  Maximum thickness of the anal fin relative to the chord in percentage.
-#’ @param  Body.Y.Centering  Logical. Whether to center the body along the Y axis.
-#’ @param  BodyL.File  Name of the image file for the lateral silhouette of the body, without extension.
-#’ @param  BodyV.File  Name of the image file for the ventral silhouette of the body, without extension.
-#’ @param  Ceph  Logical. If the cephalofoil is present.
-#’ @param  ceph.adj.up  Position adjustment along the Y axis (dorso#’ @param ventral axis) for the cephalofoil, in pixels.
-#’ @param  Ceph.File  Name of the image file for the planar silhouette of the cephalofoil, if any, without extension.
-#’ @param  ceph.onset  Position adjustment along the Z axis (cranio#’ @param caudal axis) for the cephalofoil, in pixels.
-#’ @param  ceph.rot  Rotation angle of the cephalofoil around Z axis (cranio#’ @param caudal axis). pi/2 for horizontal cephalfoil.
-#’ @param  ceph.sweep  Sweep angle of the cephalofoil around the X axis (bilateral axis).
-#’ @param  ceph.thick  Maximum thickness of the cephalofoil relative to the chord in percentage.
-#’ @param  Cfin  Logical. If the caudal fin is present.
-#’ @param  cfin.adj.up  Position adjustment along the Y axis (dorso#’ @param ventral axis) for the caudal fin, in pixels.
-#’ @param  Cfin.File . Name of the image file for the planar silhouette of the caudal fin, without extension.
-#’ @param  cfin.onset  Position adjustment along the Z axis (cranio#’ @param caudal axis) for the caudal fin, in pixels.
-#’ @param  cfin.rot  Rotation angle of the caudal fin around Z axis (cranio#’ @param caudal axis). 0 for #’ @param  vertical, pi/2 for horizontal fins.
-#’ @param  cfin.sweep  Sweep angle of the caudal fin around the X axis (bilateral axis).
-#’ @param  cfin.thick  Maximum thickness of the caudal fin relative to the chord in percentage.
-#’ @param  D2fin  Logical. If the second dorsal fin is present.
-#’ @param  d2fin.adj.up  Position adjustment along the Y (dorso#’ @param ventral axis) axis for the second dorsal fin, in pixels.
-#’ @param  D2fin.File ..... Name of the image file for the planar silhouette of the second dorsal fin, if any, without extension.
-#’ @param  d2fin.onset  Position adjustment along the Z axis (cranio#’ @param caudal axis) for the secod dorsal fin, in pixels.
-#’ @param  d2fin.sweep  Sweep angle of the second dorsal fin around the X axis (bilateral axis).
-#’ @param  d2fin.thick  Maximum thickness of the second dorsal fin relative to the chord in percentage.
-#’ @param  dens  Arbitrary specific gravity of whole body in g/cm^3.
-#’ @param  Dfin  Logical. If the dorsal fin is present.
-#’ @param  dfin.adj.up  Position adjustment along the Y axis (dorso#’ @param ventral axis) for the dorsal fin, in pixels.
-#’ @param  Dfin.File . Name of the image file for the planar silhouette of the dorsal fin, if any, without extension.
-#’ @param  dfin.onset  Position adjustment along the Z axis (cranio#’ @param caudal axis) for the dorsal fin, in pixels.
-#’ @param  dfin.sweep  Sweep angle of the dorsal fin around the X axis (bilateral axis).
-#’ @param  dfin.thick  Maximum thickness of the dorsal fin relative to the chord in percentage.
-#’ @param  Ffin  Logical. If the forefin/pectoral fin/pectoral flipper is present.
-#’ @param  ffin.adj.med  Position adjustment along the X axis (bilateral axis) for the forefin, in pixels.
-#’ @param  ffin.adj.up  Position adjustment along the Y axis (dorso#’ @param ventral axis) for the forefin, in pixels.
-#’ @param  Ffin.File  Name of the image file for the planar silhouette of the forefin/pectoral fin/pectoral flipper.
-#’ @param  ffin.onset  Position adjustment along the Z axis (cranio#’ @param caudal axis) for the forefin, in pixels.
-#’ @param  ffin.spread  Rotation angle of the forefin around the Z axis (cranio#’ @param caudal axis).
-#’ @param  ffin.sweep  Sweep angle of the forefin around the X axis (bilateral axis).
-#’ @param  ffin.thick  Maximum thickness of the forefin relative to the chord in percentage.
-#’ @param  File.Ext ...File extension of the image file. Either ".bmp",".jpg",".png", or "", the last one for without extensions.
-#’ @param  Folder  Name of the sub#’ @param directory of the working directory storing image files.
-#’ @param  fork.l  Fork length of the marine vertebrate in meters.
-#’ @param  Hfin  Logical. If the hindfin/pelvic fin/pelvic flipper is present.
-#’ @param  hfin.adj.med  Position adjustment along the X axis (bilateral axis) for the hindfin, in pixels.
-#’ @param  hfin.adj.up  Position adjustment along the Y axis (dorso#’ @param ventral axis) for the hindfin, in pixels.
-#’ @param  Hfin.File  Name of the image file for the planar silhouette of the hindfin/pelvic fin/pelvic flipper, without extension.
-#’ @param  hfin.onset  Position adjustment along the Z axis (cranio#’ @param caudal axis) for the hindfin, in pixels.
-#’ @param  hfin.spread  Rotation angle of the hindfin around the Z axis (cranio#’ @param caudal axis).
-#’ @param  hfin.sweep  Sweep angle of the hindfin around the X axis (bilateral axis).
-#’ @param  hfin.thick Maximum thickness of the hindfin relative to the chord in percentage.
-#’ @param  Interpolate  Logical. Whether to smooth the outline coordinates with local regression. TRUE is recommended.
-#’ @param  Mesh.Col  Color of the mesh in rgl window. Not reflected in the saved .ply files.
-#’ @param  N.Body.Slice  How to set the number of longitudinal segments. Possible values are: "asis"#’ @param #’ @param use the pixel count from input image; "round"(default)#’ @param #’ @param round the value to the closest 100; " provided"#’ @param #’ @param use the value provided in n.body.slice
-#’ @param  n.body.slice  Number of segments along the body axis. Moot unless N.Body.Slice = "provided".
-#’ @param  N.Fin.Slice  How to set the number of spanwise segments. Possible values are: "asis"#’ @param #’ @param use the pixel count from input image; "round"(default)#’ @param #’ @param round the value to the closest 100; " provided"#’ @param #’ @param use the value provided in n.fin.slice
-#’ @param  n.fin.slice  umber of segments along the span of the fin. Moot unless N.Fin.Slice = "provided".
-#’ @param  N.Mesh.Window  A string of "two" or "one". Whether to plot two models side by side in one window or not. One window would often kill R.
-#’ @param  n1  Superelliptical exponent used in the first model. A value of 2.0 is recommended for marine tetrapods.
-#’ @param  n2  Superelliptical exponent used in the second model. A value of 3.0 is recommended for marine tetrapods.
-#’ @param  nn.b  Nearest neighbor component of locfit() used for body reconstruction when interpolating.
-#’ @param  nn.f  Nearest neighbor component of locfit() used for fin/flipper reconstruction when interpolating.
-#’ @param  Plot.Result.Mesh  Logical. Whether to plot resulting meshes.
-#’ @param  Save.Csv  Logical. Whether to save a CSV file containing measurement results.
-#’ @param  Save.Part.Mesh  Logical. Whether to save .ply files of each body part
-#’ @param  Save.Total.Mesh  Logical. Whether to save .ply files of combined body parts.
-#’ @param  Test.Run  Whether to set the positions and rotations of fins for a test run
-#’ @param  tip.radius  Radius of the tip to be added. A value of 0.0001 is recommended.
-#’ @param  Use.Weight  Logical. Whether to add weight to the tips when using locfit()
+#' @param a.per.slice  Number of angular division per superelliptical slice plus 1, that is, how many points are placed around a superellipse with one pair of redundant points. The default value is 181, i.e., there is a point every 2 degrees.
+#' @param Add.Tip Logical. Whether to add tips and the two ends of an object. TRUE is recommended to close the holes generated at the tips. If TRUE, then a small circle of a radius specified by tip.radius (0.0001 pixel by default) is added, while the existing points are shifted inward by tip.radius. This affects the shape minimally while closing the tips.
+#' @param afin.adj.up Position adjustment along the Y axis (dorso-ventral axis) for the anal fin, in pixels.
+#' @param Afin.File Name of the image file for the planar silhouette of the anal fin, if any, without extension.
+#' @param afin.onset Position adjustment along the Z axis (cranio-caudal axis) for the anal fin, in pixels.
+#' @param afin.sweep Sweep angle of the anal fin around the X axis (bilateral axis).
+#' @param afin.thick Maximum thickness of the anal fin relative to the chord in percentage.
+#' @param Body.Y.Centering Logical. Whether to center the body along the Y axis.
+#' @param BodyL.File Name of the image file for the lateral silhouette of the body, without extension.
+#' @param BodyV.File Name of the image file for the ventral silhouette of the body, without extension.
+#' @param ceph.adj.up Position adjustment along the Y axis (dorso#-ventral axis) for the cephalofoil, in pixels.
+#' @param Ceph.File Name of the image file for the planar silhouette of the cephalofoil, if any, without extension.
+#' @param ceph.onset Position adjustment along the Z axis (cranio-caudal axis) for the cephalofoil, in pixels.
+#' @param ceph.rot Rotation angle of the cephalofoil around Z axis (cranio-caudal axis). pi/2 for horizontal cephalfoil.
+#' @param ceph.sweep Sweep angle of the cephalofoil around the X axis (bilateral axis).
+#' @param ceph.thick Maximum thickness of the cephalofoil relative to the chord in percentage.
+#' @param cfin.adj.up Position adjustment along the Y axis (dorso-ventral axis) for the caudal fin, in pixels.
+#' @param Cfin.File  Name of the image file for the planar silhouette of the caudal fin, without extension.
+#' @param cfin.onset Position adjustment along the Z axis ( cranio-caudal axis) for the caudal fin, in pixels.
+#' @param cfin.rot Rotation angle of the caudal fin around Z axis ( cranio-caudal axis). 0 for #’ @param vertical, pi/2 for horizontal fins.
+#' @param cfin.sweep Sweep angle of the caudal fin around the X axis (bilateral axis).
+#' @param cfin.thick Maximum thickness of the caudal fin relative to the chord in percentage.
+#' @param d2fin.adj.up Position adjustment along the Y (dorso-ventral axis) axis for the second dorsal fin, in pixels.
+#' @param D2fin.File Name of the image file for the planar silhouette of the second dorsal fin, if any, without extension.
+#' @param d2fin.onset Position adjustment along the Z axis ( cranio-caudal axis) for the secod dorsal fin, in pixels.
+#' @param d2fin.sweep Sweep angle of the second dorsal fin around the X axis (bilateral axis).
+#' @param d2fin.thick Maximum thickness of the second dorsal fin relative to the chord in percentage.
+#' @param dens Arbitrary specific gravity of whole body in g/cm^3.
+#' @param dfin.adj.up Position adjustment along the Y axis (dorso-ventral axis) for the dorsal fin, in pixels.
+#' @param Dfin.File . Name of the image file for the planar silhouette of the dorsal fin, if any, without extension.
+#' @param dfin.onset Position adjustment along the Z axis ( cranio-caudal axis) for the dorsal fin, in pixels.
+#' @param dfin.sweep Sweep angle of the dorsal fin around the X axis (bilateral axis).
+#' @param dfin.thick Maximum thickness of the dorsal fin relative to the chord in percentage.
+#' @param ffin.adj.med Position adjustment along the X axis (bilateral axis) for the forefin, in pixels.
+#' @param ffin.adj.up Position adjustment along the Y axis (dorso-ventral axis) for the forefin, in pixels.
+#' @param Ffin.File Name of the image file for the planar silhouette of the forefin/pectoral fin/pectoral flipper.
+#' @param ffin.onset Position adjustment along the Z axis ( cranio-caudal axis) for the forefin, in pixels.
+#' @param ffin.spread Rotation angle of the forefin around the Z axis ( cranio-caudal axis).
+#' @param ffin.sweep Sweep angle of the forefin around the X axis (bilateral axis).
+#' @param ffin.thick Maximum thickness of the forefin relative to the chord in percentage.
+#' @param File.Ext File extension of the image file. Either ".bmp",".jpg",".png", or "", the last one for without extensions.
+#' @param Folder Name of the sub-directory of the working directory storing image files.
+#' @param fork.l Fork length of the marine vertebrate in meters.
+#' @param hfin.adj.med Position adjustment along the X axis (bilateral axis) for the hindfin, in pixels.
+#' @param hfin.adj.up Position adjustment along the Y axis (dorso-ventral axis) for the hindfin, in pixels.
+#' @param Hfin.File Name of the image file for the planar silhouette of the hindfin/pelvic fin/pelvic flipper, without extension.
+#' @param hfin.onset Position adjustment along the Z axis ( cranio-caudal axis) for the hindfin, in pixels.
+#' @param hfin.spread Rotation angle of the hindfin around the Z axis ( cranio-caudal axis).
+#' @param hfin.sweep Sweep angle of the hindfin around the X axis (bilateral axis).
+#' @param hfin.thick Maximum thickness of the hindfin relative to the chord in percentage.
+#' @param Interpolate Logical. Whether to smooth the outline coordinates with local regression. TRUE is recommended.
+#' @param Mesh.Col Color of the mesh in rgl window. Not reflected in the saved .ply files.
+#' @param N.Body.Slice How to set the number of longitudinal segments. Possible values are: "asis"#’ @param #’ @param use the pixel count from input image; "round"(default)#’ @param #’ @param round the value to the closest 100; " provided"#’ @param #’ @param use the value provided in n.body.slice
+#' @param n.body.slice Number of segments along the body axis. Moot unless N.Body.Slice = "provided".
+#' @param N.Fin.Slice How to set the number of spanwise segments. Possible values are: "asis"#’ @param #’ @param use the pixel count from input image; "round"(default)#’ @param #’ @param round the value to the closest 100; " provided"#’ @param #’ @param use the value provided in n.fin.slice
+#' @param n.fin.slice umber of segments along the span of the fin. Moot unless N.Fin.Slice = "provided".
+#' @param N.Mesh.Window A string of "two" or "one". Whether to plot two models side by side in one window or not. One window would often kill R.
+#' @param n1 Superelliptical exponent used in the first model. A value of 2.0 is recommended for marine tetrapods.
+#' @param n2 Superelliptical exponent used in the second model. A value of 3.0 is recommended for marine tetrapods.
+#' @param nn.b Nearest neighbor component of locfit() used for body reconstruction when interpolating.
+#' @param nn.f Nearest neighbor component of locfit() used for fin/flipper reconstruction when interpolating.
+#' @param Plot.Result.Mesh Logical. Whether to plot resulting meshes.
+#' @param Save.Csv Logical. Whether to save a CSV file containing measurement results.
+#' @param Save.Part.Mesh Logical. Whether to save .ply files of each body part
+#' @param Save.Total.Mesh Logical. Whether to save .ply files of combined body parts.
+#' @param Test.Run Whether to set the positions and rotations of fins for a test run
+#' @param tip.radius Radius of the tip to be added. A value of 0.0001 is recommended.
+#' @param Use.Weight Logical. Whether to add weight to the tips when using locfit()
 #'
 #' @return A matrix containing measurement results.
 #' @import rgl
