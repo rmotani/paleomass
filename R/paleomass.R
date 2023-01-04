@@ -33,7 +33,7 @@
 #' @param dfin.onset Position adjustment along the Z axis ( cranio-caudal axis) for the dorsal fin, in pixels.
 #' @param dfin.sweep Sweep angle of the dorsal fin around the X axis (bilateral axis).
 #' @param dfin.thick Maximum thickness of the dorsal fin relative to the chord in percentage.
-#' @param ffin.adj.med Position adjustment along the X axis (bilateral axis) for the forefin, in pixels.
+#' @param ffin.adj.lat Position adjustment along the X axis (bilateral axis) for the forefin, in pixels.
 #' @param ffin.adj.up Position adjustment along the Y axis (dorso-ventral axis) for the forefin, in pixels.
 #' @param Ffin.File Name of the image file for the planar silhouette of the forefin/pectoral fin/pectoral flipper.
 #' @param ffin.onset Position adjustment along the Z axis ( cranio-caudal axis) for the forefin, in pixels.
@@ -43,7 +43,7 @@
 #' @param File.Ext File extension of the image file. Either ".bmp",".jpg",".png", or "", the last one for without extensions.
 #' @param Folder Name of the sub-directory of the working directory storing image files.
 #' @param fork.l Fork length of the marine vertebrate in meters.
-#' @param hfin.adj.med Position adjustment along the X axis (bilateral axis) for the hindfin, in pixels.
+#' @param hfin.adj.lat Position adjustment along the X axis (bilateral axis) for the hindfin, in pixels.
 #' @param hfin.adj.up Position adjustment along the Y axis (dorso-ventral axis) for the hindfin, in pixels.
 #' @param Hfin.File Name of the image file for the planar silhouette of the hindfin/pelvic fin/pelvic flipper, without extension.
 #' @param hfin.onset Position adjustment along the Z axis ( cranio-caudal axis) for the hindfin, in pixels.
@@ -86,16 +86,16 @@
 #' @examples # Save the silhouette images for Plesiosaurus and make 3D models using them
 #' @examples save_Plesiosaurus()
 #' @examples paleomass(Folder="Plesiosaurus",fork.l=2.94,ffin.onset=450,
-#' @examples     hfin.onset=650,ffin.adj.med=10,hfin.adj.med=40,ffin.adj.up=-160,
+#' @examples     hfin.onset=650,ffin.adj.lat=10,hfin.adj.lat=40,ffin.adj.up=-160,
 #' @examples     hfin.adj.up=-160,ffin.spread=pi/3,hfin.spread=pi/4)
 #' @examples #
 #' @examples # Hammerhead Example
 #' @examples # Save the silhouette images for Sphyrna and make 3D models using them
 #' @examples save_Sphryna()
 #' @examples paleomass(Folder="Sphyrna",fork.l=2,n2=1.8,
-#' @examples     ffin.onset=300, ffin.adj.up=-120,ffin.adj.med=40,ffin.spread=pi/4,
+#' @examples     ffin.onset=300, ffin.adj.up=-120,ffin.adj.lat=40,ffin.spread=pi/4,
 #' @examples     ffin.sweep=-pi*0/180,
-#' @examples     hfin.onset=550,hfin.adj.up=10,hfin.adj.med=40,hfin.spread=pi/4,
+#' @examples     hfin.onset=550,hfin.adj.up=10,hfin.adj.lat=40,hfin.spread=pi/4,
 #' @examples     hfin.thick=10,hfin.sweep=pi*5/180,
 #' @examples     cfin.onset=920,cfin.adj.up=35,
 #' @examples     dfin.onset=350,dfin.adj.up=190,dfin.sweep=pi*5/180,
@@ -125,6 +125,14 @@ paleomass <- function(
                           # front to left
     Ceph.File = "Ceph",   # Image file name for cephalofoil planar silhouette,
                           # front left
+    Save.Csv = T,       # Whether to save results in .csv--T or F
+    Save.Part.Mesh = F, # Whether to save .ply files of each body part.
+    Save.Total.Mesh = T,# Whether to save .ply files of the combined body parts.
+    Plot.Result.Mesh = T, # Whether to plot resulting 3D meshes in the end.
+    N.Mesh.Window = c("two","one"),
+                        # Whether to place two models in one or two windows.
+                        # The "one.window" option will crash older computers.
+    Mesh.Col="royalblue", # Color of body mesh 3D plot
     n1 = 2.0,           # First superelliptical exponent; 2.0 for ellipse
     n2 = 3.0,           # Second superelliptical exponent; 2.0 for ellipse
     fork.l = 1.19,      # Actual length represented by body images provided, in m
@@ -132,21 +140,13 @@ paleomass <- function(
                         # A value of about 1 is expected in marine tetrapods
                         # that go up and down in water column, or stay afloat
                         # deeper than water surface.
-    Save.Csv = T,       # Whether to save results in .csv--T or F
     Interpolate = T,    # Whether to interpolate with local regression--T or F
     nn.b=0.1,           # Nearest neighbor value for locfit for the body
-    nn.f=0.6,           # Nearest neighbor value for locfit for the fins
+    nn.f=0.2,           # Nearest neighbor value for locfit for the fins
     Use.Weight = F,      # Whether to add weights to body tips during interpolation
     Add.Tip = T,        # Whether to add tips to body ends for watertightness
     tip.radius = 0.0001,# Arbitrary radius of body tips, if Add.Tip = T
     a.per.slice=181,    # How many vertices around a superellipse per slice
-    Plot.Result.Mesh = T, # Whether to plot resulting 3D meshes in the end.
-    Save.Part.Mesh = F, # Whether to save .ply files of each body part.
-    Save.Total.Mesh = T,# Whether to save .ply files of the combined body parts.
-    N.Mesh.Window = c("two","one"),
-                        # Whether to place two models in one or two windows.
-                        # The "one.window" option will crash older computers.
-    Mesh.Col="royalblue", # Color of body mesh 3D plot
     Body.Y.Centering=T, # Whether to center the body vertically
     N.Body.Slice = c("round", "asis", "provided"),
                         # How to set the number of longitudinal segments.
@@ -179,17 +179,17 @@ paleomass <- function(
     d2fin.onset = 600,  # 2nd Dorsal Fin upward position adjustment, in pixels
     d2fin.sweep = 0,    # 2nd Dorsal Fin posterior sweep angle
     d2fin.thick = 10,   # 2nd Dorsal fin maximum thickness percentage rel. chord
-    ffin.spread = pi/4, # Forefin lateral rotation angle
-    ffin.sweep = pi/6,  # Forefin posterior rotation angle
-    ffin.adj.med = 30,  # Forefin medial position adjustment, in pixels
+    ffin.adj.lat = -30, # Forefin medial position adjustment, in pixels
     ffin.adj.up = -67,  # Forefin upward position adjustment, in pixels
     ffin.onset = 300,   # Forefin posterior position adjustment, in pixels
+    ffin.spread = pi/4, # Forefin lateral rotation angle
+    ffin.sweep = pi/6,  # Forefin posterior rotation angle
     ffin.thick = 20,    # Forefin maximum thickness percentage rel. chord
-    hfin.spread = pi/6, # HinDfin lateral rotation angle
-    hfin.sweep = pi/7,  # HinDfin posterior rotation angle
-    hfin.adj.med = 30,  # HinDfin medial position adjustment, in pixels
+    hfin.adj.lat = -30, # HinDfin medial position adjustment, in pixels
     hfin.adj.up = -27,  # HinDfin upward position adjustment, in pixels
     hfin.onset = 600,   # HinDfin posterior position adjustment, in pixels
+    hfin.spread = pi/6, # HinDfin lateral rotation angle
+    hfin.sweep = pi/7,  # HinDfin posterior rotation angle
     hfin.thick = 20,    # HinDfin maximum thickness percentage rel. chord
     afin.adj.up = -25,  # Anal Fin vertical position adjustment, in pixels
     afin.onset = 650,   # Anal Fin upward position adjustment, in pixels
@@ -218,8 +218,8 @@ paleomass <- function(
       cfin.adj.up = 0; cfin.sweep = 0; cfin.rot = 0;
       dfin.adj.up = 0; dfin.sweep = 0;
       d2fin.adj.up = 0; d2fin.sweep = 0; d2fin.spread = 0;
-      ffin.adj.med = 0; ffin.adj.up = 0; ffin.sweep = 0; ffin.spread = 0;
-      hfin.adj.med = 0; hfin.adj.up = 0; hfin.sweep = 0; hfin.spread = 0;
+      ffin.adj.lat = 0; ffin.adj.up = 0; ffin.sweep = 0; ffin.spread = 0;
+      hfin.adj.lat = 0; hfin.adj.up = 0; hfin.sweep = 0; hfin.spread = 0;
       afin.adj.up = 0; afin.sweep = 0;
       ceph.adj.up = 0; ceph.sweep = 0; ceph.rot = pi/2;
   }
@@ -316,7 +316,7 @@ paleomass <- function(
   if(Save.Part.Mesh) Rvcg::vcgPlyWrite(mesh.body.1,paste0("./",Folder,"/Body_",n1,"_",
                                  Fname.Add,".ply"),writeCol=F,writeNormals=T)
   results[1,2] <- Rvcg::vcgArea(mesh.body.1)
-  results[1,1] <- Rvcg::vcgVolume(mesh.body.1)
+  try(results[1,1] <- Rvcg::vcgVolume(mesh.body.1))
 
   ### Body when n=n2
   mesh.body.2 <- mesh_body(dat.lat,dat.dv,nb=n2,X.center=0,Y.center=y.shift,
@@ -324,7 +324,7 @@ paleomass <- function(
   if(Save.Part.Mesh) Rvcg::vcgPlyWrite(mesh.body.2,paste0("./",Folder,"/Body_",n2,"_",
                                  Fname.Add,".ply"),writeCol=F,writeNormals=T)
   results[2,2] <- Rvcg::vcgArea(mesh.body.2)
-  results[2,1] <- Rvcg::vcgVolume(mesh.body.2)
+  try(results[2,1] <- Rvcg::vcgVolume(mesh.body.2))
 
 
   ### Caudal Fluke
@@ -353,7 +353,7 @@ paleomass <- function(
                          Fname.Add,".ply"),writeCol=F,writeNormals=F)
     ### Measure
     results[3,2] <- Rvcg::vcgArea(Mesh.Cfin)
-    results[3,1] <- Rvcg::vcgVolume(Mesh.Cfin)
+    try(results[3,1] <- Rvcg::vcgVolume(Mesh.Cfin))
   }
 
   ### Dorsal Fin
@@ -380,7 +380,7 @@ paleomass <- function(
                          name.Add,".ply"),writeCol=F,writeNormals=F)
     ### Measure
     results[4,2] <- Rvcg::vcgArea(Mesh.Dfin)
-    results[4,1] <- Rvcg::vcgVolume(Mesh.Dfin)
+    try(results[4,1] <- Rvcg::vcgVolume(Mesh.Dfin))
   }
 
   ### Dorsal Fin 2 (Second dorsal fin)
@@ -405,7 +405,7 @@ paleomass <- function(
                 writeCol=F,writeNormals=F)
     ### Measure
     results[9,2] <- Rvcg::vcgArea(Mesh.D2fin)
-    results[9,1] <- Rvcg::vcgVolume(Mesh.D2fin)
+    try(results[9,1] <- Rvcg::vcgVolume(Mesh.D2fin))
   }
 
   ### Anal Fin
@@ -432,7 +432,7 @@ paleomass <- function(
                 writeCol=F,writeNormals=F)
     ### Measure
     results[10,2] <- Rvcg::vcgArea(Mesh.afin)
-    results[10,1] <- Rvcg::vcgVolume(Mesh.afin)
+    try(results[10,1] <- Rvcg::vcgVolume(Mesh.afin))
   }
 
   ### Cephalofoil
@@ -461,7 +461,7 @@ paleomass <- function(
                 writeCol=F,writeNormals=F)
     ### Measure
     results[11,2] <- Rvcg::vcgArea(Mesh.ceph)
-    results[11,1] <- Rvcg::vcgVolume(Mesh.ceph)
+    try(results[11,1] <- Rvcg::vcgVolume(Mesh.ceph))
   }
 
   ### Forefin
@@ -470,9 +470,8 @@ paleomass <- function(
   if(Ffin){
     Zf.onset <- ffin.onset
     zf.onset <- match(Zf.onset,round(dat.dv[,1],0))
-    Xfl.onset <- dat.dv[zf.onset,3]-dat.dv[1,4]+ffin.adj.med
-    Xfr.onset <- dat.dv[zf.onset,2]-dat.dv[1,4]-ffin.adj.med
-    # Yf.onset <- dat.lat[zf.onset,3]+ffin.adj.up + y.shift
+    Xfl.onset <- dat.dv[zf.onset,3]-dat.dv[1,4]+ffin.adj.lat
+    Xfr.onset <- dat.dv[zf.onset,2]-dat.dv[1,4]-ffin.adj.lat
     Yf.onset <- ffin.adj.up + y.shift
     mesh.ffr <- mesh_foil(dat.ff,tf=ffin.thick,X.onset=Xfr.onset,Y.onset=Yf.onset,
                           Z.onset=Zf.onset,tol=Clean.Tol,Thickest=0.9,Center=F,
@@ -490,23 +489,23 @@ paleomass <- function(
 
     ### Right fin sweep, rotation, and mesh saving
     Mesh.ffinr <- Morpho::rotaxis3d(Mesh.ffinr,c(Xfr[1,n.ff],Yf[1,n.ff],Zf[1,n.ff]),
-                            c(Xfl[1,n.ff],Yf[1,n.ff],Zf[1,n.ff]),ffin.sweep)
+                            c(Xfl[1,n.ff],Yf[1,n.ff],Zf[1,n.ff]),-ffin.sweep)
     Mesh.ffinr <- Morpho::rotaxis3d(Mesh.ffinr,c(Xfr[1,n.ff],Yf[1,n.ff],Zf[1,n.ff]),
-                            c(Xfr[91,n.ff],Yf[91,n.ff],Zf[91,n.ff]),ffin.spread)
+                            c(Xfr[91,n.ff],Yf[91,n.ff],Zf[91,n.ff]),-ffin.spread)
     if(Save.Part.Mesh) vcgPlyWrite(Mesh.ffinr,paste0("./",Folder,"/Forefin_R_",Fname.Add,".ply"),
                 writeCol=F,writeNormals=F)
 
     ### Left fin sweep, rotation, and mesh saving
     Mesh.ffinl <- Morpho::rotaxis3d(Mesh.ffinl,c(Xfl[1,n.ff],Yf[1,n.ff],Zf[1,n.ff]),
-                            c(Xfr[1,n.ff],Yf[1,n.ff],Zf[1,n.ff]),-ffin.sweep)
+                            c(Xfr[1,n.ff],Yf[1,n.ff],Zf[1,n.ff]),ffin.sweep)
     Mesh.ffinl <- Morpho::rotaxis3d(Mesh.ffinl,c(Xfl[1,n.ff],Yf[1,n.ff],Zf[1,n.ff]),
-                            c(Xfl[91,n.ff],Yf[91,n.ff],Zf[91,n.ff]),-ffin.spread)
+                            c(Xfl[91,n.ff],Yf[91,n.ff],Zf[91,n.ff]),ffin.spread)
     if(Save.Part.Mesh) Rvcg::vcgPlyWrite(Mesh.ffinl,paste0("./",Folder,"/Forefin_L_",Fname.Add,".ply"),
                 writeCol=F,writeNormals=F)
 
     ### Measure
     results[6,2] <- results[5,2] <- Rvcg::vcgArea(Mesh.ffinr)
-    results[6,1] <- results[5,1] <- Rvcg::vcgVolume(Mesh.ffinr)
+    try(results[6,1] <- results[5,1] <- Rvcg::vcgVolume(Mesh.ffinr))
   }
 
   ### HinDfin
@@ -515,9 +514,8 @@ paleomass <- function(
   if(Hfin){
     Zh.onset <- hfin.onset
     zh.onset <- match(Zh.onset,round(dat.dv[,1],0))
-    Xhl.onset <- dat.dv[zh.onset,3]-dat.dv[1,4]+hfin.adj.med
-    Xhr.onset <- dat.dv[zh.onset,2]-dat.dv[1,4]-hfin.adj.med
-    # Yh.onset <- dat.lat[zh.onset,3] + hfin.adj.up + y.shift
+    Xhl.onset <- dat.dv[zh.onset,3]-dat.dv[1,4]+hfin.adj.lat
+    Xhr.onset <- dat.dv[zh.onset,2]-dat.dv[1,4]-hfin.adj.lat
     Yh.onset <- hfin.adj.up + y.shift
     mesh.hfr <- mesh_foil(dat.hf,tf=hfin.thick,X.onset=Xhr.onset,Y.onset=Yh.onset,
                           Z.onset=Zh.onset,tol=Clean.Tol,Thickest=0.9,Center=F,
@@ -535,23 +533,23 @@ paleomass <- function(
 
     #Right fin sweep, rotation, and mesh saving
     Mesh.hfinr <- Morpho::rotaxis3d(Mesh.hfinr,c(Xhr[1,n.hf],Yh[1,n.hf],Zh[1,n.hf]),
-                            c(Xhl[1,n.hf],Yh[1,n.hf],Zh[1,n.hf]),hfin.sweep)
+                            c(Xhl[1,n.hf],Yh[1,n.hf],Zh[1,n.hf]),-hfin.sweep)
     Mesh.hfinr <- Morpho::rotaxis3d(Mesh.hfinr,c(Xhr[1,n.hf],Yh[1,n.hf],Zh[1,n.hf]),
-                            c(Xhr[91,n.hf],Yh[91,n.hf],Zh[91,n.hf]),hfin.spread)
+                            c(Xhr[91,n.hf],Yh[91,n.hf],Zh[91,n.hf]),-hfin.spread)
     if(Save.Part.Mesh) vcgPlyWrite(Mesh.hfinr,paste0("./",Folder,"/HinDfin_R_",Fname.Add,".ply"),
                 writeCol=F,writeNormals=F)
 
     #Left fin sweep, rotation, and mesh saving
     Mesh.hfinl <- Morpho::rotaxis3d(Mesh.hfinl,c(Xhl[1,n.hf],Yh[1,n.hf],Zh[1,n.hf]),
-                            c(Xhr[1,n.hf],Yh[1,n.hf],Zh[1,n.hf]),-hfin.sweep)
+                            c(Xhr[1,n.hf],Yh[1,n.hf],Zh[1,n.hf]),hfin.sweep)
     Mesh.hfinl <- Morpho::rotaxis3d(Mesh.hfinl,c(Xhl[1,n.hf],Yh[1,n.hf],Zh[1,n.hf]),
-                            c(Xhl[91,n.hf],Yh[91,n.hf],Zh[91,n.hf]),-hfin.spread)
+                            c(Xhl[91,n.hf],Yh[91,n.hf],Zh[91,n.hf]),hfin.spread)
     if(Save.Part.Mesh) Rvcg::vcgPlyWrite(Mesh.hfinl,paste0("./",Folder,"/HinDfin_L_",Fname.Add,".ply"),
                 writeCol=F,writeNormals=F)
 
     ### Measure
     results[8,2] <- results[7,2] <- Rvcg::vcgArea(Mesh.hfinr)
-    results[8,1] <- results[7,1] <- Rvcg::vcgVolume(Mesh.hfinr)
+    try(results[8,1] <- results[7,1] <- Rvcg::vcgVolume(Mesh.hfinr))
   }
 
   ### Combining measurements

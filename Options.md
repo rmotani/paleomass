@@ -71,8 +71,11 @@ Below is the categorized list of options for paleomass().
 
 ### Forefin/pectoral fin/pectoral flipper
 - ffin.spread ...... Rotation angle of the forefin around the Z axis (cranio-caudal axis).
+
+	![Image](./img/spread.jpg "Test run result")
 - ffin.sweep ...... Sweep angle of the forefin around the X axis (bilateral axis).
-- ffin.adj.med ...... Position adjustment along the X axis (bilateral axis) for the forefin, in pixels.
+
+	![Image](./img/sweep.jpg "Test run result")- ffin.adj.lat ...... Position adjustment along the X axis (bilateral axis) for the forefin, in pixels.
 - ffin.adj.up ...... Position adjustment along the Y axis (dorso-ventral axis) for the forefin, in pixels.
 - ffin.onset ...... Position adjustment along the Z axis (cranio-caudal axis) for the forefin, in pixels.
 - ffin.thick ...... Maximum thickness of the forefin relative to the chord in percentage.
@@ -80,7 +83,7 @@ Below is the categorized list of options for paleomass().
 ### Hindfin/pelvic fin/pelvic flipper
 - hfin.spread ...... Rotation angle of the hindfin around the Z axis (cranio-caudal axis).
 - hfin.sweep ...... Sweep angle of the hindfin around the X axis (bilateral axis).
-- hfin.adj.med ...... Position adjustment along the X axis (bilateral axis) for the hindfin, in pixels.
+- hfin.adj.lat ...... Position adjustment along the X axis (bilateral axis) for the hindfin, in pixels.
 - hfin.adj.up ...... Position adjustment along the Y axis (dorso-ventral axis) for the hindfin, in pixels.
 - hfin.onset ...... Position adjustment along the Z axis (cranio-caudal axis) for the hindfin, in pixels.
 - hfin.thick Maximum thickness of the hindfin relative to the chord in percentage.

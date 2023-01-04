@@ -1,6 +1,6 @@
 #' Digitize the top and bottom outlines of a silhouette.
 #'
-#' @param Mx Black and white image in the form of a matrix filled with 0s and 1s.
+#' @param Dat Black and white image in the form of a matrix filled with 0s and 1s.
 #' @param Add.Tip Logical. Whether to add a tip to the ends of the silhouette.
 #' @param tip.radius Radius of the tip added if Add.Tip = TRUE.
 #' @param Origin Whether the top of the bottom is considered the origin.
@@ -10,14 +10,16 @@
 #'
 #' @examples Used by paleomass()
 
-topbottom <- function(Mx,Add.Tip=T,tip.radius=0.0001,Origin=c("Bottom","Top")){
+topbottom <- function(Dat,Add.Tip=T,tip.radius=0.0001,Origin=c("Bottom","Top")){
   Origin=match.arg(Origin)
-  if(Origin=="Bottom") Mx <- Mx[nrow(Mx):1,]
+  if(Origin=="Bottom") Dat <- Dat[nrow(Dat):1,]
   m.tmp <- NULL
-  for(i in 1:ncol(Mx)){
-    dtmp <- Mx[,i]
+  for(i in 1:ncol(Dat)){
+    dtmp <- Dat[,i]
     dtmp2 <- dtmp[1:(length(dtmp)-1)] - dtmp[2:length(dtmp)]
-    m.tmp <- rbind(m.tmp,match(c(-1,1),dtmp2)+c(0,1))
+    iwb <- which(dtmp2 %in% 1)+1
+    ibw <- which(dtmp2 %in% -1)
+    if(length(ibw)*length(iwb) !=0) m.tmp <- rbind(m.tmp,c(min(iwb),max(ibw)))
   }
   m.out <- na.omit(cbind(m.tmp,rowMeans(m.tmp,na.rm=T),abs(apply(m.tmp,1,diff)/2)))
   m.out <- cbind(seq(1,nrow(m.out)),m.out)

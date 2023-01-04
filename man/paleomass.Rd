@@ -16,23 +16,23 @@ paleomass(
   Hfin.File = "Hfin",
   Afin.File = "Afin",
   Ceph.File = "Ceph",
+  Save.Csv = T,
+  Save.Part.Mesh = F,
+  Save.Total.Mesh = T,
+  Plot.Result.Mesh = T,
+  N.Mesh.Window = c("two", "one"),
+  Mesh.Col = "royalblue",
   n1 = 2,
   n2 = 3,
   fork.l = 1.19,
   dens = 0.95,
-  Save.Csv = T,
   Interpolate = T,
   nn.b = 0.1,
-  nn.f = 0.6,
+  nn.f = 0.2,
   Use.Weight = F,
   Add.Tip = T,
   tip.radius = 1e-04,
   a.per.slice = 181,
-  Plot.Result.Mesh = T,
-  Save.Part.Mesh = F,
-  Save.Total.Mesh = T,
-  N.Mesh.Window = c("two", "one"),
-  Mesh.Col = "royalblue",
   Body.Y.Centering = T,
   N.Body.Slice = c("round", "asis", "provided"),
   n.body.slice = 1000,
@@ -51,17 +51,17 @@ paleomass(
   d2fin.onset = 600,
   d2fin.sweep = 0,
   d2fin.thick = 10,
-  ffin.spread = pi/4,
-  ffin.sweep = pi/6,
-  ffin.adj.med = 30,
+  ffin.adj.lat = -30,
   ffin.adj.up = -67,
   ffin.onset = 300,
+  ffin.spread = pi/4,
+  ffin.sweep = pi/6,
   ffin.thick = 20,
-  hfin.spread = pi/6,
-  hfin.sweep = pi/7,
-  hfin.adj.med = 30,
+  hfin.adj.lat = -30,
   hfin.adj.up = -27,
   hfin.onset = 600,
+  hfin.spread = pi/6,
+  hfin.sweep = pi/7,
   hfin.thick = 20,
   afin.adj.up = -25,
   afin.onset = 650,
@@ -98,6 +98,18 @@ paleomass(
 
 \item{Ceph.File}{Name of the image file for the planar silhouette of the cephalofoil, if any, without extension.}
 
+\item{Save.Csv}{Logical. Whether to save a CSV file containing measurement results.}
+
+\item{Save.Part.Mesh}{Logical. Whether to save .ply files of each body part}
+
+\item{Save.Total.Mesh}{Logical. Whether to save .ply files of combined body parts.}
+
+\item{Plot.Result.Mesh}{Logical. Whether to plot resulting meshes.}
+
+\item{N.Mesh.Window}{A string of "two" or "one". Whether to plot two models side by side in one window or not. One window would often kill R.}
+
+\item{Mesh.Col}{Color of the mesh in rgl window. Not reflected in the saved .ply files.}
+
 \item{n1}{Superelliptical exponent used in the first model. A value of 2.0 is recommended for marine tetrapods.}
 
 \item{n2}{Superelliptical exponent used in the second model. A value of 3.0 is recommended for marine tetrapods.}
@@ -105,8 +117,6 @@ paleomass(
 \item{fork.l}{Fork length of the marine vertebrate in meters.}
 
 \item{dens}{Arbitrary specific gravity of whole body in g/cm^3.}
-
-\item{Save.Csv}{Logical. Whether to save a CSV file containing measurement results.}
 
 \item{Interpolate}{Logical. Whether to smooth the outline coordinates with local regression. TRUE is recommended.}
 
@@ -121,16 +131,6 @@ paleomass(
 \item{tip.radius}{Radius of the tip to be added. A value of 0.0001 is recommended.}
 
 \item{a.per.slice}{Number of angular division per superelliptical slice plus 1, that is, how many points are placed around a superellipse with one pair of redundant points. The default value is 181, i.e., there is a point every 2 degrees.}
-
-\item{Plot.Result.Mesh}{Logical. Whether to plot resulting meshes.}
-
-\item{Save.Part.Mesh}{Logical. Whether to save .ply files of each body part}
-
-\item{Save.Total.Mesh}{Logical. Whether to save .ply files of combined body parts.}
-
-\item{N.Mesh.Window}{A string of "two" or "one". Whether to plot two models side by side in one window or not. One window would often kill R.}
-
-\item{Mesh.Col}{Color of the mesh in rgl window. Not reflected in the saved .ply files.}
 
 \item{Body.Y.Centering}{Logical. Whether to center the body along the Y axis.}
 
@@ -168,27 +168,27 @@ paleomass(
 
 \item{d2fin.thick}{Maximum thickness of the second dorsal fin relative to the chord in percentage.}
 
-\item{ffin.spread}{Rotation angle of the forefin around the Z axis ( cranio-caudal axis).}
-
-\item{ffin.sweep}{Sweep angle of the forefin around the X axis (bilateral axis).}
-
-\item{ffin.adj.med}{Position adjustment along the X axis (bilateral axis) for the forefin, in pixels.}
+\item{ffin.adj.lat}{Position adjustment along the X axis (bilateral axis) for the forefin, in pixels.}
 
 \item{ffin.adj.up}{Position adjustment along the Y axis (dorso-ventral axis) for the forefin, in pixels.}
 
 \item{ffin.onset}{Position adjustment along the Z axis ( cranio-caudal axis) for the forefin, in pixels.}
 
+\item{ffin.spread}{Rotation angle of the forefin around the Z axis ( cranio-caudal axis).}
+
+\item{ffin.sweep}{Sweep angle of the forefin around the X axis (bilateral axis).}
+
 \item{ffin.thick}{Maximum thickness of the forefin relative to the chord in percentage.}
 
-\item{hfin.spread}{Rotation angle of the hindfin around the Z axis ( cranio-caudal axis).}
-
-\item{hfin.sweep}{Sweep angle of the hindfin around the X axis (bilateral axis).}
-
-\item{hfin.adj.med}{Position adjustment along the X axis (bilateral axis) for the hindfin, in pixels.}
+\item{hfin.adj.lat}{Position adjustment along the X axis (bilateral axis) for the hindfin, in pixels.}
 
 \item{hfin.adj.up}{Position adjustment along the Y axis (dorso-ventral axis) for the hindfin, in pixels.}
 
 \item{hfin.onset}{Position adjustment along the Z axis ( cranio-caudal axis) for the hindfin, in pixels.}
+
+\item{hfin.spread}{Rotation angle of the hindfin around the Z axis ( cranio-caudal axis).}
+
+\item{hfin.sweep}{Sweep angle of the hindfin around the X axis (bilateral axis).}
 
 \item{hfin.thick}{Maximum thickness of the hindfin relative to the chord in percentage.}
 
@@ -229,16 +229,16 @@ paleomass()
 # Save the silhouette images for Plesiosaurus and make 3D models using them
 save_Plesiosaurus()
 paleomass(Folder="Plesiosaurus",fork.l=2.94,ffin.onset=450,
-    hfin.onset=650,ffin.adj.med=10,hfin.adj.med=40,ffin.adj.up=-160,
+    hfin.onset=650,ffin.adj.lat=10,hfin.adj.lat=40,ffin.adj.up=-160,
     hfin.adj.up=-160,ffin.spread=pi/3,hfin.spread=pi/4)
 #
 # Hammerhead Example
 # Save the silhouette images for Sphyrna and make 3D models using them
 save_Sphryna()
 paleomass(Folder="Sphyrna",fork.l=2,n2=1.8,
-    ffin.onset=300, ffin.adj.up=-120,ffin.adj.med=40,ffin.spread=pi/4,
+    ffin.onset=300, ffin.adj.up=-120,ffin.adj.lat=40,ffin.spread=pi/4,
     ffin.sweep=-pi*0/180,
-    hfin.onset=550,hfin.adj.up=10,hfin.adj.med=40,hfin.spread=pi/4,
+    hfin.onset=550,hfin.adj.up=10,hfin.adj.lat=40,hfin.spread=pi/4,
     hfin.thick=10,hfin.sweep=pi*5/180,
     cfin.onset=920,cfin.adj.up=35,
     dfin.onset=350,dfin.adj.up=190,dfin.sweep=pi*5/180,

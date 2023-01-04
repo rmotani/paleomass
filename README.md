@@ -65,11 +65,10 @@ save_Plesiosaurus()
 ```
 4. Run paleomass. You need to specify the data folder, length of the animal, and the positions/rotations of the flippers as below.  
 ```
-paleomass(Folder = "Plesiosaurus", fork.l = 2.94, 
-	ffin.onset = 450, hfin.onset = 650, ffin.adj.med = 10, 
-	hfin.adj.med = 40, ffin.adj.up = -160, hfin.adj.up = -160, 
-	ffin.sweep = pi/6, hfin.sweep =  pi/7, ffin.spread = pi/3, 
-	hfin.spread = pi/4)
+paleomass(Folder = "Plesiosaurus", fork.l = 2.94, ffin.onset = 450, 
+	hfin.onset = 650, ffin.adj.lat = -10, hfin.adj.lat = -40, 
+	ffin.adj.up = -160, hfin.adj.up = -160, ffin.sweep = pi/6, 
+	hfin.sweep =  pi/7, ffin.spread = pi/3, hfin.spread = pi/4)
 ```
 5. You will get estiamted volumes and surface areas, as well as the 3D models. Apart from being displayed in R, the values are saved in a .csv file while the models are saved as .ply files so that you can open it later in software of your choice. These files are found in the sub-directory containing the silhouette image files.
 
@@ -87,9 +86,9 @@ save_Sphyrna()
 4. Run paleomass. You need to specify the data folder, length of the animal, and the positions/rotations of the paired fins, median fins, and cephalofoil as below.  
 ```
 paleomass(Folder="Sphyrna", fork.l = 2, n2 = 1.8, 
-	ffin.onset = 300, ffin.adj.up = -120, ffin.adj.med = 40, 
+	ffin.onset = 300, ffin.adj.up = -120, ffin.adj.lat = -40, 
 	ffin.spread = pi/4, ffin.sweep = -pi*0/180, hfin.onset = 550, 
-	hfin.adj.up = 10, hfin.adj.med = 40, hfin.spread = pi/4, 
+	hfin.adj.up = 10, hfin.adj.lat = -40, hfin.spread = pi/4, 
 	hfin.thick = 10, hfin.sweep = pi*5/180, cfin.onset = 920, 
 	fin.adj.up = 35, dfin.onset = 350, dfin.adj.up = 190, 
 	dfin.sweep = pi*5/180, d2fin.onset = 800, d2fin.adj.up = 200,
@@ -163,18 +162,18 @@ Steps from here on do not affect the volume and area estiamtes.
 Let us start by adjusting the position of the flippers and fins relative to the body. There are three kinds of options per fin, although not all three are available for all fins. These are:
 - .onset .....Position adjustment along the Z axis (=body axis)
 - .adj.up ....Position adjustment along the Y axis (=dorso-ventral axis)
-- .adj.med ...Position adjustment along the X axis (=bilateral axis)
+- .adj.lat ...Position adjustment along the X axis (=bilateral axis)
 
 In the Plesiosaurus example, you can tell from the image above that the pectoral flipper should be placed around the z coordinate 450, and the pelvic flipper around 650. These values are counted in the pixels of the original input images. This results in two options:  
 `ffin.onset = 450, hfin.onset = 650`
 
-The flippers should move ventrally by about 160, resulting in the options:  
+The flippers should move down by about 160, resulting in the options:  
 `ffin.adj.up = -160, hfin.adj.up = -160`
 
-The flippers should move laterally, so:  
-`ffin.adj.med = 10, hfin.adj.med = 40`
+The flippers should move medially (=inwards). Why? The test image does not help in this respect because the flippers are placed at the body width of where they are located along the body axis. In the test image, they are close to the midline because the neck is narrow there. So:  
+`ffin.adj.lat = -10, hfin.adj.lat = -40`
 
-It may be counter-intuitive that positive values are for lateral rather than medial movements.
+Negative values here suggest that the fins move inwards. 
 
 ### 5. Adjust the angles of body parts
 Nex is the adjustment of angles. You can adjust two kinds of angles per fin, although not both are available for all fins.
@@ -192,7 +191,7 @@ The pectoral flippers shoudl spread out by about 60 degrees and the pelvic ones 
 Now that you have updated option values, let us try running paleomass again. Make sure to input everything you listed above.  
 ```
 paleomass(Folder = "Plesiosaurus", fork.l = 2.94, ffin.onset = 450, 
-	hfin.onset = 650, ffin.adj.med = 10, hfin.adj.med = 40, 
+	hfin.onset = 650, ffin.adj.lat = -10, hfin.adj.lat = -40, 
 	ffin.adj.up = -160, hfin.adj.up = -160, ffin.sweep = pi/6, 
 	hfin.sweep =  pi/7, ffin.spread = pi/3, hfin.spread = pi/4)
 ```

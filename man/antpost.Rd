@@ -4,10 +4,10 @@
 \alias{antpost}
 \title{Digitize the left and right margins of a silhouette.}
 \usage{
-antpost(Mx, Add.Tip = T, tip.radius = 1e-04, Origin = c("Bottom", "Top"))
+antpost(Dat, Add.Tip = T, tip.radius = 1e-04, Origin = c("Bottom", "Top"))
 }
 \arguments{
-\item{Mx}{Black and white image in the form of a matrix filled with 0s and 1s.}
+\item{Dat}{Black and white image in the form of a matrix filled with 0s and 1s.}
 
 \item{Add.Tip}{Logical. Whether to add a tip to the ends of the silhouette.}
 
