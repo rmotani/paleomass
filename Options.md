@@ -2,13 +2,6 @@
 Below is the categorized list of options for paleomass().
 ## Options for Data Input
 
-- Cfin ...... Logical. If the caudal fin is present.
-- Dfin ...... Logical. If the dorsal fin is present.
-- D2fin ...... Logical. If the second dorsal fin is present.
-- Ffin ...... Logical. If the forefin/pectoral fin/pectoral flipper is present.
-- Hfin ...... Logical. If the hindfin/pelvic fin/pelvic flipper is present.
-- Afin ...... Logical. If the anal fin is present.
-- Ceph ...... Logical. If the cephalofoil is present.
 - Folder ...... Name of the sub-directory of the working directory storing image files.
 - File.Ext .........File extension of the image file. Either ".bmp",".jpg",".png", or "", the last one for without extensions.
 - BodyL.File ...... Name of the image file for the lateral silhouette of the body, without extension.

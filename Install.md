@@ -1,4 +1,4 @@
-# Installation of the paleomass package
+# Installation of the Paleomass package
 
 ## Option 1.
 Install from the pakcage file. 
