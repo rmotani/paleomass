@@ -1,6 +1,6 @@
 Package: paleomass
 Title: Paleomass: Volume and surface area estimation of vertebrates through 3D models with superelliptical cross-sections
-Version: 0.9.6.0000
+Version: 0.9.7.0000
 Authors@R: 
     person("Ryosuke", "Motani", , "rmotani@ucdavis.edu", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0001-5022-1053"))

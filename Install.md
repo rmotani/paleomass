@@ -3,9 +3,9 @@
 ## Option 1.
 Install from the pakcage file. 
 
--Windows binary package is available [here.](./paleomass_0.9.6.0000.zip)   
+-Windows binary package is available [here.](./paleomass_0.9.7.0000.zip)   
 
--Source package is available [here.](./paleomass_0.9.6.0000.tar.gz)
+-Source package is available [here.](./paleomass_0.9.7.0000.tar.gz)
 
 In RStudio, open the package installtion dialog. In the top pulldown menu named "Install from" choose "Package Archive File".
 

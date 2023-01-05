@@ -1,7 +1,7 @@
 #' Save the silhouette images for Plesiosaurus in a subfolder of the current directory
 #'
 #' @return None
-#' @import imager
+#' @importFrom imager save.image
 #' @export
 #'
 #' @examples save_Plesiosaurus()
