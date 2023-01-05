@@ -18,5 +18,6 @@ Imports:
     rgl,
     Rvcg
 Suggests: 
-    knitr
+    knitr,
+    rmarkdown
 VignetteBuilder: knitr
