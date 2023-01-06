@@ -16,6 +16,7 @@
 #' @param ceph.rot Rotation angle of the cephalofoil around Z axis (cranio-caudal axis). pi/2 for horizontal cephalfoil.
 #' @param ceph.sweep Sweep angle of the cephalofoil around the X axis (bilateral axis).
 #' @param ceph.thick Maximum thickness of the cephalofoil relative to the chord in percentage.
+#' @param cfin.adj.lat Position adjustment along the X axis (bilateral axis) for the caudal fin, in pixels.
 #' @param cfin.adj.up Position adjustment along the Y axis (dorso-ventral axis) for the caudal fin, in pixels.
 #' @param Cfin.File  Name of the image file for the planar silhouette of the caudal fin, without extension.
 #' @param cfin.onset Position adjustment along the Z axis (cranio-caudal axis) for the caudal fin, in pixels.
@@ -167,6 +168,7 @@ paleomass <- function(
     n.fin.slice = 500,  # Arbitrary number of spanwise segments along fin
                         # axis. Determines longitudinal resolution of
                         # output. Moot unless N.Fin.Slice is set to "provided".
+    cfin.adj.lat = 0,   # Caudal Fin lateral position adjustment, in pixels
     cfin.adj.up = -5,   # Caudal Fin upward position adjustment, in pixels
     cfin.onset = 870,   # Caudal Fin posterior position adjustment, in pixels
     cfin.rot = 0,       # Caudal Fin rotation around body axis
@@ -334,7 +336,7 @@ paleomass <- function(
   # .onset        Anterior margin center of the fluke in global coordinate
   if(Cfin){
     Yc.onset <- dat.lat[nrow(dat.lat),4] + cfin.adj.up + y.shift
-    Xc.onset <- 0
+    Xc.onset <- cfin.adj.lat
     Zc.onset <- cfin.onset
     mesh.cf <- mesh_foil(dat.cf,tf=cfin.thick,X.onset=Xc.onset,Y.onset=Yc.onset,
                          Z.onset=Zc.onset,tol=Clean.Tol,Thickest=0.5,Center=T,

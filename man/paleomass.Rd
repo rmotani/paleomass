@@ -38,6 +38,7 @@ paleomass(
   n.body.slice = 1000,
   N.Fin.Slice = c("asis", "round", "provided"),
   n.fin.slice = 500,
+  cfin.adj.lat = 0,
   cfin.adj.up = -5,
   cfin.onset = 870,
   cfin.rot = 0,
@@ -142,6 +143,8 @@ paleomass(
 \item{N.Fin.Slice}{How to set the number of spanwise segments. Possible values are: "asis"#’ @param #’ @param use the pixel count from input image; "round"(default)#’ @param #’ @param round the value to the closest 100; " provided"#’ @param #’ @param use the value provided in n.fin.slice}
 
 \item{n.fin.slice}{umber of segments along the span of the fin. Moot unless N.Fin.Slice = "provided".}
+
+\item{cfin.adj.lat}{Position adjustment along the X axis (bilateral axis) for the caudal fin, in pixels.}
 
 \item{cfin.adj.up}{Position adjustment along the Y axis (dorso-ventral axis) for the caudal fin, in pixels.}
 

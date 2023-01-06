@@ -53,6 +53,7 @@ Below is a categorized and illustrated list of options for paleomass().
 ## Fin/Flipper/Cephalofoil Positions and Orientations
 
 ### Caudal fin
+- cfin.adj.lat ...... Position adjustment along the X axis (bilateral axis) for the caudal fin, in pixels.
 - cfin.adj.up ...... Position adjustment along the Y axis (dorso-ventral axis) for the caudal fin, in pixels.
 - cfin.onset ...... Position adjustment along the Z axis (cranio-caudal axis) for the caudal fin, in pixels.
 
