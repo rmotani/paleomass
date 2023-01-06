@@ -2,6 +2,9 @@
 
 R package for volume and surface area estimation of vertebrates through 3D models with superelliptical cross-sections
 
+![Image](./img/Title1.jpg "3D models displayed in an rgl window of R")
+
+---
 ## What It Does
 
 This package first builds two 3D models of a marine vertebrate based on two orthogonal body silhouettes and planar views of the flippers and fins, supplied as image files. The true volume and surface area of the animal is expected to be bracketed between those of the two models. The two models have superelliptical cross-sections for the body but they differ in the superellipticla exponent. Flippers are modeled with NACA00XX foil sections. Details of the principle and its test are given in:
