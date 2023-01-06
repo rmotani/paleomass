@@ -90,10 +90,10 @@ paleomass(Folder="Sphyrna", fork.l = 2, n2 = 1.8,
 	ffin.spread = pi/4, ffin.sweep = -pi*0/180, hfin.onset = 550, 
 	hfin.adj.up = 10, hfin.adj.lat = -40, hfin.spread = pi/4, 
 	hfin.thick = 10, hfin.sweep = pi*5/180, cfin.onset = 920, 
-	fin.adj.up = 35, dfin.onset = 350, dfin.adj.up = 190, 
-	dfin.sweep = pi*5/180, d2fin.onset = 800, d2fin.adj.up = 200,
-	d2fin.sweep=pi*5/180, d2fin.thick=10, afin.onset = 800, 
-	afin.adj.up = 60, afin.sweep = pi*20/180, afin.thick = 10, 
+	cfin.adj.up = 35, dfin.onset = 350, dfin.adj.up = 190, 
+	dfin.sweep = pi*5/180, d2fin.onset = 800, d2fin.adj.up = 170,
+	d2fin.sweep=pi*10/180, d2fin.thick=10, afin.onset = 800, 
+	afin.adj.up = 60, afin.sweep = pi*15/180, afin.thick = 10, 
 	ceph.onset = -45, ceph.adj.up = 120, ceph.rot = pi/2)
 ```
 5. You will get estiamted volumes and surface areas, as well as the 3D models. Apart from being displayed in R, the values are saved in a .csv file while the models are saved as .ply files so that you can open it later in software of your choice. These files are found in the sub-directory containing the silhouette image files.
