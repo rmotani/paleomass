@@ -59,11 +59,15 @@ Below is a categorized and illustrated list of options for paleomass().
 	![Image](./img/onset.jpg "Test run result")
 	
 - cfin.rot ...... Rotation angle of the caudal fin around Z axis (cranio-caudal axis). 0 for - vertical, pi/2 for horizontal fins.
-- cfin.sweep ...... Sweep angle of the caudal fin around the X axis (bilateral axis). See Forefin below.
+
+	![Image](./img/rot.jpg "Test run result")
+
+- cfin.sweep ...... Sweep angle of the caudal fin around the X axis (bilateral axis). See Forefin below. Becomes a yaw angle when cfin.rot = pi/2.
 - cfin.thick ...... Maximum thickness of the caudal fin relative to the chord in percentage.
 
 	![Image](./img/thickness.jpg "Test run result")
 
+- cfin.yaw ...... Yaw angle of the caudal fin around the Y axis (dorso-ventral axis). Becomes a pitch (=sweep) angle when cfin.rot = pi/2.
 ### Dorsal fin
 - dfin.adj.up ...... Position adjustment along the Y axis (dorso-ventral axis) for the dorsal fin, in pixels.
 - dfin.onset ...... Position adjustment along the Z axis (cranio-caudal axis) for the dorsal fin, in pixels.

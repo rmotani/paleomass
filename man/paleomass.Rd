@@ -43,6 +43,7 @@ paleomass(
   cfin.rot = 0,
   cfin.sweep = 0,
   cfin.thick = 20,
+  cfin.yaw = 0,
   dfin.adj.up = 175,
   dfin.onset = 440,
   dfin.sweep = 0,
@@ -144,13 +145,15 @@ paleomass(
 
 \item{cfin.adj.up}{Position adjustment along the Y axis (dorso-ventral axis) for the caudal fin, in pixels.}
 
-\item{cfin.onset}{Position adjustment along the Z axis ( cranio-caudal axis) for the caudal fin, in pixels.}
+\item{cfin.onset}{Position adjustment along the Z axis (cranio-caudal axis) for the caudal fin, in pixels.}
 
 \item{cfin.rot}{Rotation angle of the caudal fin around Z axis ( cranio-caudal axis). 0 for #’ @param vertical, pi/2 for horizontal fins.}
 
-\item{cfin.sweep}{Sweep angle of the caudal fin around the X axis (bilateral axis).}
+\item{cfin.sweep}{Sweep angle of the caudal fin around the X axis (bilateral axis). Becomes a yaw angle when cfin.rot = pi/2.}
 
 \item{cfin.thick}{Maximum thickness of the caudal fin relative to the chord in percentage.}
+
+\item{cfin.yaw}{Yaw angle of caudal fin around the Y axis (dorso-ventral axis). Becomes a pitch angle when cfin.rot = pi/2.}
 
 \item{dfin.adj.up}{Position adjustment along the Y axis (dorso-ventral axis) for the dorsal fin, in pixels.}
 
@@ -229,20 +232,20 @@ paleomass()
 # Save the silhouette images for Plesiosaurus and make 3D models using them
 save_Plesiosaurus()
 paleomass(Folder="Plesiosaurus",fork.l=2.94,ffin.onset=450,
-    hfin.onset=650,ffin.adj.lat=10,hfin.adj.lat=40,ffin.adj.up=-160,
+    hfin.onset=650,ffin.adj.lat=-10,hfin.adj.lat=-40,ffin.adj.up=-160,
     hfin.adj.up=-160,ffin.spread=pi/3,hfin.spread=pi/4)
 #
 # Hammerhead Example
 # Save the silhouette images for Sphyrna and make 3D models using them
 save_Sphryna()
 paleomass(Folder="Sphyrna",fork.l=2,n2=1.8,
-    ffin.onset=300, ffin.adj.up=-120,ffin.adj.lat=40,ffin.spread=pi/4,
+    ffin.onset=300, ffin.adj.up=-120,ffin.adj.lat=-40,ffin.spread=pi/4,
     ffin.sweep=-pi*0/180,
-    hfin.onset=550,hfin.adj.up=10,hfin.adj.lat=40,hfin.spread=pi/4,
+    hfin.onset=550,hfin.adj.up=10,hfin.adj.lat=-40,hfin.spread=pi/4,
     hfin.thick=10,hfin.sweep=pi*5/180,
     cfin.onset=920,cfin.adj.up=35,
     dfin.onset=350,dfin.adj.up=190,dfin.sweep=pi*5/180,
-    d2fin.onset=800,d2fin.adj.up=200,,d2fin.sweep=pi*5/180,d2fin.thick=10,
-    afin.onset=800,afin.adj.up=60,afin.sweep=pi*20/180,afin.thick=10,
+    d2fin.onset=800,d2fin.adj.up=170,,d2fin.sweep=pi*10/180,d2fin.thick=10,
+    afin.onset=800,afin.adj.up=60,afin.sweep=pi*15/180,afin.thick=10,
     ceph.onset=-45,ceph.adj.up=120, ceph.rot=pi/2)
 }

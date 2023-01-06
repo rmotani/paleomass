@@ -18,10 +18,11 @@
 #' @param ceph.thick Maximum thickness of the cephalofoil relative to the chord in percentage.
 #' @param cfin.adj.up Position adjustment along the Y axis (dorso-ventral axis) for the caudal fin, in pixels.
 #' @param Cfin.File  Name of the image file for the planar silhouette of the caudal fin, without extension.
-#' @param cfin.onset Position adjustment along the Z axis ( cranio-caudal axis) for the caudal fin, in pixels.
+#' @param cfin.onset Position adjustment along the Z axis (cranio-caudal axis) for the caudal fin, in pixels.
 #' @param cfin.rot Rotation angle of the caudal fin around Z axis ( cranio-caudal axis). 0 for #’ @param vertical, pi/2 for horizontal fins.
-#' @param cfin.sweep Sweep angle of the caudal fin around the X axis (bilateral axis).
+#' @param cfin.sweep Sweep angle of the caudal fin around the X axis (bilateral axis). Becomes a yaw angle when cfin.rot = pi/2.
 #' @param cfin.thick Maximum thickness of the caudal fin relative to the chord in percentage.
+#' @param cfin.yaw Yaw angle of caudal fin around the Y axis (dorso-ventral axis). Becomes a pitch angle when cfin.rot = pi/2.
 #' @param d2fin.adj.up Position adjustment along the Y (dorso-ventral axis) axis for the second dorsal fin, in pixels.
 #' @param D2fin.File Name of the image file for the planar silhouette of the second dorsal fin, if any, without extension.
 #' @param d2fin.onset Position adjustment along the Z axis ( cranio-caudal axis) for the secod dorsal fin, in pixels.
@@ -86,21 +87,21 @@
 #' @examples # Save the silhouette images for Plesiosaurus and make 3D models using them
 #' @examples save_Plesiosaurus()
 #' @examples paleomass(Folder="Plesiosaurus",fork.l=2.94,ffin.onset=450,
-#' @examples     hfin.onset=650,ffin.adj.lat=10,hfin.adj.lat=40,ffin.adj.up=-160,
+#' @examples     hfin.onset=650,ffin.adj.lat=-10,hfin.adj.lat=-40,ffin.adj.up=-160,
 #' @examples     hfin.adj.up=-160,ffin.spread=pi/3,hfin.spread=pi/4)
 #' @examples #
 #' @examples # Hammerhead Example
 #' @examples # Save the silhouette images for Sphyrna and make 3D models using them
 #' @examples save_Sphryna()
 #' @examples paleomass(Folder="Sphyrna",fork.l=2,n2=1.8,
-#' @examples     ffin.onset=300, ffin.adj.up=-120,ffin.adj.lat=40,ffin.spread=pi/4,
+#' @examples     ffin.onset=300, ffin.adj.up=-120,ffin.adj.lat=-40,ffin.spread=pi/4,
 #' @examples     ffin.sweep=-pi*0/180,
-#' @examples     hfin.onset=550,hfin.adj.up=10,hfin.adj.lat=40,hfin.spread=pi/4,
+#' @examples     hfin.onset=550,hfin.adj.up=10,hfin.adj.lat=-40,hfin.spread=pi/4,
 #' @examples     hfin.thick=10,hfin.sweep=pi*5/180,
 #' @examples     cfin.onset=920,cfin.adj.up=35,
 #' @examples     dfin.onset=350,dfin.adj.up=190,dfin.sweep=pi*5/180,
-#' @examples     d2fin.onset=800,d2fin.adj.up=200,,d2fin.sweep=pi*5/180,d2fin.thick=10,
-#' @examples     afin.onset=800,afin.adj.up=60,afin.sweep=pi*20/180,afin.thick=10,
+#' @examples     d2fin.onset=800,d2fin.adj.up=170,,d2fin.sweep=pi*10/180,d2fin.thick=10,
+#' @examples     afin.onset=800,afin.adj.up=60,afin.sweep=pi*15/180,afin.thick=10,
 #' @examples     ceph.onset=-45,ceph.adj.up=120, ceph.rot=pi/2)
 
 
@@ -171,6 +172,7 @@ paleomass <- function(
     cfin.rot = 0,       # Caudal Fin rotation around body axis
     cfin.sweep = 0,     # Caudal Fin posterior sweep angle
     cfin.thick = 20,    # Caudal fin maximum thickness percentage rel. chord
+    cfin.yaw = 0,       # Caudal fin maximum thickness percentage rel. chord
     dfin.adj.up = 175,  # Dorsal Fin vertical position adjustment, in pixels
     dfin.onset = 440,   # Dorsal Fin upward position adjustment, in pixels
     dfin.sweep = 0,     # Dorsal Fin posterior sweep angle
@@ -344,10 +346,13 @@ paleomass <- function(
     Zc <- mesh.cf$Z
     hn.c <- round(ncol(Xc)/2,0)
     Mesh.Cfin <- Morpho::rotaxis3d(Mesh.Cfin,c(Xc[qtr.round.pos,hn.c],Yc[qtr.round.pos,
-                         hn.c],Zc[qtr.round.pos,hn.c]),c(Xc[qtr.round.neg,hn.c],Yc[qtr.round.neg,
-                                                                                                                           hn.c],Zc[qtr.round.neg,hn.c]),cfin.sweep)
+                  hn.c],Zc[qtr.round.pos,hn.c]),c(Xc[qtr.round.neg,hn.c],Yc[qtr.round.neg,
+                  hn.c],Zc[qtr.round.neg,hn.c]),cfin.sweep)
+    Mesh.Cfin <- Morpho::rotaxis3d(Mesh.Cfin,c(Xc[1,hn.c],Yc[1,
+                  hn.c]+1,Zc[1,hn.c]),c(Xc[1,hn.c],Yc[hlf.round,
+                  hn.c]-1,Zc[1,hn.c]),cfin.yaw)
     Mesh.Cfin <- Morpho::rotaxis3d(Mesh.Cfin,c(Xc[1,hn.c],Yc[1,hn.c],Zc[1,hn.c]),
-                         c(Xc[hlf.round,hn.c],Yc[hlf.round,hn.c],Zc[hlf.round,hn.c]),cfin.rot)
+                  c(Xc[hlf.round,hn.c],Yc[hlf.round,hn.c],Zc[hlf.round,hn.c]),cfin.rot)
     ### Mesh saving
     if(Save.Part.Mesh) Rvcg::vcgPlyWrite(Mesh.Cfin,paste0("./",Folder,"/CaudalFluke_",
                          Fname.Add,".ply"),writeCol=F,writeNormals=F)
@@ -373,8 +378,8 @@ paleomass <- function(
     Zd <- mesh.df$Z
     hn.d <- round(ncol(Xd)/2,0)
     Mesh.Dfin <- Morpho::rotaxis3d(Mesh.Dfin,c(Xd[qtr.round.pos,hn.d],Yd[qtr.round.pos,
-                         hn.d],Zd[qtr.round.pos,hn.d]),c(Xd[qtr.round.neg,hn.d],Yd[qtr.round.neg,
-                                                                                                                           hn.d],Zd[qtr.round.neg,hn.d]),dfin.sweep)
+                  hn.d],Zd[qtr.round.pos,hn.d]),c(Xd[qtr.round.neg,hn.d],Yd[qtr.round.neg,
+                  hn.d],Zd[qtr.round.neg,hn.d]),dfin.sweep)
     ### Mesh saving
     if(Save.Part.Mesh) Rvcg::vcgPlyWrite(Mesh.Dfin,paste0("./",Folder,"/DorsalFin_",
                          name.Add,".ply"),writeCol=F,writeNormals=F)
@@ -397,9 +402,9 @@ paleomass <- function(
     Yd2 <- mesh.d2$Y
     Zd2 <- mesh.d2$Z
     hn.d2 <- round(ncol(Xd2)/2,0)
-    Mesh.D2fin <- Morpho::rotaxis3d(Mesh.D2fin,c(Xd[qtr.round.pos,hn.d2],Yd[qtr.round.pos,
-                                                                    hn.d2],Zd[qtr.round.pos,hn.d2]),c(Xd[qtr.round.neg,hn.d2],Yd[qtr.round.neg,
-                                                                                                                                 hn.d2],Zd[qtr.round.neg,hn.d2]),dfin.sweep)
+    Mesh.D2fin <- Morpho::rotaxis3d(Mesh.D2fin,c(Xd2[qtr.round.pos,hn.d2],Yd2[qtr.round.pos,
+                  hn.d2],Zd2[qtr.round.pos,hn.d2]),c(Xd2[qtr.round.neg,hn.d2],Yd2[qtr.round.neg,
+                  hn.d2],Zd2[qtr.round.neg,hn.d2]),d2fin.sweep)
     ### Mesh saving
     if(Save.Part.Mesh) Rvcg::vcgPlyWrite(Mesh.D2fin,paste0("./",Folder,"/DorsalFin2_",Fname.Add,".ply"),
                 writeCol=F,writeNormals=F)
@@ -425,8 +430,8 @@ paleomass <- function(
     Za <- mesh.af$Z
     hn.a <- round(ncol(Xa)/2,0)
     Mesh.afin <- Morpho::rotaxis3d(Mesh.afin,c(Xa[qtr.round.pos,hn.a],Ya[qtr.round.pos,
-                                                                 hn.a],Za[qtr.round.pos,hn.a]),c(Xa[qtr.round.neg,hn.a],Ya[qtr.round.neg,
-                                                                                                                           hn.a],Za[qtr.round.neg,hn.a]),dfin.sweep)
+                hn.a],Za[qtr.round.pos,hn.a]),c(Xa[qtr.round.neg,hn.a],Ya[qtr.round.neg,
+                hn.a],Za[qtr.round.neg,hn.a]),-afin.sweep)
     # Mesh saving
     if(Save.Part.Mesh) Rvcg::vcgPlyWrite(Mesh.afin,paste0("./",Folder,"/AnalFin_",Fname.Add,".ply"),
                 writeCol=F,writeNormals=F)
@@ -452,10 +457,10 @@ paleomass <- function(
     Ze <- mesh.ce$Z
     hn.e <- round(ncol(Xe)/2,0)
     Mesh.ceph <- Morpho::rotaxis3d(Mesh.ceph,c(Xe[qtr.round.pos,hn.e],Ye[qtr.round.pos,
-                                                                 hn.e],Ze[qtr.round.pos,hn.e]),c(Xe[qtr.round.neg,hn.e],Ye[qtr.round.neg,
+                hn.e],Ze[qtr.round.pos,hn.e]),c(Xe[qtr.round.neg,hn.e],Ye[qtr.round.neg,
                                                                                                                            hn.e],Ze[qtr.round.neg,hn.e]),ceph.sweep)
     Mesh.ceph <- Morpho::rotaxis3d(Mesh.ceph,c(Xe[1,hn.e],Ye[1,hn.e],Ze[1,hn.e]),
-                           c(Xe[hlf.round,hn.e],Ye[hlf.round,hn.e],Ze[hlf.round,hn.e]),ceph.rot)
+                c(Xe[hlf.round,hn.e],Ye[hlf.round,hn.e],Ze[hlf.round,hn.e]),ceph.rot)
     ### Mesh saving
     if(Save.Part.Mesh) Rvcg::vcgPlyWrite(Mesh.ceph,paste0("./",Folder,"/Cephalofoil_",Fname.Add,".ply"),
                 writeCol=F,writeNormals=F)
