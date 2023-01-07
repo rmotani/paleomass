@@ -33,19 +33,19 @@ Follow this
 ### Simplest Example Run
 
 1. Load the paleomass package in R.  
-```
+```R
 library(paleomass)
 ```
 2. If you haven't, move to the working directory that you want to use.  
-```
+```R
 setwd("YourDirectory")
 ```
 3. Save example silhouette image files, of the ichthyosaur *Stenopterygius*, in a sub-directory called "Stenopterygius".  
-```
+```R
 save_Stenopterygius()
 ```
 4. Run paleomass.   
-```
+```R
 paleomass()
 ```
 5. You will see several rgl windows open and close but that is normal. In the end, you will have the 3D models displayed and also saved as .ply files, so that  you can open it later in software of your choice. The .ply files are found in the sub-directory that contains the silhouette images.
@@ -67,7 +67,7 @@ paleomass()
 save_Plesiosaurus()
 ```
 4. Run paleomass. You need to specify the data folder, length of the animal, and the positions/rotations of the flippers as below.  
-```
+```R
 paleomass(Folder = "Plesiosaurus", fork.l = 2.94, ffin.onset = 450, 
 	hfin.onset = 650, ffin.adj.lat = -10, hfin.adj.lat = -40, 
 	ffin.adj.up = -160, hfin.adj.up = -160, ffin.sweep = pi/6, 
@@ -83,11 +83,11 @@ paleomass(Folder = "Plesiosaurus", fork.l = 2.94, ffin.onset = 450,
 1. As in the simplest example above.
 2. As in the simplest example above.
 3. Save example silhouette image files for *Sphyrna*, in a sub-directory called "Sphyrna".  
-```
+```R
 save_Sphyrna()
 ```
 4. Run paleomass. You need to specify the data folder, length of the animal, and the positions/rotations of the paired fins, median fins, and cephalofoil as below.  
-```
+```R
 paleomass(Folder="Sphyrna", fork.l = 2, n2 = 1.8, 
 	ffin.onset = 300, ffin.adj.up = -120, ffin.adj.lat = -40, 
 	ffin.spread = pi/4, ffin.sweep = -pi*0/180, hfin.onset = 550, 
@@ -141,7 +141,7 @@ Once the silhouette images are made, make a sub-directory within your working di
 
 ### 3. Test run
 Next step is to test run the files. For example, for Plesiosaurus, try:  
-```
+```R
 paleomass(Folder = "Plesiosaurus")
 ```
 This command will result in a 3D model where all body parts are not placed in the right position or orientation.  
@@ -149,7 +149,7 @@ This command will result in a 3D model where all body parts are not placed in th
 ![Image](./img/Plesiosaurus_initial.jpg "Test run result")
 
 As you can tell from this image, the flippers are placed and roated as in the default model of *Stenopterygius*. That is not very helpful in the next step, when you need to adjust positions and angles. So let us try another run, where all the positoin variables are set to 0:  
-```
+```R
 paleomass(Folder = "Plesiosaurus", Test.Run=T)
 ```
 Note that all position and angle variables are set to 0 except the positions along the Z axis (=body axis), so as to make it easy for the next step. Fins are spread along the body axis for easier viewing. 
@@ -192,7 +192,7 @@ The pectoral flippers shoudl spread out by about 60 degrees and the pelvic ones 
 
 ### 6. Run the command again with new options
 Now that you have updated option values, let us try running paleomass again. Make sure to input everything you listed above.  
-```
+```R
 paleomass(Folder = "Plesiosaurus", fork.l = 2.94, ffin.onset = 450, 
 	hfin.onset = 650, ffin.adj.lat = -10, hfin.adj.lat = -40, 
 	ffin.adj.up = -160, hfin.adj.up = -160, ffin.sweep = pi/6, 
