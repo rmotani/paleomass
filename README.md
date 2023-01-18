@@ -19,6 +19,7 @@ Motani, R. Estimating body mass from silhouettes: Testing the assumption of elli
 ## Installation
 Follow this 
 [Link.](./Install.md)
+If dependencies are not installed automatically, make sure to install the packages listed there.
 
 ---
 
