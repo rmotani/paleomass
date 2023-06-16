@@ -39,7 +39,7 @@ Below is a categorized and illustrated list of options for paleomass().
 - n.fin.slice ...... umber of segments along the span of the fin. Moot unless N.Fin.Slice = "provided".
 
 ## Options Concerning Volume, Area, and Mass Calculation
-- fork.l ...... Fork length of the marine vertebrate in meters.
+- body.axis.l ...... Body axis length of the marine vertebrate as in the main body input image in meters.
 - dens ...... Arbitrary specific gravity of whole body in g/cm^3.
 
 ## Options for Saving/Plotting

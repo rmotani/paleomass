@@ -68,7 +68,7 @@ save_Plesiopteryx()
 ```
 4. Run paleomass. You need to specify the data folder, length of the animal, and the positions/rotations of the flippers as below.  
 ```R
-paleomass(Folder = "Plesiopteryx", fork.l = 2.94, ffin.onset = 0.45, 
+paleomass(Folder = "Plesiopteryx", body.axis.l = 2.94, ffin.onset = 0.45, 
 	hfin.onset = 0.65, ffin.adj.lat = -20, hfin.adj.lat = -60, 
 	ffin.adj.up = 0, hfin.adj.up = 400, ffin.pitch = pi/6, 
 	hfin.pitch =  pi/7, ffin.roll = pi/3, hfin.roll = pi/4)
@@ -88,7 +88,7 @@ save_Sphyrna()
 ```
 4. Run paleomass. You need to specify the data folder, length of the animal, and the positions/rotations of the paired fins, median fins, and cephalofoil as below.  
 ```R
-paleomass(Folder="Sphyrna", fork.l = 2, n2 = 1.8, nn.f=0.2,
+paleomass(Folder="Sphyrna", body.axis.l = 2, n2 = 1.8, nn.f=0.2,
 	ffin.onset = 0.3, ffin.adj.up = 60, ffin.adj.lat = -60, 
 	ffin.roll = pi/4, ffin.pitch = pi*15/180, hfin.onset = 0.55, 
 	hfin.adj.up = 60, hfin.adj.lat = -80, hfin.roll = pi/4, 
@@ -193,7 +193,7 @@ The pectoral flippers shoudl spread out by about 60 degrees and the pelvic ones 
 ### 6. Run the command again with new options
 Now that you have updated option values, let us try running paleomass again. Make sure to input everything you listed above.  
 ```R
-paleomass(Folder = "Plesiopteryx", fork.l = 2.94, ffin.onset = 450, 
+paleomass(Folder = "Plesiopteryx", body.axis.l = 2.94, ffin.onset = 450, 
 	hfin.onset = 650, ffin.adj.lat = -10, hfin.adj.lat = -40, 
 	ffin.adj.up = -160, hfin.adj.up = -160, ffin.pitch = pi/6, 
 	hfin.pitch =  pi/7, ffin.roll = pi/3, hfin.roll = pi/4)
