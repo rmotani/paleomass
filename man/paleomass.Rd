@@ -24,11 +24,11 @@ paleomass(
   Mesh.Col = "royalblue",
   n1 = 2,
   n2 = 3,
-  fork.l = 1.19,
-  dens = 0.95,
+  body.axis.l = 1.19,
+  dens = 1.027,
   Interpolate = T,
   nn.b = 0.1,
-  nn.f = 0.2,
+  nn.f = 0.1,
   Use.Weight = F,
   Add.Tip = T,
   tip.radius = 1e-04,
@@ -40,40 +40,49 @@ paleomass(
   n.fin.slice = 500,
   cfin.adj.lat = 0,
   cfin.adj.up = -5,
-  cfin.onset = 870,
-  cfin.rot = 0,
-  cfin.sweep = 0,
-  cfin.thick = 20,
+  cfin.onset = 0.87,
+  cfin.roll = 0,
+  cfin.pitch = 0,
   cfin.yaw = 0,
-  dfin.adj.up = 175,
-  dfin.onset = 440,
-  dfin.sweep = 0,
+  cfin.thick = 20,
+  dfin.adj.up = 0,
+  dfin.onset = 0.44,
+  dfin.roll = 0,
+  dfin.pitch = 0,
+  dfin.yaw = 0,
   dfin.thick = 20,
-  d2fin.adj.up = 165,
-  d2fin.onset = 600,
-  d2fin.sweep = 0,
+  d2fin.adj.up = 0,
+  d2fin.onset = 0.6,
+  d2fin.roll = 0,
+  d2fin.pitch = 0,
+  d2fin.yaw = 0,
   d2fin.thick = 10,
-  ffin.adj.lat = -30,
-  ffin.adj.up = -67,
-  ffin.onset = 300,
-  ffin.spread = pi/4,
-  ffin.sweep = pi/6,
+  ffin.adj.lat = -50,
+  ffin.adj.up = 40,
+  ffin.onset = 0.3,
+  ffin.roll = pi/4,
+  ffin.pitch = pi/6,
   ffin.thick = 20,
-  hfin.adj.lat = -30,
-  hfin.adj.up = -27,
-  hfin.onset = 600,
-  hfin.spread = pi/6,
-  hfin.sweep = pi/7,
+  ffin.yaw = 0,
+  hfin.adj.lat = -50,
+  hfin.adj.up = -10,
+  hfin.onset = 0.6,
+  hfin.roll = pi/6,
+  hfin.pitch = pi/7,
   hfin.thick = 20,
-  afin.adj.up = -25,
-  afin.onset = 650,
-  afin.sweep = 0,
+  hfin.yaw = 0,
+  afin.adj.up = 0,
+  afin.onset = 0.65,
+  afin.roll = 0,
+  afin.pitch = 0,
   afin.thick = 10,
-  ceph.adj.up = -5,
-  ceph.onset = 870,
-  ceph.rot = 0,
-  ceph.sweep = 0,
+  afin.yaw = 0,
+  ceph.adj.up = 0,
+  ceph.onset = -0.05,
+  ceph.roll = pi/2,
+  ceph.pitch = 0,
   ceph.thick = 30,
+  ceph.yaw = 0,
   Test.Run = F
 )
 }
@@ -91,8 +100,6 @@ paleomass(
 \item{Dfin.File}{. Name of the image file for the planar silhouette of the dorsal fin, if any, without extension.}
 
 \item{D2fin.File}{Name of the image file for the planar silhouette of the second dorsal fin, if any, without extension.}
-
-\item{Ffin.File}{Name of the image file for the planar silhouette of the forefin/pectoral fin/pectoral flipper.}
 
 \item{Hfin.File}{Name of the image file for the planar silhouette of the hindfin/pelvic fin/pelvic flipper, without extension.}
 
@@ -116,7 +123,7 @@ paleomass(
 
 \item{n2}{Superelliptical exponent used in the second model. A value of 3.0 is recommended for marine tetrapods.}
 
-\item{fork.l}{Fork length of the marine vertebrate in meters.}
+\item{body.axis.l}{Body axis length in the BodyL image in meters.}
 
 \item{dens}{Arbitrary specific gravity of whole body in g/cm^3.}
 
@@ -136,11 +143,11 @@ paleomass(
 
 \item{Body.Y.Centering}{Logical. Whether to center the body along the Y axis.}
 
-\item{N.Body.Slice}{How to set the number of longitudinal segments. Possible values are: "asis"#’ @param #’ @param use the pixel count from input image; "round"(default)#’ @param #’ @param round the value to the closest 100; " provided"#’ @param #’ @param use the value provided in n.body.slice}
+\item{N.Body.Slice}{How to set the number of longitudinal segments. Possible values are: "asis" use the pixel count from input image; "round"(default) round the value to the closest 100; " provided" use the value provided in n.body.slice}
 
 \item{n.body.slice}{Number of segments along the body axis. Moot unless N.Body.Slice = "provided".}
 
-\item{N.Fin.Slice}{How to set the number of spanwise segments. Possible values are: "asis"#’ @param #’ @param use the pixel count from input image; "round"(default)#’ @param #’ @param round the value to the closest 100; " provided"#’ @param #’ @param use the value provided in n.fin.slice}
+\item{N.Fin.Slice}{How to set the number of spanwise segments. Possible values are: "asis" use the pixel count from input image; "round"(default) round the value to the closest 100; " provided" use the value provided in n.fin.slice}
 
 \item{n.fin.slice}{umber of segments along the span of the fin. Moot unless N.Fin.Slice = "provided".}
 
@@ -148,29 +155,35 @@ paleomass(
 
 \item{cfin.adj.up}{Position adjustment along the Y axis (dorso-ventral axis) for the caudal fin, in pixels.}
 
-\item{cfin.onset}{Position adjustment along the Z axis (cranio-caudal axis) for the caudal fin, in pixels.}
+\item{cfin.onset}{Position adjustment along the Z axis (cranio-caudal axis) for the caudal fin, in fraction, usually between 0 and 1.}
 
-\item{cfin.rot}{Rotation angle of the caudal fin around Z axis ( cranio-caudal axis). 0 for #’ @param vertical, pi/2 for horizontal fins.}
+\item{cfin.roll}{Rotation angle of the caudal fin around Z axis (cranio-caudal axis). 0 for vertical, pi/2 for horizontal fins.}
 
-\item{cfin.sweep}{Sweep angle of the caudal fin around the X axis (bilateral axis). Becomes a yaw angle when cfin.rot = pi/2.}
+\item{cfin.pitch}{Rotation angle of the caudal fin around the X axis (bilateral axis). Becomes a yaw angle when cfin.roll = pi/2.}
+
+\item{cfin.yaw}{Yaw angle of caudal fin around the Y axis (dorso-ventral axis).}
 
 \item{cfin.thick}{Maximum thickness of the caudal fin relative to the chord in percentage.}
 
-\item{cfin.yaw}{Yaw angle of caudal fin around the Y axis (dorso-ventral axis). Becomes a pitch angle when cfin.rot = pi/2.}
-
 \item{dfin.adj.up}{Position adjustment along the Y axis (dorso-ventral axis) for the dorsal fin, in pixels.}
 
-\item{dfin.onset}{Position adjustment along the Z axis ( cranio-caudal axis) for the dorsal fin, in pixels.}
+\item{dfin.onset}{Position adjustment along the Z axis ( cranio-caudal axis) for the dorsal fin, in fraction, usually between 0 and 1.}
 
-\item{dfin.sweep}{Sweep angle of the dorsal fin around the X axis (bilateral axis).}
+\item{dfin.roll}{Rotation angle of the dorsal fin around Z axis ( cranio-caudal axis). 0 for vertical, pi/2 for horizontal fins.}
+
+\item{dfin.pitch}{Rotation angle of the dorsal fin around the X axis (bilateral axis).}
+
+\item{dfin.yaw}{Yaw angle of dorsal fin around the Y axis (dorso-ventral axis).}
 
 \item{dfin.thick}{Maximum thickness of the dorsal fin relative to the chord in percentage.}
 
 \item{d2fin.adj.up}{Position adjustment along the Y (dorso-ventral axis) axis for the second dorsal fin, in pixels.}
 
-\item{d2fin.onset}{Position adjustment along the Z axis ( cranio-caudal axis) for the secod dorsal fin, in pixels.}
+\item{d2fin.onset}{Position adjustment along the Z axis ( cranio-caudal axis) for the secod dorsal fin, in fraction, usually between 0 and 1.}
 
-\item{d2fin.sweep}{Sweep angle of the second dorsal fin around the X axis (bilateral axis).}
+\item{d2fin.roll}{Rotation angle of the second dorsal fin around the Z axis  (cranio-caudal axis).}
+
+\item{d2fin.pitch}{Rotation angle of the second dorsal fin around the X axis (bilateral axis).}
 
 \item{d2fin.thick}{Maximum thickness of the second dorsal fin relative to the chord in percentage.}
 
@@ -178,41 +191,49 @@ paleomass(
 
 \item{ffin.adj.up}{Position adjustment along the Y axis (dorso-ventral axis) for the forefin, in pixels.}
 
-\item{ffin.onset}{Position adjustment along the Z axis ( cranio-caudal axis) for the forefin, in pixels.}
+\item{ffin.onset}{Position adjustment along the Z axis ( cranio-caudal axis) for the forefin, in fraction, usually between 0 and 1.}
 
-\item{ffin.spread}{Rotation angle of the forefin around the Z axis ( cranio-caudal axis).}
+\item{ffin.roll}{Rotation angle of the forefin around the Z axis ( cranio-caudal axis).}
 
-\item{ffin.sweep}{Sweep angle of the forefin around the X axis (bilateral axis).}
+\item{ffin.pitch}{Rotation angle of the forefin around the X axis (bilateral axis).}
 
 \item{ffin.thick}{Maximum thickness of the forefin relative to the chord in percentage.}
+
+\item{ffin.yaw}{Yaw angle of forefin around the Y axis (dorso-ventral axis).}
 
 \item{hfin.adj.lat}{Position adjustment along the X axis (bilateral axis) for the hindfin, in pixels.}
 
 \item{hfin.adj.up}{Position adjustment along the Y axis (dorso-ventral axis) for the hindfin, in pixels.}
 
-\item{hfin.onset}{Position adjustment along the Z axis ( cranio-caudal axis) for the hindfin, in pixels.}
+\item{hfin.onset}{Position adjustment along the Z axis ( cranio-caudal axis) for the hindfin, in fraction, usually between 0 and 1.}
 
-\item{hfin.spread}{Rotation angle of the hindfin around the Z axis ( cranio-caudal axis).}
+\item{hfin.roll}{Rotation angle of the hindfin around the Z axis ( cranio-caudal axis).}
 
-\item{hfin.sweep}{Sweep angle of the hindfin around the X axis (bilateral axis).}
+\item{hfin.pitch}{Rotation angle of the hindfin around the X axis (bilateral axis).}
 
 \item{hfin.thick}{Maximum thickness of the hindfin relative to the chord in percentage.}
 
+\item{hfin.yaw}{Yaw angle of hindfin around the Y axis (dorso-ventral axis).}
+
 \item{afin.adj.up}{Position adjustment along the Y axis (dorso-ventral axis) for the anal fin, in pixels.}
 
-\item{afin.onset}{Position adjustment along the Z axis (cranio-caudal axis) for the anal fin, in pixels.}
+\item{afin.onset}{Position adjustment along the Z axis (cranio-caudal axis) for the anal fin, in fraction, usually between 0 and 1.}
 
-\item{afin.sweep}{Sweep angle of the anal fin around the X axis (bilateral axis).}
+\item{afin.roll}{Rotation angle of the anal fin around Z axis (cranio-caudal axis). 0 for vertical, pi/2 for horizontal fins.}
+
+\item{afin.pitch}{Rotation angle of the anal fin around the X axis (bilateral axis).}
 
 \item{afin.thick}{Maximum thickness of the anal fin relative to the chord in percentage.}
 
+\item{afin.yaw}{Yaw angle of anal fin around the Y axis (dorso-ventral axis).}
+
 \item{ceph.adj.up}{Position adjustment along the Y axis (dorso#-ventral axis) for the cephalofoil, in pixels.}
 
-\item{ceph.onset}{Position adjustment along the Z axis (cranio-caudal axis) for the cephalofoil, in pixels.}
+\item{ceph.onset}{Position adjustment along the Z axis (cranio-caudal axis) for the cephalofoil, in fraction, usually between 0 and 1.}
 
-\item{ceph.rot}{Rotation angle of the cephalofoil around Z axis (cranio-caudal axis). pi/2 for horizontal cephalfoil.}
+\item{ceph.roll}{Rotation angle of the cephalofoil around Z axis (cranio-caudal axis). pi/2 for horizontal cephalfoil.}
 
-\item{ceph.sweep}{Sweep angle of the cephalofoil around the X axis (bilateral axis).}
+\item{ceph.pitch}{Rotation angle of the cephalofoil around the X axis (bilateral axis).}
 
 \item{ceph.thick}{Maximum thickness of the cephalofoil relative to the chord in percentage.}
 
@@ -232,23 +253,23 @@ save_Stenopterygius()
 paleomass()
 #
 # Plesiosaur Example
-# Save the silhouette images for Plesiosaurus and make 3D models using them
-save_Plesiosaurus()
-paleomass(Folder="Plesiosaurus",fork.l=2.94,ffin.onset=450,
-    hfin.onset=650,ffin.adj.lat=-10,hfin.adj.lat=-40,ffin.adj.up=-160,
-    hfin.adj.up=-160,ffin.spread=pi/3,hfin.spread=pi/4)
+# Save the silhouette images for Plesiopteryx and make 3D models using them
+save_Plesiopteryx()
+paleomass(Folder="Plesiopteryx",body.axis.l=2.94,ffin.onset=0.45,
+    hfin.onset=0.65,ffin.adj.lat=-20,hfin.adj.lat=-60,ffin.adj.up=0,
+    hfin.adj.up=40,ffin.roll=pi/3,hfin.roll=pi/4)
 #
 # Hammerhead Example
 # Save the silhouette images for Sphyrna and make 3D models using them
 save_Sphryna()
-paleomass(Folder="Sphyrna",fork.l=2,n2=1.8,
-    ffin.onset=300, ffin.adj.up=-120,ffin.adj.lat=-40,ffin.spread=pi/4,
-    ffin.sweep=-pi*0/180,
-    hfin.onset=550,hfin.adj.up=10,hfin.adj.lat=-40,hfin.spread=pi/4,
-    hfin.thick=10,hfin.sweep=pi*5/180,
-    cfin.onset=920,cfin.adj.up=35,
-    dfin.onset=350,dfin.adj.up=190,dfin.sweep=pi*5/180,
-    d2fin.onset=800,d2fin.adj.up=170,,d2fin.sweep=pi*10/180,d2fin.thick=10,
-    afin.onset=800,afin.adj.up=60,afin.sweep=pi*15/180,afin.thick=10,
-    ceph.onset=-45,ceph.adj.up=120, ceph.rot=pi/2)
+paleomass(Folder="Sphyrna",body.axis.l=2,n2=1.8,
+    ffin.onset=0.3, ffin.adj.up=60,ffin.adj.lat=-60,ffin.roll=pi/4,
+    ffin.pitch=pi*15/180,
+    hfin.onset=0.55,hfin.adj.up=60,hfin.adj.lat=-80,hfin.roll=pi/4,
+    hfin.thick=10,hfin.pitch=pi*10/180,
+    cfin.onset=0.92,cfin.adj.up=70,
+    dfin.onset=0.35,dfin.adj.up=0,dfin.pitch=0,
+    d2fin.onset=0.8,d2fin.adj.up=0,d2fin.pitch=pi*10/180,d2fin.thick=10,
+    afin.onset=0.8,afin.adj.up=20,afin.pitch=pi*15/180,afin.thick=10,
+    ceph.onset=-0.045,ceph.adj.up=0,ceph.roll=pi/2,nn.f=0.2)
 }

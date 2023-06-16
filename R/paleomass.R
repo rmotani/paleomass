@@ -4,59 +4,66 @@
 #' @param Add.Tip Logical. Whether to add tips and the two ends of an object. TRUE is recommended to close the holes generated at the tips. If TRUE, then a small circle of a radius specified by tip.radius (0.0001 pixel by default) is added, while the existing points are shifted inward by tip.radius. This affects the shape minimally while closing the tips.
 #' @param afin.adj.up Position adjustment along the Y axis (dorso-ventral axis) for the anal fin, in pixels.
 #' @param Afin.File Name of the image file for the planar silhouette of the anal fin, if any, without extension.
-#' @param afin.onset Position adjustment along the Z axis (cranio-caudal axis) for the anal fin, in pixels.
-#' @param afin.sweep Sweep angle of the anal fin around the X axis (bilateral axis).
+#' @param afin.onset Position adjustment along the Z axis (cranio-caudal axis) for the anal fin, in fraction, usually between 0 and 1.
+#' @param afin.pitch Rotation angle of the anal fin around the X axis (bilateral axis).
+#' @param afin.roll Rotation angle of the anal fin around Z axis (cranio-caudal axis). 0 for vertical, pi/2 for horizontal fins.
 #' @param afin.thick Maximum thickness of the anal fin relative to the chord in percentage.
+#' @param afin.yaw Yaw angle of anal fin around the Y axis (dorso-ventral axis).
+#' @param body.axis.l Body axis length in the BodyL image in meters.
 #' @param Body.Y.Centering Logical. Whether to center the body along the Y axis.
 #' @param BodyL.File Name of the image file for the lateral silhouette of the body, without extension.
 #' @param BodyV.File Name of the image file for the ventral silhouette of the body, without extension.
 #' @param ceph.adj.up Position adjustment along the Y axis (dorso#-ventral axis) for the cephalofoil, in pixels.
 #' @param Ceph.File Name of the image file for the planar silhouette of the cephalofoil, if any, without extension.
-#' @param ceph.onset Position adjustment along the Z axis (cranio-caudal axis) for the cephalofoil, in pixels.
-#' @param ceph.rot Rotation angle of the cephalofoil around Z axis (cranio-caudal axis). pi/2 for horizontal cephalfoil.
-#' @param ceph.sweep Sweep angle of the cephalofoil around the X axis (bilateral axis).
+#' @param ceph.onset Position adjustment along the Z axis (cranio-caudal axis) for the cephalofoil, in fraction, usually between 0 and 1.
+#' @param ceph.roll Rotation angle of the cephalofoil around Z axis (cranio-caudal axis). pi/2 for horizontal cephalfoil.
+#' @param ceph.pitch Rotation angle of the cephalofoil around the X axis (bilateral axis).
 #' @param ceph.thick Maximum thickness of the cephalofoil relative to the chord in percentage.
 #' @param cfin.adj.lat Position adjustment along the X axis (bilateral axis) for the caudal fin, in pixels.
 #' @param cfin.adj.up Position adjustment along the Y axis (dorso-ventral axis) for the caudal fin, in pixels.
 #' @param Cfin.File  Name of the image file for the planar silhouette of the caudal fin, without extension.
-#' @param cfin.onset Position adjustment along the Z axis (cranio-caudal axis) for the caudal fin, in pixels.
-#' @param cfin.rot Rotation angle of the caudal fin around Z axis ( cranio-caudal axis). 0 for #’ @param vertical, pi/2 for horizontal fins.
-#' @param cfin.sweep Sweep angle of the caudal fin around the X axis (bilateral axis). Becomes a yaw angle when cfin.rot = pi/2.
+#' @param cfin.onset Position adjustment along the Z axis (cranio-caudal axis) for the caudal fin, in fraction, usually between 0 and 1.
+#' @param cfin.pitch Rotation angle of the caudal fin around the X axis (bilateral axis). Becomes a yaw angle when cfin.roll = pi/2.
+#' @param cfin.roll Rotation angle of the caudal fin around Z axis (cranio-caudal axis). 0 for vertical, pi/2 for horizontal fins.
 #' @param cfin.thick Maximum thickness of the caudal fin relative to the chord in percentage.
-#' @param cfin.yaw Yaw angle of caudal fin around the Y axis (dorso-ventral axis). Becomes a pitch angle when cfin.rot = pi/2.
+#' @param cfin.yaw Yaw angle of caudal fin around the Y axis (dorso-ventral axis).
 #' @param d2fin.adj.up Position adjustment along the Y (dorso-ventral axis) axis for the second dorsal fin, in pixels.
 #' @param D2fin.File Name of the image file for the planar silhouette of the second dorsal fin, if any, without extension.
-#' @param d2fin.onset Position adjustment along the Z axis ( cranio-caudal axis) for the secod dorsal fin, in pixels.
-#' @param d2fin.sweep Sweep angle of the second dorsal fin around the X axis (bilateral axis).
+#' @param d2fin.onset Position adjustment along the Z axis ( cranio-caudal axis) for the secod dorsal fin, in fraction, usually between 0 and 1.
+#' @param d2fin.pitch Rotation angle of the second dorsal fin around the X axis (bilateral axis).
+#' @param d2fin.roll Rotation angle of the second dorsal fin around the Z axis  (cranio-caudal axis).
 #' @param d2fin.thick Maximum thickness of the second dorsal fin relative to the chord in percentage.
 #' @param dens Arbitrary specific gravity of whole body in g/cm^3.
 #' @param dfin.adj.up Position adjustment along the Y axis (dorso-ventral axis) for the dorsal fin, in pixels.
 #' @param Dfin.File . Name of the image file for the planar silhouette of the dorsal fin, if any, without extension.
-#' @param dfin.onset Position adjustment along the Z axis ( cranio-caudal axis) for the dorsal fin, in pixels.
-#' @param dfin.sweep Sweep angle of the dorsal fin around the X axis (bilateral axis).
+#' @param dfin.onset Position adjustment along the Z axis ( cranio-caudal axis) for the dorsal fin, in fraction, usually between 0 and 1.
+#' @param dfin.pitch Rotation angle of the dorsal fin around the X axis (bilateral axis).
+#' @param dfin.roll Rotation angle of the dorsal fin around Z axis ( cranio-caudal axis). 0 for vertical, pi/2 for horizontal fins.
 #' @param dfin.thick Maximum thickness of the dorsal fin relative to the chord in percentage.
+#' @param dfin.yaw Yaw angle of dorsal fin around the Y axis (dorso-ventral axis).
 #' @param ffin.adj.lat Position adjustment along the X axis (bilateral axis) for the forefin, in pixels.
 #' @param ffin.adj.up Position adjustment along the Y axis (dorso-ventral axis) for the forefin, in pixels.
-#' @param Ffin.File Name of the image file for the planar silhouette of the forefin/pectoral fin/pectoral flipper.
-#' @param ffin.onset Position adjustment along the Z axis ( cranio-caudal axis) for the forefin, in pixels.
-#' @param ffin.spread Rotation angle of the forefin around the Z axis ( cranio-caudal axis).
-#' @param ffin.sweep Sweep angle of the forefin around the X axis (bilateral axis).
+#' @param Hfin.File Name of the image file for the planar silhouette of the forefin/pectoral fin/pectoral flipper.
+#' @param ffin.onset Position adjustment along the Z axis ( cranio-caudal axis) for the forefin, in fraction, usually between 0 and 1.
+#' @param ffin.roll Rotation angle of the forefin around the Z axis ( cranio-caudal axis).
+#' @param ffin.pitch Rotation angle of the forefin around the X axis (bilateral axis).
 #' @param ffin.thick Maximum thickness of the forefin relative to the chord in percentage.
+#' @param ffin.yaw Yaw angle of forefin around the Y axis (dorso-ventral axis).
 #' @param File.Ext File extension of the image file. Either ".bmp",".jpg",".png", or "", the last one for without extensions.
 #' @param Folder Name of the sub-directory of the working directory storing image files.
-#' @param fork.l Fork length of the marine vertebrate in meters.
 #' @param hfin.adj.lat Position adjustment along the X axis (bilateral axis) for the hindfin, in pixels.
 #' @param hfin.adj.up Position adjustment along the Y axis (dorso-ventral axis) for the hindfin, in pixels.
 #' @param Hfin.File Name of the image file for the planar silhouette of the hindfin/pelvic fin/pelvic flipper, without extension.
-#' @param hfin.onset Position adjustment along the Z axis ( cranio-caudal axis) for the hindfin, in pixels.
-#' @param hfin.spread Rotation angle of the hindfin around the Z axis ( cranio-caudal axis).
-#' @param hfin.sweep Sweep angle of the hindfin around the X axis (bilateral axis).
+#' @param hfin.onset Position adjustment along the Z axis ( cranio-caudal axis) for the hindfin, in fraction, usually between 0 and 1.
+#' @param hfin.roll Rotation angle of the hindfin around the Z axis ( cranio-caudal axis).
+#' @param hfin.pitch Rotation angle of the hindfin around the X axis (bilateral axis).
 #' @param hfin.thick Maximum thickness of the hindfin relative to the chord in percentage.
+#' @param hfin.yaw Yaw angle of hindfin around the Y axis (dorso-ventral axis).
 #' @param Interpolate Logical. Whether to smooth the outline coordinates with local regression. TRUE is recommended.
 #' @param Mesh.Col Color of the mesh in rgl window. Not reflected in the saved .ply files.
-#' @param N.Body.Slice How to set the number of longitudinal segments. Possible values are: "asis"#’ @param #’ @param use the pixel count from input image; "round"(default)#’ @param #’ @param round the value to the closest 100; " provided"#’ @param #’ @param use the value provided in n.body.slice
+#' @param N.Body.Slice How to set the number of longitudinal segments. Possible values are: "asis" use the pixel count from input image; "round"(default) round the value to the closest 100; " provided" use the value provided in n.body.slice
 #' @param n.body.slice Number of segments along the body axis. Moot unless N.Body.Slice = "provided".
-#' @param N.Fin.Slice How to set the number of spanwise segments. Possible values are: "asis"#’ @param #’ @param use the pixel count from input image; "round"(default)#’ @param #’ @param round the value to the closest 100; " provided"#’ @param #’ @param use the value provided in n.fin.slice
+#' @param N.Fin.Slice How to set the number of spanwise segments. Possible values are: "asis" use the pixel count from input image; "round"(default) round the value to the closest 100; " provided" use the value provided in n.fin.slice
 #' @param n.fin.slice umber of segments along the span of the fin. Moot unless N.Fin.Slice = "provided".
 #' @param N.Mesh.Window A string of "two" or "one". Whether to plot two models side by side in one window or not. One window would often kill R.
 #' @param n1 Superelliptical exponent used in the first model. A value of 2.0 is recommended for marine tetrapods.
@@ -85,25 +92,25 @@
 #' @examples paleomass()
 #' @examples #
 #' @examples # Plesiosaur Example
-#' @examples # Save the silhouette images for Plesiosaurus and make 3D models using them
-#' @examples save_Plesiosaurus()
-#' @examples paleomass(Folder="Plesiosaurus",fork.l=2.94,ffin.onset=450,
-#' @examples     hfin.onset=650,ffin.adj.lat=-10,hfin.adj.lat=-40,ffin.adj.up=-160,
-#' @examples     hfin.adj.up=-160,ffin.spread=pi/3,hfin.spread=pi/4)
+#' @examples # Save the silhouette images for Plesiopteryx and make 3D models using them
+#' @examples save_Plesiopteryx()
+#' @examples paleomass(Folder="Plesiopteryx",body.axis.l=2.94,ffin.onset=0.45,
+#' @examples     hfin.onset=0.65,ffin.adj.lat=-20,hfin.adj.lat=-60,ffin.adj.up=0,
+#' @examples     hfin.adj.up=40,ffin.roll=pi/3,hfin.roll=pi/4)
 #' @examples #
 #' @examples # Hammerhead Example
 #' @examples # Save the silhouette images for Sphyrna and make 3D models using them
 #' @examples save_Sphryna()
-#' @examples paleomass(Folder="Sphyrna",fork.l=2,n2=1.8,
-#' @examples     ffin.onset=300, ffin.adj.up=-120,ffin.adj.lat=-40,ffin.spread=pi/4,
-#' @examples     ffin.sweep=-pi*0/180,
-#' @examples     hfin.onset=550,hfin.adj.up=10,hfin.adj.lat=-40,hfin.spread=pi/4,
-#' @examples     hfin.thick=10,hfin.sweep=pi*5/180,
-#' @examples     cfin.onset=920,cfin.adj.up=35,
-#' @examples     dfin.onset=350,dfin.adj.up=190,dfin.sweep=pi*5/180,
-#' @examples     d2fin.onset=800,d2fin.adj.up=170,,d2fin.sweep=pi*10/180,d2fin.thick=10,
-#' @examples     afin.onset=800,afin.adj.up=60,afin.sweep=pi*15/180,afin.thick=10,
-#' @examples     ceph.onset=-45,ceph.adj.up=120, ceph.rot=pi/2)
+#' @examples paleomass(Folder="Sphyrna",body.axis.l=2,n2=1.8,
+#' @examples     ffin.onset=0.3, ffin.adj.up=60,ffin.adj.lat=-60,ffin.roll=pi/4,
+#' @examples     ffin.pitch=pi*15/180,
+#' @examples     hfin.onset=0.55,hfin.adj.up=60,hfin.adj.lat=-80,hfin.roll=pi/4,
+#' @examples     hfin.thick=10,hfin.pitch=pi*10/180,
+#' @examples     cfin.onset=0.92,cfin.adj.up=70,
+#' @examples     dfin.onset=0.35,dfin.adj.up=0,dfin.pitch=0,
+#' @examples     d2fin.onset=0.8,d2fin.adj.up=0,d2fin.pitch=pi*10/180,d2fin.thick=10,
+#' @examples     afin.onset=0.8,afin.adj.up=20,afin.pitch=pi*15/180,afin.thick=10,
+#' @examples     ceph.onset=-0.045,ceph.adj.up=0,ceph.roll=pi/2,nn.f=0.2)
 
 
 paleomass <- function(
@@ -137,14 +144,14 @@ paleomass <- function(
     Mesh.Col="royalblue", # Color of body mesh 3D plot
     n1 = 2.0,           # First superelliptical exponent; 2.0 for ellipse
     n2 = 3.0,           # Second superelliptical exponent; 2.0 for ellipse
-    fork.l = 1.19,      # Actual length represented by body images provided, in m
-    dens = 0.95,        # Arbitrary specific gravity of whole body in g/cm^3.
-                        # A value of about 1 is expected in marine tetrapods
+    body.axis.l = 1.19, # Actual length represented by body images provided, in m
+    dens = 1.027,        # Arbitrary specific gravity of whole body in g/cm^3.
+                        # A value of about 1.027 is expected in marine tetrapods
                         # that go up and down in water column, or stay afloat
                         # deeper than water surface.
     Interpolate = T,    # Whether to interpolate with local regression--T or F
     nn.b=0.1,           # Nearest neighbor value for locfit for the body
-    nn.f=0.2,           # Nearest neighbor value for locfit for the fins
+    nn.f=0.1,           # Nearest neighbor value for locfit for the fins
     Use.Weight = F,      # Whether to add weights to body tips during interpolation
     Add.Tip = T,        # Whether to add tips to body ends for watertightness
     tip.radius = 0.0001,# Arbitrary radius of body tips, if Add.Tip = T
@@ -170,40 +177,49 @@ paleomass <- function(
                         # output. Moot unless N.Fin.Slice is set to "provided".
     cfin.adj.lat = 0,   # Caudal Fin lateral position adjustment, in pixels
     cfin.adj.up = -5,   # Caudal Fin upward position adjustment, in pixels
-    cfin.onset = 870,   # Caudal Fin posterior position adjustment, in pixels
-    cfin.rot = 0,       # Caudal Fin rotation around body axis
-    cfin.sweep = 0,     # Caudal Fin posterior sweep angle
+    cfin.onset = 0.87,  # Caudal Fin posterior position adjustment, in fraction
+    cfin.roll = 0,      # Caudal Fin rotation around body axis
+    cfin.pitch = 0,     # Caudal Fin rotation angle around bilateral axis
+    cfin.yaw = 0,       # Caudal fin rotation angle around dorsoventral axis
     cfin.thick = 20,    # Caudal fin maximum thickness percentage rel. chord
-    cfin.yaw = 0,       # Caudal fin maximum thickness percentage rel. chord
-    dfin.adj.up = 175,  # Dorsal Fin vertical position adjustment, in pixels
-    dfin.onset = 440,   # Dorsal Fin upward position adjustment, in pixels
-    dfin.sweep = 0,     # Dorsal Fin posterior sweep angle
+    dfin.adj.up = 0,   # Dorsal Fin vertical position adjustment, in pixels
+    dfin.onset = 0.44,  # Dorsal Fin upward position adjustment, in fraction
+    dfin.roll = 0,      # Dorsal Fin rotation around body axis
+    dfin.pitch = 0,     # Dorsal Fin rotation angle around bilateral axis
+    dfin.yaw = 0,       # Dorsal fin rotation angle around dorsoventral axis
     dfin.thick = 20,    # Dorsal fin maximum thickness percentage rel. chord
-    d2fin.adj.up = 165, # 2nd Dorsal Fin vertical position adjustment, in pixels
-    d2fin.onset = 600,  # 2nd Dorsal Fin upward position adjustment, in pixels
-    d2fin.sweep = 0,    # 2nd Dorsal Fin posterior sweep angle
+    d2fin.adj.up = 0,   # 2nd Dorsal Fin vertical position adjustment, in pixels
+    d2fin.onset = 0.6,  # 2nd Dorsal Fin upward position adjustment, in fraction
+    d2fin.roll = 0,     # 2nd Dorsal Fin rotation around body axis
+    d2fin.pitch = 0,    # 2nd Dorsal Fin rotation angle around bilateral axis
+    d2fin.yaw = 0,      # 2nd Dorsal fin rotation angle around dorsoventral axis
     d2fin.thick = 10,   # 2nd Dorsal fin maximum thickness percentage rel. chord
-    ffin.adj.lat = -30, # Forefin medial position adjustment, in pixels
-    ffin.adj.up = -67,  # Forefin upward position adjustment, in pixels
-    ffin.onset = 300,   # Forefin posterior position adjustment, in pixels
-    ffin.spread = pi/4, # Forefin lateral rotation angle
-    ffin.sweep = pi/6,  # Forefin posterior rotation angle
+    ffin.adj.lat = -50, # Forefin medial position adjustment, in pixels
+    ffin.adj.up = 40 ,  # Forefin upward position adjustment, in pixels
+    ffin.onset = 0.3,   # Forefin posterior position adjustment, in pixels
+    ffin.roll = pi/4,   # Forefin rotation around body axis
+    ffin.pitch = pi/6,  # Forefin rotation angle around bilateral axis
     ffin.thick = 20,    # Forefin maximum thickness percentage rel. chord
-    hfin.adj.lat = -30, # Hindfin medial position adjustment, in pixels
-    hfin.adj.up = -27,  # Hindfin upward position adjustment, in pixels
-    hfin.onset = 600,   # Hindfin posterior position adjustment, in pixels
-    hfin.spread = pi/6, # Hindfin lateral rotation angle
-    hfin.sweep = pi/7,  # Hindfin posterior rotation angle
+    ffin.yaw = 0,       # Forefin rotation angle around dorsoventral axis
+    hfin.adj.lat = -50, # Hindfin medial position adjustment, in pixels
+    hfin.adj.up = -10,  # Hindfin upward position adjustment, in pixels
+    hfin.onset = 0.6,   # Hindfin posterior position adjustment, in fraction
+    hfin.roll = pi/6,   # Hindfin rotation around body axis
+    hfin.pitch = pi/7,  # Hindfin rotation angle around bilateral axis
     hfin.thick = 20,    # Hindfin maximum thickness percentage rel. chord
-    afin.adj.up = -25,  # Anal Fin vertical position adjustment, in pixels
-    afin.onset = 650,   # Anal Fin upward position adjustment, in pixels
-    afin.sweep = 0,     # Anal Fin posterior sweep angle
-    afin.thick = 10,    # Anal fin maximum thickness percentage rel. chord
-    ceph.adj.up = -5,   # Cephalofoil upward position adjustment, in pixels
-    ceph.onset = 870,   # Cephalofoil posterior position adjustment, in pixels
-    ceph.rot = 0,       # Cephalofoil rotation around body axis
-    ceph.sweep = 0,     # Cephalofoil posterior sweep angle
+    hfin.yaw = 0,       # Hindfin rotation angle around dorsoventral axis
+    afin.adj.up = 0,    # Anal Fin vertical position adjustment, in pixels
+    afin.onset = 0.65,  # Anal Fin upward position adjustment, in fraction
+    afin.roll = 0,      # Anal Fin rotation around body axis
+    afin.pitch = 0,     # Anal Fin rotation angle around bilateral axis
+    afin.thick = 10,    # Anal fin rotation angle around dorsoventral axis
+    afin.yaw = 0,       # Anal fin maximum thickness percentage rel. chord
+    ceph.adj.up = 0,    # Cephalofoil upward position adjustment, in pixels
+    ceph.onset = -0.05, # Cephalofoil posterior position adjustment, in fraction
+    ceph.roll = pi/2,   # Cephalofoil rotation angle around body axis
+    ceph.pitch = 0,     # Cephalofoil rotation angle around bilateral axis
     ceph.thick = 30,    # Cephalofoil maximum thickness percentage rel. chord
+    ceph.yaw = 0,       # Cephalofoil rotation angle around dorsoventral axis
     Test.Run = F)       # Whether to set all positions and rotations for a test
 {
   ### Variable settings
@@ -219,19 +235,19 @@ paleomass <- function(
   hlf.round <- round(a.per.slice/2,0)
   if(Test.Run) {ceph.onset = 0; ffin.onset = 50; dfin.onset=100;
       d2fin.onset = 150; hfin.onset = 800; afin.onset = 850; cfin.onset = 900;
-      cfin.adj.up = 0; cfin.sweep = 0; cfin.rot = 0;
-      dfin.adj.up = 0; dfin.sweep = 0;
-      d2fin.adj.up = 0; d2fin.sweep = 0; d2fin.spread = 0;
-      ffin.adj.lat = 0; ffin.adj.up = 0; ffin.sweep = 0; ffin.spread = 0;
-      hfin.adj.lat = 0; hfin.adj.up = 0; hfin.sweep = 0; hfin.spread = 0;
-      afin.adj.up = 0; afin.sweep = 0;
-      ceph.adj.up = 0; ceph.sweep = 0; ceph.rot = pi/2;
+      cfin.adj.up = 0; cfin.pitch = 0; cfin.roll = 0;
+      dfin.adj.up = 0; dfin.pitch = 0;
+      d2fin.adj.up = 0; d2fin.pitch = 0; d2fin.roll = 0;
+      ffin.adj.lat = 0; ffin.adj.up = 0; ffin.pitch = 0; ffin.roll = 0;
+      hfin.adj.lat = 0; hfin.adj.up = 0; hfin.pitch = 0; hfin.roll = 0;
+      afin.adj.up = 0; afin.pitch = 0;
+      ceph.adj.up = 0; ceph.pitch = 0; ceph.roll = pi/2;
   }
 
   ### Defining result-saving structure
   Chars <- c("volume [voxel]","area [pixel^2]")
   Chars.Complete <- c("volume [voxel]","area [pixel^2]","volume [m^3]",
-                      "area [m^2]","mass.neutral (kg)",paste0("mass.",dens," (kg)"))
+                      "area [m^2]","mass.freshwater (kg)",paste0("mass.",dens," (kg)"))
   Parts <- c(paste0("body",n1),paste0("body",n2),"Cfin","Dfin","ffinR","ffinL",
              "hfinR","hfinL","D2fin","afin","ceph")
   Parts.Complete <- c(paste0("Body_n=",n1),paste0("Body_n=",n2),"Caudal_fin",
@@ -294,8 +310,9 @@ paleomass <- function(
   if(Ceph) dat.ce <- antpost(mx.ce,Add.Tip=Add.Tip)
 
   ### Keeping a record of original body length in pixels
-  px.L <- fork.l/nrow(dat.lat)
-  if(Add.Tip) px.L <- fork.l/nrow(dat.lat-2)
+  bal.px <- nrow(dat.lat)
+  px.L <- body.axis.l/nrow(dat.lat)
+  if(Add.Tip) px.L <- body.axis.l/nrow(dat.lat-2)
 
   ### Whether to translate all elements vertically to center the body
   y.shift <- 0
@@ -335,26 +352,26 @@ paleomass <- function(
   # Xc, Yc, Zc    Global coordinates for the caudal fluke.
   # .onset        Anterior margin center of the fluke in global coordinate
   if(Cfin){
-    Yc.onset <- dat.lat[nrow(dat.lat),4] + cfin.adj.up + y.shift
-    Xc.onset <- cfin.adj.lat
-    Zc.onset <- cfin.onset
+    cfin.atip.y <- floor(colMeans(dat.cf[dat.cf[,2]==min(dat.cf[,2]),])[1])
+    cfin.base <- c(0, cfin.adj.up + cfin.atip.y + y.shift, cfin.onset * bal.px)
+    Yc.onset <- cfin.base[2] #+dat.lat[nrow(dat.lat),4]
+    Xc.onset <- cfin.base[1]
+    Zc.onset <- cfin.base[3]
     mesh.cf <- mesh_foil(dat.cf,tf=cfin.thick,X.onset=Xc.onset,Y.onset=Yc.onset,
                          Z.onset=Zc.onset,tol=Clean.Tol,Thickest=0.5,Center=T,
                          a.per.slice=a.per.slice,Mesh.Col=Mesh.Col)
     Mesh.Cfin <- mesh.cf$Mesh
-    ### Fin sweep and rotation
-    Xc <- mesh.cf$X
-    Yc <- mesh.cf$Y
-    Zc <- mesh.cf$Z
-    hn.c <- round(ncol(Xc)/2,0)
-    Mesh.Cfin <- Morpho::rotaxis3d(Mesh.Cfin,c(Xc[qtr.round.pos,hn.c],Yc[qtr.round.pos,
-                  hn.c],Zc[qtr.round.pos,hn.c]),c(Xc[qtr.round.neg,hn.c],Yc[qtr.round.neg,
-                  hn.c],Zc[qtr.round.neg,hn.c]),cfin.sweep)
-    Mesh.Cfin <- Morpho::rotaxis3d(Mesh.Cfin,c(Xc[1,hn.c],Yc[1,
-                  hn.c]+1,Zc[1,hn.c]),c(Xc[1,hn.c],Yc[hlf.round,
-                  hn.c]-1,Zc[1,hn.c]),cfin.yaw)
-    Mesh.Cfin <- Morpho::rotaxis3d(Mesh.Cfin,c(Xc[1,hn.c],Yc[1,hn.c],Zc[1,hn.c]),
-                  c(Xc[hlf.round,hn.c],Yc[hlf.round,hn.c],Zc[hlf.round,hn.c]),cfin.rot)
+    ### Fin roll, pitch, and yaw
+    #roll
+    Mesh.Cfin <- Morpho::rotaxis3d(Mesh.Cfin,cfin.base+c(0,cfin.atip.y + y.shift,100),
+                                   cfin.base+c(0,cfin.atip.y + y.shift,-100),cfin.roll)
+    #pitch
+    Mesh.Cfin <- Morpho::rotaxis3d(Mesh.Cfin,cfin.base+c(100,cfin.atip.y + y.shift,0),
+                                   cfin.base+c(-100,cfin.atip.y + y.shift,0),cfin.pitch)
+    #yaw
+    Mesh.Cfin <- Morpho::rotaxis3d(Mesh.Cfin,cfin.base+c(0,100,0),
+                                   cfin.base+c(0,-100,0),cfin.yaw)
+
     ### Mesh saving
     if(Save.Part.Mesh) Rvcg::vcgPlyWrite(Mesh.Cfin,paste0("./",Folder,"/CaudalFluke_",
                          Fname.Add,".ply"),writeCol=F,writeNormals=F)
@@ -367,21 +384,27 @@ paleomass <- function(
   # Xd, Yd, Zd    Global coordinates for the dorsal fin.
   # .onset        Antero-ventral corner of the dorsal fin in global coordinate
   if(Dfin){
-    Zd.onset <- dfin.onset
-    Xd.onset <- 0
-    Yd.onset <- dfin.adj.up + y.shift
+    dfin.atip.y <- floor(colMeans(dat.df[dat.df[,2]==min(dat.df[,2]),])[1])
+    dfin.bheight <- -dat.lat[floor(dfin.onset*bal.px),2] - y.shift
+    dfin.base <- c(0, dfin.adj.up + dfin.bheight -dfin.atip.y, dfin.onset * bal.px)
+    Zd.onset <- dfin.base[3]
+    Xd.onset <- dfin.base[1]
+    Yd.onset <- dfin.base[2]
     mesh.df <- mesh_foil(dat.df,tf=dfin.thick,X.onset=Xd.onset,Y.onset=Yd.onset,
                          Z.onset=Zd.onset,tol=Clean.Tol,Thickest=0.1,Center=F,
                          a.per.slice=a.per.slice,Mesh.Col=Mesh.Col)
     Mesh.Dfin <- mesh.df$Mesh
-    ### Fin sweep and mesh saving
-    Xd <- mesh.df$X
-    Yd <- mesh.df$Y
-    Zd <- mesh.df$Z
-    hn.d <- round(ncol(Xd)/2,0)
-    Mesh.Dfin <- Morpho::rotaxis3d(Mesh.Dfin,c(Xd[qtr.round.pos,hn.d],Yd[qtr.round.pos,
-                  hn.d],Zd[qtr.round.pos,hn.d]),c(Xd[qtr.round.neg,hn.d],Yd[qtr.round.neg,
-                  hn.d],Zd[qtr.round.neg,hn.d]),dfin.sweep)
+    ### Fin roll, pitch, and yaw
+    #roll
+    Mesh.Dfin <- Morpho::rotaxis3d(Mesh.Dfin,dfin.base+c(0,0,100),
+                                   dfin.base+c(0,0,-100),dfin.roll)
+    #pitch
+    Mesh.Dfin <- Morpho::rotaxis3d(Mesh.Dfin,dfin.base+c(100,0,0),
+                                   dfin.base+c(-100,0,0),dfin.pitch)
+    #yaw
+    Mesh.Dfin <- Morpho::rotaxis3d(Mesh.Dfin,dfin.base+c(0,100,0),
+                                   dfin.base+c(0,-100,0),dfin.yaw)
+
     ### Mesh saving
     if(Save.Part.Mesh) Rvcg::vcgPlyWrite(Mesh.Dfin,paste0("./",Folder,"/DorsalFin_",
                          name.Add,".ply"),writeCol=F,writeNormals=F)
@@ -392,21 +415,26 @@ paleomass <- function(
 
   ### Dorsal Fin 2 (Second dorsal fin)
   if(D2fin){
-    Zd2.onset <- d2fin.onset
-    Xd2.onset <- 0
-    Yd2.onset <- d2fin.adj.up + y.shift
+    d2fin.atip.y <- floor(colMeans(dat.d2[dat.d2[,2]==min(dat.d2[,2]),])[1])
+    d2fin.bheight <- -dat.lat[floor(d2fin.onset*bal.px),2] - y.shift
+    d2fin.base <- c(0, d2fin.adj.up + d2fin.bheight -d2fin.atip.y, d2fin.onset * bal.px)
+    Zd2.onset <- d2fin.base[3]
+    Xd2.onset <- d2fin.base[1]
+    Yd2.onset <- d2fin.base[2]
     mesh.d2 <- mesh_foil(dat.d2,tf=d2fin.thick,X.onset=Xd2.onset,Y.onset=Yd2.onset,
                          Z.onset=Zd2.onset,tol=Clean.Tol,Thickest=0.1,Center=F,
                          a.per.slice=a.per.slice,Mesh.Col=Mesh.Col)
     Mesh.D2fin <- mesh.d2$Mesh
-    ### Fin sweep and mesh saving
-    Xd2 <- mesh.d2$X
-    Yd2 <- mesh.d2$Y
-    Zd2 <- mesh.d2$Z
-    hn.d2 <- round(ncol(Xd2)/2,0)
-    Mesh.D2fin <- Morpho::rotaxis3d(Mesh.D2fin,c(Xd2[qtr.round.pos,hn.d2],Yd2[qtr.round.pos,
-                  hn.d2],Zd2[qtr.round.pos,hn.d2]),c(Xd2[qtr.round.neg,hn.d2],Yd2[qtr.round.neg,
-                  hn.d2],Zd2[qtr.round.neg,hn.d2]),d2fin.sweep)
+    ### Fin roll, pitch, and yaw
+    #roll
+    Mesh.D2fin <- Morpho::rotaxis3d(Mesh.D2fin,d2fin.base+c(0,0,100),
+                                   d2fin.base+c(0,0,-100),d2fin.roll)
+    #pitch
+    Mesh.D2fin <- Morpho::rotaxis3d(Mesh.D2fin,d2fin.base+c(100,0,0),
+                                   d2fin.base+c(-100,0,0),d2fin.pitch)
+    #yaw
+    Mesh.D2fin <- Morpho::rotaxis3d(Mesh.D2fin,d2fin.base+c(0,100,0),
+                                   d2fin.base+c(0,-100,0),d2fin.yaw)
     ### Mesh saving
     if(Save.Part.Mesh) Rvcg::vcgPlyWrite(Mesh.D2fin,paste0("./",Folder,"/DorsalFin2_",Fname.Add,".ply"),
                 writeCol=F,writeNormals=F)
@@ -419,144 +447,170 @@ paleomass <- function(
   # Xa, Ya, Za    Global coordinates for the anal fin.
   # .onset        Antero-ventral corner of the anal fin in global coordinate
   if(Afin){
-    Za.onset <- afin.onset
-    Xa.onset <- 0
-    Ya.onset <- afin.adj.up + y.shift
+    afin.atip.y <- floor(colMeans(dat.af[dat.af[,2]==min(dat.af[,2]),])[1])
+    afin.bheight <- -dat.lat[floor(afin.onset*bal.px),3] - y.shift
+    afin.base <- c(0, afin.adj.up + afin.bheight -afin.atip.y, afin.onset * bal.px)
+    Za.onset <- afin.base[3]
+    Xa.onset <- afin.base[1]
+    Ya.onset <- afin.base[2]
     mesh.af <- mesh_foil(dat.af,tf=afin.thick,X.onset=Xa.onset,Y.onset=Ya.onset,
                          Z.onset=Za.onset,tol=Clean.Tol,Thickest=0.9,Center=F,
                          a.per.slice=a.per.slice,Mesh.Col=Mesh.Col)
-    Mesh.afin <- mesh.af$Mesh
-    ### Fin sweep and mesh saving
-    Xa <- mesh.af$X
-    Ya <- mesh.af$Y
-    Za <- mesh.af$Z
-    hn.a <- round(ncol(Xa)/2,0)
-    Mesh.afin <- Morpho::rotaxis3d(Mesh.afin,c(Xa[qtr.round.pos,hn.a],Ya[qtr.round.pos,
-                hn.a],Za[qtr.round.pos,hn.a]),c(Xa[qtr.round.neg,hn.a],Ya[qtr.round.neg,
-                hn.a],Za[qtr.round.neg,hn.a]),-afin.sweep)
+    Mesh.Afin <- mesh.af$Mesh
+    ### Fin roll, pitch, and yaw
+    #roll
+    Mesh.Afin <- Morpho::rotaxis3d(Mesh.Afin,afin.base+c(0,0,100),
+                                   afin.base+c(0,0,-100),afin.roll)
+    #pitch
+    Mesh.Afin <- Morpho::rotaxis3d(Mesh.Afin,afin.base+c(100,0,0),
+                                   afin.base+c(-100,0,0),afin.pitch)
+    #yaw
+    Mesh.Afin <- Morpho::rotaxis3d(Mesh.Afin,afin.base+c(0,100,0),
+                                   afin.base+c(0,-100,0),afin.yaw)
     # Mesh saving
-    if(Save.Part.Mesh) Rvcg::vcgPlyWrite(Mesh.afin,paste0("./",Folder,"/AnalFin_",Fname.Add,".ply"),
+    if(Save.Part.Mesh) Rvcg::vcgPlyWrite( Mesh.Afin,paste0("./",Folder,"/AnalFin_",Fname.Add,".ply"),
                 writeCol=F,writeNormals=F)
     ### Measure
-    results[10,2] <- Rvcg::vcgArea(Mesh.afin)
-    try(results[10,1] <- Rvcg::vcgVolume(Mesh.afin))
+    results[10,2] <- Rvcg::vcgArea( Mesh.Afin)
+    try(results[10,1] <- Rvcg::vcgVolume( Mesh.Afin))
   }
 
   ### Cephalofoil
   # Xe, Ye, Zec    Global coordinates for the cephalofoil
   # .onset        Anterior margin center cephalofoil in global coordinate
   if(Ceph){
-    Ye.onset <- ceph.adj.up + y.shift
-    Xe.onset <- 0
-    Ze.onset <- ceph.onset
+    # ceph.atip.y <- floor(colMeans(dat.ce[dat.ce[,2]==min(dat.ce[,2]),])[1])
+    ceph.atip.y <- dist(range(dat.ce[,1]))/2
+    ceph.base <- c(0, ceph.adj.up + dat.dv[1,4] + y.shift, ceph.onset * bal.px)
+    Ye.onset <- ceph.base[2]
+    Xe.onset <- ceph.base[1]
+    Ze.onset <- ceph.base[3]
     mesh.ce <- mesh_foil(dat.ce,tf=ceph.thick,X.onset=Xe.onset,Y.onset=Ye.onset,
                          Z.onset=Ze.onset,tol=Clean.Tol,Thickest=0.5,Center=T,
                          a.per.slice=a.per.slice,Mesh.Col=Mesh.Col,Cephalofoil=T)
-    Mesh.ceph <- mesh.ce$Mesh
-    ### Cephalofoil sweep and rotation
-    Xe <- mesh.ce$X
-    Ye <- mesh.ce$Y
-    Ze <- mesh.ce$Z
-    hn.e <- round(ncol(Xe)/2,0)
-    Mesh.ceph <- Morpho::rotaxis3d(Mesh.ceph,c(Xe[qtr.round.pos,hn.e],Ye[qtr.round.pos,
-                hn.e],Ze[qtr.round.pos,hn.e]),c(Xe[qtr.round.neg,hn.e],Ye[qtr.round.neg,
-                                                                                                                           hn.e],Ze[qtr.round.neg,hn.e]),ceph.sweep)
-    Mesh.ceph <- Morpho::rotaxis3d(Mesh.ceph,c(Xe[1,hn.e],Ye[1,hn.e],Ze[1,hn.e]),
-                c(Xe[hlf.round,hn.e],Ye[hlf.round,hn.e],Ze[hlf.round,hn.e]),ceph.rot)
+    Mesh.Ceph <- mesh.ce$Mesh
+    ### Fin roll, pitch, and yaw
+    #roll
+    Mesh.Ceph <- Morpho::rotaxis3d(Mesh.Ceph,ceph.base+c(0,0,100),
+                                   ceph.base+c(0,0,-100),ceph.roll)
+    #pitch
+    Mesh.Ceph <- Morpho::rotaxis3d(Mesh.Ceph,ceph.base+c(100,0,0),
+                                   ceph.base+c(-100,0,0),ceph.pitch)
+    #yaw
+    Mesh.Ceph <- Morpho::rotaxis3d(Mesh.Ceph,ceph.base+c(0,100,0),
+                                   ceph.base+c(0,-100,0),ceph.yaw)
+
     ### Mesh saving
-    if(Save.Part.Mesh) Rvcg::vcgPlyWrite(Mesh.ceph,paste0("./",Folder,"/Cephalofoil_",Fname.Add,".ply"),
+    if(Save.Part.Mesh) Rvcg::vcgPlyWrite(Mesh.Ceph,paste0("./",Folder,"/Cephalofoil_",Fname.Add,".ply"),
                 writeCol=F,writeNormals=F)
     ### Measure
-    results[11,2] <- Rvcg::vcgArea(Mesh.ceph)
-    try(results[11,1] <- Rvcg::vcgVolume(Mesh.ceph))
+    results[11,2] <- Rvcg::vcgArea(Mesh.Ceph)
+    try(results[11,1] <- Rvcg::vcgVolume(Mesh.Ceph))
   }
 
   ### Forefin
   # Xf, Yf, Zf    Global coordinates for the forefin.
   # .onset        Anterior margin center of the forefin in global coordinate.
   if(Ffin){
-    Zf.onset <- ffin.onset
-    zf.onset <- match(Zf.onset,round(dat.dv[,1],0))
-    Xfl.onset <- dat.dv[zf.onset,3]-dat.dv[1,4]+ffin.adj.lat
-    Xfr.onset <- dat.dv[zf.onset,2]-dat.dv[1,4]-ffin.adj.lat
-    Yf.onset <- ffin.adj.up + y.shift
+    ffin.atip.y <- max(dat.ff[,1])  # front end of the proximal end
+    ffin.bheight <- -dat.lat[floor(ffin.onset*bal.px),3] - y.shift
+    ffin.bwidth <- -dat.dv[floor(ffin.onset*bal.px),5]
+    ffin.base <- c(0, ffin.adj.up + ffin.bheight - ffin.atip.y, ffin.onset * bal.px)
+    Zf.onset <- ffin.base[3]
+    Xfl.onset <- ffin.base[1] + ffin.bwidth - ffin.adj.lat
+    Xfr.onset <- ffin.base[1] - ffin.bwidth + ffin.adj.lat
+    Yf.onset <- ffin.base[2]
     mesh.ffr <- mesh_foil(dat.ff,tf=ffin.thick,X.onset=Xfr.onset,Y.onset=Yf.onset,
                           Z.onset=Zf.onset,tol=Clean.Tol,Thickest=0.9,Center=F,
                           a.per.slice=a.per.slice,Mesh.Col=Mesh.Col)
     mesh.ffl <- mesh_foil(dat.ff,tf=ffin.thick,X.onset=Xfl.onset,Y.onset=Yf.onset,
                           Z.onset=Zf.onset,tol=Clean.Tol,Thickest=0.9,Center=F,
                           a.per.slice=a.per.slice,Mesh.Col=Mesh.Col)
-    Mesh.ffinr <- mesh.ffr$Mesh
-    Mesh.ffinl <- mesh.ffl$Mesh
-    Xfl <- mesh.ffl$X
-    Xfr <- mesh.ffr$X
-    Yf <- mesh.ffr$Y
-    Zf <- mesh.ffr$Z
-    n.ff <- ncol(Yf)
+    Mesh.Ffinr <- mesh.ffr$Mesh
+    Mesh.Ffinl <- mesh.ffl$Mesh
+    ### Left Fin roll, pitch, and yaw
+    #roll
+    Mesh.Ffinl <- Morpho::rotaxis3d(Mesh.Ffinl,ffin.base+c(0+ffin.bwidth,ffin.atip.y,100),
+                                   ffin.base+c(0+ffin.bwidth,ffin.atip.y,-100),ffin.roll)
+    #pitch
+    Mesh.Ffinl <- Morpho::rotaxis3d(Mesh.Ffinl,ffin.base+c(100,ffin.atip.y,0),
+                                   ffin.base+c(-100,ffin.atip.y,0),ffin.pitch)
+    #yaw
+    Mesh.Ffinl <- Morpho::rotaxis3d(Mesh.Ffinl,ffin.base+c(ffin.bwidth,100,0),
+                                   ffin.base+c(ffin.bwidth,-100,0),ffin.yaw)
+    ### Right Fin roll, pitch, and yaw
+    #roll
+    Mesh.Ffinr <- Morpho::rotaxis3d(Mesh.Ffinr,ffin.base+c(-ffin.bwidth,ffin.atip.y,100),
+                                   ffin.base+c(-ffin.bwidth,ffin.atip.y,-100),-ffin.roll)
+    #pitch
+    Mesh.Ffinr <- Morpho::rotaxis3d(Mesh.Ffinr,ffin.base+c(100,ffin.atip.y,0),
+                                   ffin.base+c(-100,ffin.atip.y,0),ffin.pitch)
+    #yaw
+    Mesh.Ffinr <- Morpho::rotaxis3d(Mesh.Ffinr,ffin.base+c(-ffin.bwidth,100,0),
+                                   ffin.base+c(-ffin.bwidth,-100,0),-ffin.yaw)
 
-    ### Right fin sweep, rotation, and mesh saving
-    Mesh.ffinr <- Morpho::rotaxis3d(Mesh.ffinr,c(Xfr[1,n.ff],Yf[1,n.ff],Zf[1,n.ff]),
-                            c(Xfl[1,n.ff],Yf[1,n.ff],Zf[1,n.ff]),-ffin.sweep)
-    Mesh.ffinr <- Morpho::rotaxis3d(Mesh.ffinr,c(Xfr[1,n.ff],Yf[1,n.ff],Zf[1,n.ff]),
-                            c(Xfr[91,n.ff],Yf[91,n.ff],Zf[91,n.ff]),-ffin.spread)
-    if(Save.Part.Mesh) vcgPlyWrite(Mesh.ffinr,paste0("./",Folder,"/Forefin_R_",Fname.Add,".ply"),
-                writeCol=F,writeNormals=F)
-
-    ### Left fin sweep, rotation, and mesh saving
-    Mesh.ffinl <- Morpho::rotaxis3d(Mesh.ffinl,c(Xfl[1,n.ff],Yf[1,n.ff],Zf[1,n.ff]),
-                            c(Xfr[1,n.ff],Yf[1,n.ff],Zf[1,n.ff]),ffin.sweep)
-    Mesh.ffinl <- Morpho::rotaxis3d(Mesh.ffinl,c(Xfl[1,n.ff],Yf[1,n.ff],Zf[1,n.ff]),
-                            c(Xfl[91,n.ff],Yf[91,n.ff],Zf[91,n.ff]),ffin.spread)
-    if(Save.Part.Mesh) Rvcg::vcgPlyWrite(Mesh.ffinl,paste0("./",Folder,"/Forefin_L_",Fname.Add,".ply"),
+    ### Mesh saving
+    if(Save.Part.Mesh) vcgPlyWrite(Mesh.Ffinr,paste0("./",Folder,"/Forefin_R_",Fname.Add,".ply"),
+                                   writeCol=F,writeNormals=F)
+    if(Save.Part.Mesh) Rvcg::vcgPlyWrite(Mesh.Ffinl,paste0("./",Folder,"/Forefin_L_",Fname.Add,".ply"),
                 writeCol=F,writeNormals=F)
 
     ### Measure
-    results[6,2] <- results[5,2] <- Rvcg::vcgArea(Mesh.ffinr)
-    try(results[6,1] <- results[5,1] <- Rvcg::vcgVolume(Mesh.ffinr))
+    results[6,2] <- results[5,2] <- Rvcg::vcgArea(Mesh.Ffinr)
+    try(results[6,1] <- results[5,1] <- Rvcg::vcgVolume(Mesh.Ffinr))
   }
 
-  ### HinDfin
+  ### Hindfin
   # Xh, Yh, Zh    Global coordinates for the hinDfin.
   # .onset        Anterior margin center of the hinDfin in global coordinate
   if(Hfin){
-    Zh.onset <- hfin.onset
-    zh.onset <- match(Zh.onset,round(dat.dv[,1],0))
-    Xhl.onset <- dat.dv[zh.onset,3]-dat.dv[1,4]+hfin.adj.lat
-    Xhr.onset <- dat.dv[zh.onset,2]-dat.dv[1,4]-hfin.adj.lat
-    Yh.onset <- hfin.adj.up + y.shift
+    hfin.atip.y <- max(dat.hf[,1])  # front end of the proximal end
+    hfin.bheight <- -dat.lat[floor(hfin.onset*bal.px),3] - y.shift
+    hfin.bwidth <- -dat.dv[floor(hfin.onset*bal.px),5]
+    hfin.base <- c(0, hfin.adj.up + hfin.bheight - hfin.atip.y, hfin.onset * bal.px)
+    Zh.onset <- hfin.base[3]
+    Xhl.onset <- hfin.base[1] + hfin.bwidth - hfin.adj.lat
+    Xhr.onset <- hfin.base[1] - hfin.bwidth + hfin.adj.lat
+    Yh.onset <- hfin.base[2]
     mesh.hfr <- mesh_foil(dat.hf,tf=hfin.thick,X.onset=Xhr.onset,Y.onset=Yh.onset,
                           Z.onset=Zh.onset,tol=Clean.Tol,Thickest=0.9,Center=F,
                           a.per.slice=a.per.slice,Mesh.Col=Mesh.Col)
     mesh.hfl <- mesh_foil(dat.hf,tf=hfin.thick,X.onset=Xhl.onset,Y.onset=Yh.onset,
                           Z.onset=Zh.onset,tol=Clean.Tol,Thickest=0.9,Center=F,
                           a.per.slice=a.per.slice,Mesh.Col=Mesh.Col)
-    Mesh.hfinr <- mesh.hfr$Mesh
-    Mesh.hfinl <- mesh.hfl$Mesh
-    Xhl <- mesh.hfl$X
-    Xhr <- mesh.hfr$X
-    Yh <- mesh.hfr$Y
-    Zh <- mesh.hfr$Z
-    n.hf <- ncol(Yh)
+    Mesh.Hfinr <- mesh.hfr$Mesh
+    Mesh.Hfinl <- mesh.hfl$Mesh
 
-    #Right fin sweep, rotation, and mesh saving
-    Mesh.hfinr <- Morpho::rotaxis3d(Mesh.hfinr,c(Xhr[1,n.hf],Yh[1,n.hf],Zh[1,n.hf]),
-                            c(Xhl[1,n.hf],Yh[1,n.hf],Zh[1,n.hf]),-hfin.sweep)
-    Mesh.hfinr <- Morpho::rotaxis3d(Mesh.hfinr,c(Xhr[1,n.hf],Yh[1,n.hf],Zh[1,n.hf]),
-                            c(Xhr[91,n.hf],Yh[91,n.hf],Zh[91,n.hf]),-hfin.spread)
-    if(Save.Part.Mesh) vcgPlyWrite(Mesh.hfinr,paste0("./",Folder,"/HinDfin_R_",Fname.Add,".ply"),
+    ### Left Fin roll, pitch, and yaw
+    #roll
+    Mesh.Hfinl <- Morpho::rotaxis3d(Mesh.Hfinl,hfin.base+c(0+hfin.bwidth,hfin.atip.y,100),
+                                    hfin.base+c(0+hfin.bwidth,hfin.atip.y,-100),hfin.roll)
+    #pitch
+    Mesh.Hfinl <- Morpho::rotaxis3d(Mesh.Hfinl,hfin.base+c(100,hfin.atip.y,0),
+                                    hfin.base+c(-100,hfin.atip.y,0),hfin.pitch)
+    #yaw
+    Mesh.Hfinl <- Morpho::rotaxis3d(Mesh.Hfinl,hfin.base+c(hfin.bwidth,100,0),
+                                    hfin.base+c(hfin.bwidth,-100,0),hfin.yaw)
+    ### Right Fin roll, pitch, and yaw
+    #roll
+    Mesh.Hfinr <- Morpho::rotaxis3d(Mesh.Hfinr,hfin.base+c(-hfin.bwidth,hfin.atip.y,100),
+                                    hfin.base+c(-hfin.bwidth,hfin.atip.y,-100),-hfin.roll)
+    #pitch
+    Mesh.Hfinr <- Morpho::rotaxis3d(Mesh.Hfinr,hfin.base+c(100,hfin.atip.y,0),
+                                    hfin.base+c(-100,hfin.atip.y,0),hfin.pitch)
+    #yaw
+    Mesh.Hfinr <- Morpho::rotaxis3d(Mesh.Hfinr,hfin.base+c(-hfin.bwidth,100,0),
+                                    hfin.base+c(-hfin.bwidth,-100,0),-hfin.yaw)
+
+    ### Mesh saving
+    if(Save.Part.Mesh) vcgPlyWrite(Mesh.Hfinr,paste0("./",Folder,"/HinDfin_R_",Fname.Add,".ply"),
                 writeCol=F,writeNormals=F)
-
-    #Left fin sweep, rotation, and mesh saving
-    Mesh.hfinl <- Morpho::rotaxis3d(Mesh.hfinl,c(Xhl[1,n.hf],Yh[1,n.hf],Zh[1,n.hf]),
-                            c(Xhr[1,n.hf],Yh[1,n.hf],Zh[1,n.hf]),hfin.sweep)
-    Mesh.hfinl <- Morpho::rotaxis3d(Mesh.hfinl,c(Xhl[1,n.hf],Yh[1,n.hf],Zh[1,n.hf]),
-                            c(Xhl[91,n.hf],Yh[91,n.hf],Zh[91,n.hf]),hfin.spread)
-    if(Save.Part.Mesh) Rvcg::vcgPlyWrite(Mesh.hfinl,paste0("./",Folder,"/HinDfin_L_",Fname.Add,".ply"),
+    if(Save.Part.Mesh) Rvcg::vcgPlyWrite(Mesh.Hfinl,paste0("./",Folder,"/HinDfin_L_",Fname.Add,".ply"),
                 writeCol=F,writeNormals=F)
 
     ### Measure
-    results[8,2] <- results[7,2] <- Rvcg::vcgArea(Mesh.hfinr)
-    try(results[8,1] <- results[7,1] <- Rvcg::vcgVolume(Mesh.hfinr))
+    results[8,2] <- results[7,2] <- Rvcg::vcgArea(Mesh.Hfinr)
+    try(results[8,1] <- results[7,1] <- Rvcg::vcgVolume(Mesh.Hfinr))
   }
 
   ### Combining measurements
@@ -574,16 +628,23 @@ paleomass <- function(
   if(Save.Csv)write.csv(RESULTS, paste0("./",Folder,"/Results_",Folder,"_",Fname.Add,".csv"))
 
   ### Combining meshes and calculate centroids
-  Mesh.fins <- merge(Mesh.ffinl,Mesh.ffinr)
-  if(Cfin) Mesh.fins <- merge(Mesh.fins,Mesh.Cfin)
-  if(Dfin) Mesh.fins <- merge(Mesh.fins, Mesh.Dfin)
-  if(Hfin) Mesh.fins <- merge(Mesh.fins,Mesh.hfinl,Mesh.hfinr)
-  if(D2fin) Mesh.fins <- merge(Mesh.fins,Mesh.D2fin)
-  if(Afin) Mesh.fins <- merge(Mesh.fins,Mesh.afin)
-  if(Ceph) Mesh.fins <- merge(Mesh.fins,Mesh.ceph)
-  Mesh.whole.1 <- merge(mesh.body.1,Mesh.fins)
+  Mesh.whole.1 <- mesh.body.1
+  if(Ffin) Mesh.whole.1 <- merge(Mesh.whole.1,Mesh.Ffinl,Mesh.Ffinr)
+  if(Cfin) Mesh.whole.1 <- merge(Mesh.whole.1,Mesh.Cfin)
+  if(Dfin) Mesh.whole.1 <- merge(Mesh.whole.1, Mesh.Dfin)
+  if(Hfin) Mesh.whole.1 <- merge(Mesh.whole.1,Mesh.Hfinl,Mesh.Hfinr)
+  if(D2fin) Mesh.whole.1 <- merge(Mesh.whole.1,Mesh.D2fin)
+  if(Afin) Mesh.whole.1 <- merge(Mesh.whole.1, Mesh.Afin)
+  if(Ceph) Mesh.whole.1 <- merge(Mesh.whole.1,Mesh.Ceph)
   Centroid.1 <- round(rowMeans(Mesh.whole.1$vb)[1:3],2)
-  Mesh.whole.2 <- merge(mesh.body.2,Mesh.fins)
+  Mesh.whole.2 <- mesh.body.2
+  if(Ffin) Mesh.whole.2 <- merge(Mesh.whole.2,Mesh.Ffinl,Mesh.Ffinr)
+  if(Cfin) Mesh.whole.2 <- merge(Mesh.whole.2,Mesh.Cfin)
+  if(Dfin) Mesh.whole.2 <- merge(Mesh.whole.2, Mesh.Dfin)
+  if(Hfin) Mesh.whole.2 <- merge(Mesh.whole.2,Mesh.Hfinl,Mesh.Hfinr)
+  if(D2fin) Mesh.whole.2 <- merge(Mesh.whole.2,Mesh.D2fin)
+  if(Afin) Mesh.whole.2 <- merge(Mesh.whole.2, Mesh.Afin)
+  if(Ceph) Mesh.whole.2 <- merge(Mesh.whole.2,Mesh.Ceph)
   Centroid.2 <- round(rowMeans(Mesh.whole.2$vb)[1:3],2)
   if(Save.Total.Mesh){
     Rvcg::vcgPlyWrite(Mesh.whole.1,paste0("./",Folder,"/Combined.",n1,".ply"),

@@ -1,4 +1,3 @@
-
 ![Image](./img/Title.png "3D models displayed in an rgl window of R")
 
 R package for volume and surface area estimation of vertebrates through bracketing between 3D models with superelliptical cross-sections
@@ -210,4 +209,3 @@ After step 6, you probably found that the result is satisfactory. If not, it is 
 Remember, positions and rotations do not affect the volume and area estimates at this point, since there is no R function to enable 3D union of meshes easily. There is a Linux-based package rvtkStatismo that implements such a funciton but it is not for everybody.
 
 ---
-
