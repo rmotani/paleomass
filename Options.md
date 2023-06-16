@@ -59,33 +59,38 @@ Below is a categorized and illustrated list of options for paleomass().
 
 	![Image](./img/onset.jpg "Test run result")
 	
-- cfin.rot ...... Rotation angle of the caudal fin around Z axis (cranio-caudal axis). 0 for - vertical, pi/2 for horizontal fins.
+- cfin.roll ...... Rotation angle of the caudal fin around Z axis (cranio-caudal axis). 0 for - vertical, pi/2 for horizontal fins.
 
 	![Image](./img/rot.jpg "Test run result")
 
-- cfin.sweep ...... Sweep angle of the caudal fin around the X axis (bilateral axis). See Forefin below. Becomes a yaw angle when cfin.rot = pi/2.
+- cfin.pitch ...... Pitch angle of the caudal fin around the X axis (bilateral axis). See Forefin below. Becomes a yaw angle when cfin.rot = pi/2.
 - cfin.thick ...... Maximum thickness of the caudal fin relative to the chord in percentage.
 
 	![Image](./img/thickness.jpg "Test run result")
 
-- cfin.yaw ...... Yaw angle of the caudal fin around the Y axis (dorso-ventral axis). Becomes a pitch (=sweep) angle when cfin.rot = pi/2.
+- cfin.yaw ...... Yaw angle of the caudal fin around the Y axis (dorso-ventral axis). 
+
 ### Dorsal fin
 - dfin.adj.up ...... Position adjustment along the Y axis (dorso-ventral axis) for the dorsal fin, in pixels.
 - dfin.onset ...... Position adjustment along the Z axis (cranio-caudal axis) for the dorsal fin, in pixels.
-- dfin.sweep ...... Sweep angle of the dorsal fin around the X axis (bilateral axis).
+- dfin.pitch ...... Pitch angle of the dorsal fin around the X axis (bilateral axis).
+- dfin.roll ...... Rotation angle of the dorsal fin around Z axis (cranio-caudal axis). 0 for - vertical, pi/2 for horizontal fins.
 - dfin.thick ...... Maximum thickness of the dorsal fin relative to the chord in percentage.
+- dfin.yaw ...... Yaw angle of the dorsal fin around the Y axis (dorso-ventral axis). 
 
 ### Second dorsal fin
 - d2fin.adj.up ...... Position adjustment along the Y (dorso-ventral axis) axis for the second dorsal fin, in pixels.
 - d2fin.onset ...... Position adjustment along the Z axis (cranio-caudal axis) for the secod dorsal fin, in pixels.
-- d2fin.sweep ...... Sweep angle of the second dorsal fin around the X axis (bilateral axis).
+- d2fin.pitch ...... Pitch angle of the second dorsal fin around the X axis (bilateral axis).
+- dfin.roll ...... Rotation angle of the second dorsal fin around Z axis (cranio-caudal axis). 0 for - vertical, pi/2 for horizontal fins.
 - d2fin.thick ...... Maximum thickness of the second dorsal fin relative to the chord in percentage.
+- dfin.yaw ...... Yaw angle of the second dorsal fin around the Y axis (dorso-ventral axis). 
 
 ### Forefin/pectoral fin/pectoral flipper
-- ffin.spread ...... Rotation angle of the forefin around the Z axis (cranio-caudal axis).
+- ffin.roll ...... Rotation angle of the forefin around the Z axis (cranio-caudal axis).
 
 	![Image](./img/spread.jpg "Test run result")
-- ffin.sweep ...... Sweep angle of the forefin around the X axis (bilateral axis).
+- ffin.pitch ...... Pitch angle of the forefin around the X axis (bilateral axis).
 
 	![Image](./img/sweep.jpg "Test run result")
 - ffin.adj.lat ...... Position adjustment along the X axis (bilateral axis) for the forefin, in pixels.
@@ -95,27 +100,32 @@ Below is a categorized and illustrated list of options for paleomass().
 - ffin.adj.up ...... Position adjustment along the Y axis (dorso-ventral axis) for the forefin, in pixels.
 - ffin.onset ...... Position adjustment along the Z axis (cranio-caudal axis) for the forefin, in pixels.
 - ffin.thick ...... Maximum thickness of the forefin relative to the chord in percentage.
+- ffin.yaw ...... Yaw angle of the forefin around the Y axis (dorso-ventral axis). 
 
 ### Hindfin/pelvic fin/pelvic flipper
-- hfin.spread ...... Rotation angle of the hindfin around the Z axis (cranio-caudal axis).
-- hfin.sweep ...... Sweep angle of the hindfin around the X axis (bilateral axis).
+- hfin.roll ...... Rotation angle of the hindfin around the Z axis (cranio-caudal axis).
+- hfin.pitch ...... Pitch angle of the hindfin around the X axis (bilateral axis).
 - hfin.adj.lat ...... Position adjustment along the X axis (bilateral axis) for the hindfin, in pixels.
 - hfin.adj.up ...... Position adjustment along the Y axis (dorso-ventral axis) for the hindfin, in pixels.
 - hfin.onset ...... Position adjustment along the Z axis (cranio-caudal axis) for the hindfin, in pixels.
-- hfin.thick Maximum thickness of the hindfin relative to the chord in percentage.
+- hfin.thick ...... Maximum thickness of the hindfin relative to the chord in percentage.
+- hfin.yaw ...... Yaw angle of the hindin around the Y axis (dorso-ventral axis). 
 
 ### Anal fin
 - afin.adj.up ...... Position adjustment along the Y axis (dorso-ventral axis) for the anal fin, in pixels.
 - afin.onset ...... Position adjustment along the Z axis (cranio-caudal axis) for the anal fin, in pixels.
-- afin.sweep ...... Sweep angle of the anal fin around the X axis (bilateral axis).
+- afin.pitch ...... Pitch angle of the anal fin around the X axis (bilateral axis).
+- afin.roll ...... Rotation angle of the anal fin around the Z axis (cranio-caudal axis).
 - afin.thick ...... Maximum thickness of the anal fin relative to the chord in percentage.
+- afin.yaw ...... Yaw angle of the anal fin around the Y axis (dorso-ventral axis). 
 
 ### Cephalofoil
 - ceph.adj.up ...... Position adjustment along the Y axis (dorso-ventral axis) for the cephalofoil, in pixels.
 - ceph.onset ...... Position adjustment along the Z axis (cranio-caudal axis) for the cephalofoil, in pixels.
-- ceph.rot ...... Rotation angle of the cephalofoil around Z axis (cranio-caudal axis). pi/2 for horizontal cephalfoil.
-- ceph.sweep ...... Sweep angle of the cephalofoil around the X axis (bilateral axis).
+- ceph.roll ...... Rotation angle of the cephalofoil around Z axis (cranio-caudal axis). pi/2 for horizontal cephalfoil.
+- ceph.pitch ...... Pitch angle of the cephalofoil around the X axis (bilateral axis).
 - ceph.thick ...... Maximum thickness of the cephalofoil relative to the chord in percentage.
+- ceph.yaw ...... Yaw angle of the cephalofoil around the Y axis (dorso-ventral axis). 
 
 ## Test-run 
 - Test.Run ...... Whether to set the positions and rotations of fins for a test run
