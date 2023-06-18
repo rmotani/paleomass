@@ -373,10 +373,6 @@ paleomass <- function(
     #yaw
     Mesh.Cfin <- Morpho::rotaxis3d(Mesh.Cfin,cfin.base+c(0,100,0),
                                    cfin.base+c(0,-100,0),cfin.yaw)
-
-    Mesh.whole <- merge(mesh.body.1,Mesh.Cfin)
-    plot3d(Mesh.whole,col="royalblue",asp="iso")
-
     ### Mesh saving
     if(Save.Part.Mesh) Rvcg::vcgPlyWrite(Mesh.Cfin,paste0("./",Folder,"/CaudalFluke_",
                          Fname.Add,".ply"),writeCol=F,writeNormals=F)
