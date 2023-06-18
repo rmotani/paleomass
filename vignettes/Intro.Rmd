@@ -81,11 +81,11 @@ paleomass()
 2. As in the simplest example above.
 3. Save silhouette image files for *Plesiosaurus*.  The images will be saved in a sub-directory named "Plesiosaurus".
 ```
-save_Plesiopteryx()
+save_Plesiopterys()
 ```
 4. Run paleomass. You need to specify the data folder, length of the animal, and the positions/rotations of the flippers as below.  
 ```R
-paleomass(Folder = "Plesiopteryx", n1 = 2, n2 = 2.5, body.axis.l = 2.94, 
+paleomass(Folder = "Plesiopterys", n1 = 2, n2 = 2.5, body.axis.l = 2.94, 
 	ffin.onset = 0.45, ffin.adj.up = 50, ffin.adj.lat = -100, ffin.pitch = pi/6, ffin.roll = pi/3,
 	hfin.onset = 0.65, hfin.adj.up = 150, hfin.adj.lat = -200, hfin.pitch =  pi/7,  hfin.roll = pi/4)
 ```
@@ -156,7 +156,7 @@ Once the silhouette images are made, make a sub-directory within your working di
 ### 3. Test run
 Next step is to test run the files. For example, for Plesiosaurus, try:  
 ```R
-paleomass(Folder = "Plesiopteryx")
+paleomass(Folder = "Plesiopterys")
 ```
 This command will result in a 3D model where all body parts are not placed in the right position or orientation.  
 
@@ -164,7 +164,7 @@ This command will result in a 3D model where all body parts are not placed in th
 
 As you can tell from this image, the flippers are placed and roated as in the default model of *Stenopterygius*. That is not very helpful in the next step, when you need to adjust positions and angles. So let us try another run, where all the positoin variables are set to 0:  
 ```R
-paleomass(Folder = "Plesiopteryx", Test.Run=T)
+paleomass(Folder = "Plesiopterys", Test.Run=T)
 ```
 Note that all position and angle variables are set to 0 except the positions along the Z axis (=body axis), so as to make it easy for the next step. Fins are spread along the body axis for easier viewing. 
 
@@ -207,7 +207,7 @@ The pectoral flippers shoudl spread out by about 60 degrees and the pelvic ones 
 ### 6. Run the command again with new options
 Now that you have updated option values, let us try running paleomass again. Make sure to input everything you listed above.  
 ```R
-paleomass(Folder = "Plesiopteryx", n1 = 2, n2 = 2.5, body.axis.l = 2.94, 
+paleomass(Folder = "Plesiopterys", n1 = 2, n2 = 2.5, body.axis.l = 2.94, 
 	ffin.onset = 0.45, ffin.adj.up = 50, ffin.adj.lat = -100, ffin.pitch = pi/6, ffin.roll = pi/3,
 	hfin.onset = 0.65, hfin.adj.up = 150, hfin.adj.lat = -200, hfin.pitch =  pi/7,  hfin.roll = pi/4)
 ```

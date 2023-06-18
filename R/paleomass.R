@@ -92,9 +92,9 @@
 #' @examples paleomass()
 #' @examples #
 #' @examples # Plesiosaur Example
-#' @examples # Save the silhouette images for Plesiopteryx and make 3D models using them
-#' @examples save_Plesiopteryx()
-#' @examples paleomass(Folder = "Plesiopteryx", n1 = 2, n2 = 2.5, body.axis.l = 2.94,
+#' @examples # Save the silhouette images for Plesiopterys and make 3D models using them
+#' @examples save_Plesiopterys()
+#' @examples paleomass(Folder = "Plesiopterys", n1 = 2, n2 = 2.5, body.axis.l = 2.94,
 #' @examples     ffin.onset = 0.45, ffin.adj.up = 50, ffin.adj.lat = -100, ffin.pitch = pi/6, ffin.roll = pi/3,
 #' @examples     hfin.onset = 0.65, hfin.adj.up = 150, hfin.adj.lat = -200, hfin.pitch =  pi/7,  hfin.roll = pi/4)
 #' @examples #

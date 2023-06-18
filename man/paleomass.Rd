@@ -253,9 +253,9 @@ save_Stenopterygius()
 paleomass()
 #
 # Plesiosaur Example
-# Save the silhouette images for Plesiopteryx and make 3D models using them
-save_Plesiopteryx()
-paleomass(Folder = "Plesiopteryx", n1 = 2, n2 = 2.5, body.axis.l = 2.94,
+# Save the silhouette images for Plesiopterys and make 3D models using them
+save_Plesiopterys()
+paleomass(Folder = "Plesiopterys", n1 = 2, n2 = 2.5, body.axis.l = 2.94,
     ffin.onset = 0.45, ffin.adj.up = 50, ffin.adj.lat = -100, ffin.pitch = pi/6, ffin.roll = pi/3,
     hfin.onset = 0.65, hfin.adj.up = 150, hfin.adj.lat = -200, hfin.pitch =  pi/7,  hfin.roll = pi/4)
 #
