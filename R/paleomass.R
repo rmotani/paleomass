@@ -501,11 +501,6 @@ paleomass <- function(
     #yaw
     Mesh.Ceph <- Morpho::rotaxis3d(Mesh.Ceph,ceph.base+c(0,100,0),
                                    ceph.base+c(0,-100,0),ceph.yaw)
-
-    Mesh.whole <- merge(mesh.body.1,Mesh.Ceph)
-    plot3d(Mesh.whole,col="royalblue",asp="iso")
-
-
     ### Mesh saving
     if(Save.Part.Mesh) Rvcg::vcgPlyWrite(Mesh.Ceph,paste0("./",Folder,"/Cephalofoil_",Fname.Add,".ply"),
                 writeCol=F,writeNormals=F)
@@ -626,8 +621,8 @@ paleomass <- function(
   RESULTS <- rbind(RESULTS, Total_2=colSums(Results[-1,],na.rm=T))
   RESULTS <- rbind(RESULTS, colMeans(tail(RESULTS,2),na.rm=T))
   RESULTS[,1:2] <- round(RESULTS[,1:2],1)
-  RESULTS[,3] <- round(RESULTS[,3],6)
-  RESULTS[,4] <- round(RESULTS[,4],4)
+  RESULTS[,3] <- round(RESULTS[,3],7)
+  RESULTS[,4] <- round(RESULTS[,4],5)
   RESULTS[,5:6] <- round(RESULTS[,5:6],3)
   dimnames(RESULTS) <- list(Parts.Complete,Chars.Complete)
   print(RESULTS)
