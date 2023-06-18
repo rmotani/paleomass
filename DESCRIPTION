@@ -1,6 +1,6 @@
 Package: paleomass
 Title: Paleomass: bracketing body volume of marine vertebrates with 3D models
-Version: 0.9.9.0000
+Version: 1.0.0.0000
 Authors@R: 
     person("Ryosuke", "Motani", , "rmotani@ucdavis.edu", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0001-5022-1053"))

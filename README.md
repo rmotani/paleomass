@@ -68,10 +68,9 @@ save_Plesiopteryx()
 ```
 4. Run paleomass. You need to specify the data folder, length of the animal, and the positions/rotations of the flippers as below.  
 ```R
-paleomass(Folder = "Plesiopteryx", body.axis.l = 2.94, ffin.onset = 0.45, 
-	hfin.onset = 0.65, ffin.adj.lat = -20, hfin.adj.lat = -60, 
-	ffin.adj.up = 0, hfin.adj.up = 400, ffin.pitch = pi/6, 
-	hfin.pitch =  pi/7, ffin.roll = pi/3, hfin.roll = pi/4)
+paleomass(Folder = "Plesiopteryx", n1 = 2, n2 = 2.5, body.axis.l = 2.94, 
+	ffin.onset = 0.45, ffin.adj.up = 50, ffin.adj.lat = -100, ffin.pitch = pi/6, ffin.roll = pi/3,
+	hfin.onset = 0.65, hfin.adj.up = 150, hfin.adj.lat = -200, hfin.pitch =  pi/7,  hfin.roll = pi/4)
 ```
 5. You will get estiamted volumes and surface areas, as well as the 3D models. Apart from being displayed in R, the values are saved in a .csv file while the models are saved as .ply files so that you can open it later in software of your choice. These files are found in the sub-directory containing the silhouette image files.
 
@@ -88,16 +87,14 @@ save_Sphyrna()
 ```
 4. Run paleomass. You need to specify the data folder, length of the animal, and the positions/rotations of the paired fins, median fins, and cephalofoil as below.  
 ```R
-paleomass(Folder="Sphyrna", body.axis.l = 2, n2 = 1.8, nn.f=0.2,
-	ffin.onset = 0.3, ffin.adj.up = 60, ffin.adj.lat = -60, 
-	ffin.roll = pi/4, ffin.pitch = pi*15/180, hfin.onset = 0.55, 
-	hfin.adj.up = 60, hfin.adj.lat = -80, hfin.roll = pi/4, 
-	hfin.thick = 10, hfin.pitch = pi*10/180, cfin.onset = 0.92, 
-	cfin.adj.up = 70, dfin.onset = 0.35, dfin.adj.up = 0, 
-	dfin.pitch = 0, d2fin.onset = 0.8, d2fin.adj.up = 0,
-	d2fin.pitch=pi*10/180, d2fin.thick=10, afin.onset = 0.8, 
-	afin.adj.up = 20, afin.pitch = pi*15/180, afin.thick = 10, 
-	ceph.onset = -0.045, ceph.adj.up = 0, ceph.roll = pi/2)
+paleomass(Folder = "Sphyrna", n1 = 1.8, n2 = 2, nn.f = 0.1, body.axis.l = 0.565,
+	cfin.onset = 0.78, cfin.adj.up = 200, cfin.adj.lat = 0, cfin.pitch = -pi/4, cfin.thick = 20, 
+	ffin.onset = 0.232, ffin.adj.up = 80, ffin.adj.lat = -120, ffin.thick = 20, 
+	hfin.onset = 0.494, hfin.adj.up = 150, hfin.adj.lat = -100, hfin.thick = 20, 
+	dfin.onset = 0.274, dfin.adj.up = 0, dfin.thick = 20, 
+	d2fin.onset = 0.626, d2fin.adj.up = 75, d2fin.thick = 10,
+	afin.onset = 0.603, afin.adj.up = 110, afin.thick = 10,
+	ceph.roll = pi/2, ceph.adj.up = 150)
 ```
 5. You will get estiamted volumes and surface areas, as well as the 3D models. Apart from being displayed in R, the values are saved in a .csv file while the models are saved as .ply files so that you can open it later in software of your choice. These files are found in the sub-directory containing the silhouette image files.
 
@@ -171,10 +168,10 @@ In the Plesiosaurus example, you can tell from the image above that the pectoral
 `ffin.onset = 0.45, hfin.onset = 0.65`
 
 The flippers should move down by about 160, resulting in the options:  
-`ffin.adj.up = , hfin.adj.up = 40`
+`ffin.adj.up = 50, hfin.adj.up = 150`
 
 The flippers should move medially (=inwards). Why? The test image does not help in this respect because the flippers are placed at the body width of where they are located along the body axis. In the test image, they are close to the midline because the neck is narrow there. So:  
-`ffin.adj.lat = -20, hfin.adj.lat = -60`
+`ffin.adj.lat = -100, hfin.adj.lat = -200`
 
 Negative values here suggest that the fins move inwards. 
 
@@ -193,10 +190,9 @@ The pectoral flippers shoudl spread out by about 60 degrees and the pelvic ones 
 ### 6. Run the command again with new options
 Now that you have updated option values, let us try running paleomass again. Make sure to input everything you listed above.  
 ```R
-paleomass(Folder = "Plesiopteryx", body.axis.l = 2.94, ffin.onset = 450, 
-	hfin.onset = 650, ffin.adj.lat = -10, hfin.adj.lat = -40, 
-	ffin.adj.up = -160, hfin.adj.up = -160, ffin.pitch = pi/6, 
-	hfin.pitch =  pi/7, ffin.roll = pi/3, hfin.roll = pi/4)
+paleomass(Folder = "Plesiopteryx", n1 = 2, n2 = 2.5, body.axis.l = 2.94, 
+	ffin.onset = 0.45, ffin.adj.up = 50, ffin.adj.lat = -100, ffin.pitch = pi/6, ffin.roll = pi/3,
+	hfin.onset = 0.65, hfin.adj.up = 150, hfin.adj.lat = -200, hfin.pitch =  pi/7,  hfin.roll = pi/4)
 ```
 You will get a model looking like below:
 

@@ -87,10 +87,10 @@ Below is a categorized and illustrated list of options for paleomass().
 - dfin.yaw ...... Yaw angle of the second dorsal fin around the Y axis (dorso-ventral axis). 
 
 ### Forefin/pectoral fin/pectoral flipper
-- ffin.roll ...... Rotation angle of the forefin around the Z axis (cranio-caudal axis).
+- ffin.roll ...... Rotation angle of the forefin around the Z axis (cranio-caudal axis). It is the same a the spread angle when looking at the flippers from front.
 
 	![Image](./img/spread.jpg "Test run result")
-- ffin.pitch ...... Pitch angle of the forefin around the X axis (bilateral axis).
+- ffin.pitch ...... Pitch angle of the forefin around the X axis (bilateral axis). It is the same thing as the posterior sweep angle when looking at the left flipper from left.
 
 	![Image](./img/sweep.jpg "Test run result")
 - ffin.adj.lat ...... Position adjustment along the X axis (bilateral axis) for the forefin, in pixels.

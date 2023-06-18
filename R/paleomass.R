@@ -94,23 +94,23 @@
 #' @examples # Plesiosaur Example
 #' @examples # Save the silhouette images for Plesiopteryx and make 3D models using them
 #' @examples save_Plesiopteryx()
-#' @examples paleomass(Folder="Plesiopteryx",body.axis.l=2.94,ffin.onset=0.45,
-#' @examples     hfin.onset=0.65,ffin.adj.lat=-20,hfin.adj.lat=-60,ffin.adj.up=0,
-#' @examples     hfin.adj.up=40,ffin.roll=pi/3,hfin.roll=pi/4)
+#' @examples paleomass(Folder = "Plesiopteryx", n1 = 2, n2 = 2.5, body.axis.l = 2.94,
+#' @examples     ffin.onset = 0.45, ffin.adj.up = 50, ffin.adj.lat = -100, ffin.pitch = pi/6, ffin.roll = pi/3,
+#' @examples     hfin.onset = 0.65, hfin.adj.up = 150, hfin.adj.lat = -200, hfin.pitch =  pi/7,  hfin.roll = pi/4)
 #' @examples #
 #' @examples # Hammerhead Example
 #' @examples # Save the silhouette images for Sphyrna and make 3D models using them
 #' @examples save_Sphryna()
-#' @examples paleomass(Folder="Sphyrna",body.axis.l=2,n2=1.8,
-#' @examples     ffin.onset=0.3, ffin.adj.up=60,ffin.adj.lat=-60,ffin.roll=pi/4,
-#' @examples     ffin.pitch=pi*15/180,
-#' @examples     hfin.onset=0.55,hfin.adj.up=60,hfin.adj.lat=-80,hfin.roll=pi/4,
+#' @examples paleomass(Folder = "Sphyrna", n1 = 1.8, n2 = 2, nn.f = 0.1, body.axis.l = 0.565,
+#' @examples     cfin.onset = 0.78, cfin.adj.up = 200, cfin.adj.lat = 0,
+#' @examples     cfin.pitch = -pi/4, cfin.thick = 20,
+#' @examples     ffin.onset = 0.232, ffin.adj.up = 80, ffin.adj.lat = -120, ffin.thick = 20,
+#' @examples     hfin.onset = 0.494, hfin.adj.up = 150, hfin.adj.lat = -100, hfin.thick = 20,
 #' @examples     hfin.thick=10,hfin.pitch=pi*10/180,
-#' @examples     cfin.onset=0.92,cfin.adj.up=70,
-#' @examples     dfin.onset=0.35,dfin.adj.up=0,dfin.pitch=0,
-#' @examples     d2fin.onset=0.8,d2fin.adj.up=0,d2fin.pitch=pi*10/180,d2fin.thick=10,
-#' @examples     afin.onset=0.8,afin.adj.up=20,afin.pitch=pi*15/180,afin.thick=10,
-#' @examples     ceph.onset=-0.045,ceph.adj.up=0,ceph.roll=pi/2,nn.f=0.2)
+#' @examples     dfin.onset = 0.274, dfin.adj.up = 0, dfin.thick = 20,
+#' @examples     d2fin.onset = 0.626, d2fin.adj.up = 75, d2fin.thick = 10,
+#' @examples     afin.onset = 0.603, afin.adj.up = 110, afin.thick = 10,
+#' @examples     ceph.roll = pi/2, ceph.adj.up = 150)
 
 
 paleomass <- function(
@@ -163,7 +163,7 @@ paleomass <- function(
                         #  * "round"    (default) round the "asis" value to
                         #               the closest 100
                         #  *" provided" Use the value provided in n.body.slice
-    n.body.slice = 1000,  # Arbitrary number of longitudinal segments along body
+    n.body.slice = 3000,  # Arbitrary number of longitudinal segments along body
                         # axis. Determines longitudinal resolution of
                         # output. Moot unless N.Body.Slice is set to "provided".
     N.Fin.Slice = c("asis", "round", "provided"),
@@ -176,14 +176,14 @@ paleomass <- function(
                         # axis. Determines longitudinal resolution of
                         # output. Moot unless N.Fin.Slice is set to "provided".
     cfin.adj.lat = 0,   # Caudal Fin lateral position adjustment, in pixels
-    cfin.adj.up = -5,   # Caudal Fin upward position adjustment, in pixels
-    cfin.onset = 0.87,  # Caudal Fin posterior position adjustment, in fraction
+    cfin.adj.up = 10,   # Caudal Fin upward position adjustment, in pixels
+    cfin.onset = 0.87, # Caudal Fin posterior position adjustment, in fraction
     cfin.roll = 0,      # Caudal Fin rotation around body axis
     cfin.pitch = 0,     # Caudal Fin rotation angle around bilateral axis
     cfin.yaw = 0,       # Caudal fin rotation angle around dorsoventral axis
     cfin.thick = 20,    # Caudal fin maximum thickness percentage rel. chord
-    dfin.adj.up = 0,   # Dorsal Fin vertical position adjustment, in pixels
-    dfin.onset = 0.44,  # Dorsal Fin upward position adjustment, in fraction
+    dfin.adj.up = -45,    # Dorsal Fin vertical position adjustment, in pixels
+    dfin.onset = 0.501, # Dorsal Fin upward position adjustment, in fraction
     dfin.roll = 0,      # Dorsal Fin rotation around body axis
     dfin.pitch = 0,     # Dorsal Fin rotation angle around bilateral axis
     dfin.yaw = 0,       # Dorsal fin rotation angle around dorsoventral axis
@@ -194,16 +194,16 @@ paleomass <- function(
     d2fin.pitch = 0,    # 2nd Dorsal Fin rotation angle around bilateral axis
     d2fin.yaw = 0,      # 2nd Dorsal fin rotation angle around dorsoventral axis
     d2fin.thick = 10,   # 2nd Dorsal fin maximum thickness percentage rel. chord
-    ffin.adj.lat = -50, # Forefin medial position adjustment, in pixels
-    ffin.adj.up = 40 ,  # Forefin upward position adjustment, in pixels
-    ffin.onset = 0.3,   # Forefin posterior position adjustment, in pixels
+    ffin.adj.lat = -200,# Forefin medial position adjustment, in pixels
+    ffin.adj.up = 230 , # Forefin upward position adjustment, in pixels
+    ffin.onset = 0.349, # Forefin posterior position adjustment, in pixels
     ffin.roll = pi/4,   # Forefin rotation around body axis
-    ffin.pitch = pi/6,  # Forefin rotation angle around bilateral axis
+    ffin.pitch = pi/9,  # Forefin rotation angle around bilateral axis
     ffin.thick = 20,    # Forefin maximum thickness percentage rel. chord
     ffin.yaw = 0,       # Forefin rotation angle around dorsoventral axis
-    hfin.adj.lat = -50, # Hindfin medial position adjustment, in pixels
-    hfin.adj.up = -10,  # Hindfin upward position adjustment, in pixels
-    hfin.onset = 0.6,   # Hindfin posterior position adjustment, in fraction
+    hfin.adj.lat = -150,# Hindfin medial position adjustment, in pixels
+    hfin.adj.up = 0,    # Hindfin upward position adjustment, in pixels
+    hfin.onset = 0.653, # Hindfin posterior position adjustment, in fraction
     hfin.roll = pi/6,   # Hindfin rotation around body axis
     hfin.pitch = pi/7,  # Hindfin rotation angle around bilateral axis
     hfin.thick = 20,    # Hindfin maximum thickness percentage rel. chord
@@ -352,7 +352,9 @@ paleomass <- function(
   # Xc, Yc, Zc    Global coordinates for the caudal fluke.
   # .onset        Anterior margin center of the fluke in global coordinate
   if(Cfin){
-    cfin.atip.y <- floor(colMeans(dat.cf[dat.cf[,2]==min(dat.cf[,2]),])[1])
+    # cfin.atip.y <- floor(colMeans(dat.cf[dat.cf[,2]==min(dat.cf[,2]),])[1])
+    cfin.atip.y <- dist(range(dat.cf[,1]))/2
+    # cfin.atip.y <- dat.dv[nrow(dat.dv),4]
     cfin.base <- c(0, cfin.adj.up + cfin.atip.y + y.shift, cfin.onset * bal.px)
     Yc.onset <- cfin.base[2] #+dat.lat[nrow(dat.lat),4]
     Xc.onset <- cfin.base[1]
@@ -363,14 +365,17 @@ paleomass <- function(
     Mesh.Cfin <- mesh.cf$Mesh
     ### Fin roll, pitch, and yaw
     #roll
-    Mesh.Cfin <- Morpho::rotaxis3d(Mesh.Cfin,cfin.base+c(0,cfin.atip.y + y.shift,100),
-                                   cfin.base+c(0,cfin.atip.y + y.shift,-100),cfin.roll)
+    Mesh.Cfin <- Morpho::rotaxis3d(Mesh.Cfin,cfin.base+c(0,0,100),
+                                   cfin.base+c(0,0,-100),cfin.roll)
     #pitch
-    Mesh.Cfin <- Morpho::rotaxis3d(Mesh.Cfin,cfin.base+c(100,cfin.atip.y + y.shift,0),
-                                   cfin.base+c(-100,cfin.atip.y + y.shift,0),cfin.pitch)
+    Mesh.Cfin <- Morpho::rotaxis3d(Mesh.Cfin,cfin.base+c(100,0,0),
+                                   cfin.base+c(-100,0,0),cfin.pitch)
     #yaw
     Mesh.Cfin <- Morpho::rotaxis3d(Mesh.Cfin,cfin.base+c(0,100,0),
                                    cfin.base+c(0,-100,0),cfin.yaw)
+
+    Mesh.whole <- merge(mesh.body.1,Mesh.Cfin)
+    plot3d(Mesh.whole,col="royalblue",asp="iso")
 
     ### Mesh saving
     if(Save.Part.Mesh) Rvcg::vcgPlyWrite(Mesh.Cfin,paste0("./",Folder,"/CaudalFluke_",
@@ -480,8 +485,9 @@ paleomass <- function(
   # .onset        Anterior margin center cephalofoil in global coordinate
   if(Ceph){
     # ceph.atip.y <- floor(colMeans(dat.ce[dat.ce[,2]==min(dat.ce[,2]),])[1])
-    ceph.atip.y <- dist(range(dat.ce[,1]))/2
-    ceph.base <- c(0, ceph.adj.up + dat.dv[1,4] + y.shift, ceph.onset * bal.px)
+    # ceph.atip.y <- dist(range(dat.ce[,1]))/2
+     ceph.atip.y <- dat.dv[1,4]
+    ceph.base <- c(0, ceph.adj.up + ceph.atip.y + y.shift, ceph.onset * bal.px)
     Ye.onset <- ceph.base[2]
     Xe.onset <- ceph.base[1]
     Ze.onset <- ceph.base[3]
@@ -499,6 +505,10 @@ paleomass <- function(
     #yaw
     Mesh.Ceph <- Morpho::rotaxis3d(Mesh.Ceph,ceph.base+c(0,100,0),
                                    ceph.base+c(0,-100,0),ceph.yaw)
+
+    Mesh.whole <- merge(mesh.body.1,Mesh.Ceph)
+    plot3d(Mesh.whole,col="royalblue",asp="iso")
+
 
     ### Mesh saving
     if(Save.Part.Mesh) Rvcg::vcgPlyWrite(Mesh.Ceph,paste0("./",Folder,"/Cephalofoil_",Fname.Add,".ply"),
