@@ -11,6 +11,6 @@ save_Plesiopterys <- function(){
   data(Plesiopterys)
   nms <- names(Plesiopterys)
   for(i in 1:length(Plesiopterys)){
-    imager::save.image(Plesiopterysx[[i]],file=paste0("./Plesiopterys/",nms[i],".png"))
+    imager::save.image(Plesiopterys[[i]],file=paste0("./Plesiopterys/",nms[i],".png"))
   }
 }

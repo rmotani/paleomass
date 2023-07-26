@@ -182,7 +182,7 @@ paleomass <- function(
     cfin.pitch = 0,     # Caudal Fin rotation angle around bilateral axis
     cfin.yaw = 0,       # Caudal fin rotation angle around dorsoventral axis
     cfin.thick = 20,    # Caudal fin maximum thickness percentage rel. chord
-    dfin.adj.up = -45,    # Dorsal Fin vertical position adjustment, in pixels
+    dfin.adj.up = -45,  # Dorsal Fin vertical position adjustment, in pixels
     dfin.onset = 0.501, # Dorsal Fin upward position adjustment, in fraction
     dfin.roll = 0,      # Dorsal Fin rotation around body axis
     dfin.pitch = 0,     # Dorsal Fin rotation angle around bilateral axis
@@ -194,15 +194,15 @@ paleomass <- function(
     d2fin.pitch = 0,    # 2nd Dorsal Fin rotation angle around bilateral axis
     d2fin.yaw = 0,      # 2nd Dorsal fin rotation angle around dorsoventral axis
     d2fin.thick = 10,   # 2nd Dorsal fin maximum thickness percentage rel. chord
-    ffin.adj.lat = -200,# Forefin medial position adjustment, in pixels
-    ffin.adj.up = 230 , # Forefin upward position adjustment, in pixels
+    ffin.adj.lat = -150,# Forefin medial position adjustment, in pixels
+    ffin.adj.up = 100 , # Forefin upward position adjustment, in pixels
     ffin.onset = 0.349, # Forefin posterior position adjustment, in pixels
     ffin.roll = pi/4,   # Forefin rotation around body axis
-    ffin.pitch = pi/9,  # Forefin rotation angle around bilateral axis
+    ffin.pitch = pi/6,  # Forefin rotation angle around bilateral axis
     ffin.thick = 20,    # Forefin maximum thickness percentage rel. chord
     ffin.yaw = 0,       # Forefin rotation angle around dorsoventral axis
     hfin.adj.lat = -150,# Hindfin medial position adjustment, in pixels
-    hfin.adj.up = 0,    # Hindfin upward position adjustment, in pixels
+    hfin.adj.up = 100,  # Hindfin upward position adjustment, in pixels
     hfin.onset = 0.653, # Hindfin posterior position adjustment, in fraction
     hfin.roll = pi/6,   # Hindfin rotation around body axis
     hfin.pitch = pi/7,  # Hindfin rotation angle around bilateral axis
@@ -513,13 +513,13 @@ paleomass <- function(
   # Xf, Yf, Zf    Global coordinates for the forefin.
   # .onset        Anterior margin center of the forefin in global coordinate.
   if(Ffin){
-    ffin.atip.y <- max(dat.ff[,1])  # front end of the proximal end
-    ffin.bheight <- -dat.lat[floor(ffin.onset*bal.px),3] - y.shift
-    ffin.bwidth <- -dat.dv[floor(ffin.onset*bal.px),5]
-    ffin.base <- c(0, ffin.adj.up + ffin.bheight - ffin.atip.y, ffin.onset * bal.px)
+    ffin.atip.y <- max(dat.ff[,1])  # distal tip
+    ffin.bheight <- dat.lat[floor(ffin.onset*bal.px),2]
+    ffin.bwidth <- dat.dv[floor(ffin.onset*bal.px),5]
+    ffin.base <- c(0, ffin.adj.up-ffin.bheight-ffin.atip.y, ffin.onset * bal.px)
     Zf.onset <- ffin.base[3]
-    Xfl.onset <- ffin.base[1] + ffin.bwidth - ffin.adj.lat
-    Xfr.onset <- ffin.base[1] - ffin.bwidth + ffin.adj.lat
+    Xfl.onset <- ffin.base[1] - ffin.bwidth - ffin.adj.lat
+    Xfr.onset <- ffin.base[1] + ffin.bwidth + ffin.adj.lat
     Yf.onset <- ffin.base[2]
     mesh.ffr <- mesh_foil(dat.ff,tf=ffin.thick,X.onset=Xfr.onset,Y.onset=Yf.onset,
                           Z.onset=Zf.onset,tol=Clean.Tol,Thickest=0.9,Center=F,
@@ -531,24 +531,24 @@ paleomass <- function(
     Mesh.Ffinl <- mesh.ffl$Mesh
     ### Left Fin roll, pitch, and yaw
     #roll
-    Mesh.Ffinl <- Morpho::rotaxis3d(Mesh.Ffinl,ffin.base+c(0+ffin.bwidth,ffin.atip.y,100),
-                                   ffin.base+c(0+ffin.bwidth,ffin.atip.y,-100),ffin.roll)
+    Mesh.Ffinl <- Morpho::rotaxis3d(Mesh.Ffinl,ffin.base+c(0-ffin.bwidth-ffin.adj.lat,ffin.atip.y,dat.ff[1,4]+100),
+                                    ffin.base+c(0-ffin.bwidth-ffin.adj.lat,ffin.atip.y,dat.ff[1,4]-100),ffin.roll)
     #pitch
-    Mesh.Ffinl <- Morpho::rotaxis3d(Mesh.Ffinl,ffin.base+c(100,ffin.atip.y,0),
-                                   ffin.base+c(-100,ffin.atip.y,0),ffin.pitch)
+    Mesh.Ffinl <- Morpho::rotaxis3d(Mesh.Ffinl,ffin.base+c(100,ffin.atip.y,dat.ff[1,4]+0),
+                                    ffin.base+c(-100,ffin.atip.y,dat.ff[1,4]+0),ffin.pitch)
     #yaw
-    Mesh.Ffinl <- Morpho::rotaxis3d(Mesh.Ffinl,ffin.base+c(ffin.bwidth,100,0),
-                                   ffin.base+c(ffin.bwidth,-100,0),ffin.yaw)
+    Mesh.Ffinl <- Morpho::rotaxis3d(Mesh.Ffinl,ffin.base+c(-ffin.bwidth-ffin.adj.lat,100,dat.ff[1,4]+0),
+                                    ffin.base+c(-ffin.bwidth-ffin.adj.lat,-100,dat.ff[1,4]+0),ffin.yaw)
     ### Right Fin roll, pitch, and yaw
     #roll
-    Mesh.Ffinr <- Morpho::rotaxis3d(Mesh.Ffinr,ffin.base+c(-ffin.bwidth,ffin.atip.y,100),
-                                   ffin.base+c(-ffin.bwidth,ffin.atip.y,-100),-ffin.roll)
+    Mesh.Ffinr <- Morpho::rotaxis3d(Mesh.Ffinr,ffin.base+c(ffin.bwidth+ffin.adj.lat,ffin.atip.y,dat.ff[1,4]+100),
+                                    ffin.base+c(ffin.bwidth+ffin.adj.lat,ffin.atip.y,dat.ff[1,4]-100),-ffin.roll)
     #pitch
-    Mesh.Ffinr <- Morpho::rotaxis3d(Mesh.Ffinr,ffin.base+c(100,ffin.atip.y,0),
-                                   ffin.base+c(-100,ffin.atip.y,0),ffin.pitch)
+    Mesh.Ffinr <- Morpho::rotaxis3d(Mesh.Ffinr,ffin.base+c(100,ffin.atip.y,dat.ff[1,4]),
+                                    ffin.base+c(-100,ffin.atip.y,dat.ff[1,4]),ffin.pitch)
     #yaw
-    Mesh.Ffinr <- Morpho::rotaxis3d(Mesh.Ffinr,ffin.base+c(-ffin.bwidth,100,0),
-                                   ffin.base+c(-ffin.bwidth,-100,0),-ffin.yaw)
+    Mesh.Ffinr <- Morpho::rotaxis3d(Mesh.Ffinr,ffin.base+c(ffin.bwidth+ffin.adj.lat,100,dat.ff[1,4]+0),
+                                    ffin.base+c(ffin.bwidth+ffin.adj.lat,-100,dat.ff[1,4]+0),-ffin.yaw)
 
     ### Mesh saving
     if(Save.Part.Mesh) vcgPlyWrite(Mesh.Ffinr,paste0("./",Folder,"/Forefin_R_",Fname.Add,".ply"),
@@ -566,12 +566,13 @@ paleomass <- function(
   # .onset        Anterior margin center of the hinDfin in global coordinate
   if(Hfin){
     hfin.atip.y <- max(dat.hf[,1])  # front end of the proximal end
-    hfin.bheight <- -dat.lat[floor(hfin.onset*bal.px),3] - y.shift
-    hfin.bwidth <- -dat.dv[floor(hfin.onset*bal.px),5]
-    hfin.base <- c(0, hfin.adj.up + hfin.bheight - hfin.atip.y, hfin.onset * bal.px)
+    #hfin.atip.y <- max(dat.hf[,1])*bal.px  # front end of the proximal end
+    hfin.bheight <- dat.lat[floor(hfin.onset*bal.px),2]
+    hfin.bwidth <- dat.dv[floor(hfin.onset*bal.px),5]
+    hfin.base <- c(0, hfin.adj.up - hfin.bheight -hfin.atip.y, hfin.onset * bal.px)
     Zh.onset <- hfin.base[3]
-    Xhl.onset <- hfin.base[1] + hfin.bwidth - hfin.adj.lat
-    Xhr.onset <- hfin.base[1] - hfin.bwidth + hfin.adj.lat
+    Xhl.onset <- hfin.base[1] - hfin.bwidth - hfin.adj.lat
+    Xhr.onset <- hfin.base[1] + hfin.bwidth + hfin.adj.lat
     Yh.onset <- hfin.base[2]
     mesh.hfr <- mesh_foil(dat.hf,tf=hfin.thick,X.onset=Xhr.onset,Y.onset=Yh.onset,
                           Z.onset=Zh.onset,tol=Clean.Tol,Thickest=0.9,Center=F,
@@ -584,24 +585,24 @@ paleomass <- function(
 
     ### Left Fin roll, pitch, and yaw
     #roll
-    Mesh.Hfinl <- Morpho::rotaxis3d(Mesh.Hfinl,hfin.base+c(0+hfin.bwidth,hfin.atip.y,100),
-                                    hfin.base+c(0+hfin.bwidth,hfin.atip.y,-100),hfin.roll)
+    Mesh.Hfinl <- Morpho::rotaxis3d(Mesh.Hfinl,hfin.base+c(0-hfin.bwidth,hfin.atip.y,100),
+                                    hfin.base+c(0-hfin.bwidth,hfin.atip.y,-100),hfin.roll)
     #pitch
-    Mesh.Hfinl <- Morpho::rotaxis3d(Mesh.Hfinl,hfin.base+c(100,hfin.atip.y,0),
-                                    hfin.base+c(-100,hfin.atip.y,0),hfin.pitch)
+    Mesh.Hfinl <- Morpho::rotaxis3d(Mesh.Hfinl,hfin.base+c(100,hfin.atip.y,dat.hf[1,4]+0),
+                                    hfin.base+c(-100,hfin.atip.y,dat.hf[1,4]+0),hfin.pitch)
     #yaw
-    Mesh.Hfinl <- Morpho::rotaxis3d(Mesh.Hfinl,hfin.base+c(hfin.bwidth,100,0),
-                                    hfin.base+c(hfin.bwidth,-100,0),hfin.yaw)
+    Mesh.Hfinl <- Morpho::rotaxis3d(Mesh.Hfinl,hfin.base+c(-hfin.bwidth,100,dat.hf[1,4]+0),
+                                    hfin.base+c(-hfin.bwidth,-100,dat.hf[1,4]+0),hfin.yaw)
     ### Right Fin roll, pitch, and yaw
     #roll
-    Mesh.Hfinr <- Morpho::rotaxis3d(Mesh.Hfinr,hfin.base+c(-hfin.bwidth,hfin.atip.y,100),
-                                    hfin.base+c(-hfin.bwidth,hfin.atip.y,-100),-hfin.roll)
+    Mesh.Hfinr <- Morpho::rotaxis3d(Mesh.Hfinr,hfin.base+c(hfin.bwidth,hfin.atip.y,100),
+                                    hfin.base+c(hfin.bwidth,hfin.atip.y,-100),-hfin.roll)
     #pitch
-    Mesh.Hfinr <- Morpho::rotaxis3d(Mesh.Hfinr,hfin.base+c(100,hfin.atip.y,0),
-                                    hfin.base+c(-100,hfin.atip.y,0),hfin.pitch)
+    Mesh.Hfinr <- Morpho::rotaxis3d(Mesh.Hfinr,hfin.base+c(100,hfin.atip.y,dat.hf[1,4]+0),
+                                    hfin.base+c(-100,hfin.atip.y,dat.hf[1,4]+0),hfin.pitch)
     #yaw
-    Mesh.Hfinr <- Morpho::rotaxis3d(Mesh.Hfinr,hfin.base+c(-hfin.bwidth,100,0),
-                                    hfin.base+c(-hfin.bwidth,-100,0),-hfin.yaw)
+    Mesh.Hfinr <- Morpho::rotaxis3d(Mesh.Hfinr,hfin.base+c(hfin.bwidth,100,dat.hf[1,4]+0),
+                                    hfin.base+c(hfin.bwidth,-100,dat.hf[1,4]+0),-hfin.yaw)
 
     ### Mesh saving
     if(Save.Part.Mesh) vcgPlyWrite(Mesh.Hfinr,paste0("./",Folder,"/HinDfin_R_",Fname.Add,".ply"),

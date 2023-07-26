@@ -85,9 +85,9 @@ save_Plesiopterys()
 ```
 4. Run paleomass. You need to specify the data folder, length of the animal, and the positions/rotations of the flippers as below.  
 ```R
-paleomass(Folder = "Plesiopterys", n1 = 2, n2 = 2.5, body.axis.l = 2.94, 
-	ffin.onset = 0.45, ffin.adj.up = 50, ffin.adj.lat = -100, ffin.pitch = pi/6, ffin.roll = pi/3,
-	hfin.onset = 0.65, hfin.adj.up = 150, hfin.adj.lat = -200, hfin.pitch =  pi/7,  hfin.roll = pi/4)
+paleomass(Folder = "Plesiopterys", body.axis.l = 2.94, 
+	ffin.onset = 0.45, ffin.adj.up = 50, ffin.adj.lat = -75, ffin.pitch = pi/6, ffin.roll = pi/3,
+	hfin.onset = 0.65, hfin.adj.up = 50, hfin.adj.lat = -175, hfin.pitch =  pi/7, hfin.roll = pi/4)
 ```
 5. You will get estiamted volumes and surface areas, as well as the 3D models. Apart from being displayed in R, the values are saved in a .csv file while the models are saved as .ply files so that you can open it later in software of your choice. These files are found in the sub-directory containing the silhouette image files.
 
@@ -105,13 +105,14 @@ save_Sphyrna()
 4. Run paleomass. You need to specify the data folder, length of the animal, and the positions/rotations of the paired fins, median fins, and cephalofoil as below.  
 ```R
 paleomass(Folder = "Sphyrna", n1 = 1.8, n2 = 2, nn.f = 0.1, body.axis.l = 0.565,
-	cfin.onset = 0.78, cfin.adj.up = 200, cfin.adj.lat = 0, cfin.pitch = -pi/4, cfin.thick = 20, 
-	ffin.onset = 0.232, ffin.adj.up = 80, ffin.adj.lat = -120, ffin.thick = 20, 
-	hfin.onset = 0.494, hfin.adj.up = 150, hfin.adj.lat = -100, hfin.thick = 20, 
-	dfin.onset = 0.274, dfin.adj.up = 0, dfin.thick = 20, 
-	d2fin.onset = 0.626, d2fin.adj.up = 75, d2fin.thick = 10,
-	afin.onset = 0.603, afin.adj.up = 110, afin.thick = 10,
-	ceph.roll = pi/2, ceph.adj.up = 150)
+	cfin.thick=20,dfin.thick=20,ffin.thick=20,hfin.thick=20,afin.thick=20,
+	cfin.onset=0.78,cfin.adj.up=200,cfin.adj.lat=0,cfin.pitch=-pi/4,
+	ffin.onset=0.232,ffin.adj.up=15,ffin.adj.lat=-20,ffin.roll=pi/4,ffin.pitch=-pi/18,
+	hfin.onset=0.475,hfin.adj.up=120,hfin.adj.lat=-100,
+	dfin.onset=0.274,dfin.adj.up=0,
+	d2fin.onset=0.626,d2fin.adj.up=75,
+	afin.onset=0.603,afin.adj.up=110,
+	ceph.roll=pi/2,ceph.adj.up=150)
 ```
 5. You will get estiamted volumes and surface areas, as well as the 3D models. Apart from being displayed in R, the values are saved in a .csv file while the models are saved as .ply files so that you can open it later in software of your choice. These files are found in the sub-directory containing the silhouette image files.
 
@@ -207,9 +208,9 @@ The pectoral flippers shoudl spread out by about 60 degrees and the pelvic ones 
 ### 6. Run the command again with new options
 Now that you have updated option values, let us try running paleomass again. Make sure to input everything you listed above.  
 ```R
-paleomass(Folder = "Plesiopterys", n1 = 2, n2 = 2.5, body.axis.l = 2.94, 
-	ffin.onset = 0.45, ffin.adj.up = 50, ffin.adj.lat = -100, ffin.pitch = pi/6, ffin.roll = pi/3,
-	hfin.onset = 0.65, hfin.adj.up = 150, hfin.adj.lat = -200, hfin.pitch =  pi/7,  hfin.roll = pi/4)
+paleomass(Folder = "Plesiopterys", body.axis.l = 2.94, 
+	ffin.onset = 0.45, ffin.adj.up = 50, ffin.adj.lat = -75, ffin.pitch = pi/6, ffin.roll = pi/3,
+	hfin.onset = 0.65, hfin.adj.up = 50, hfin.adj.lat = -175, hfin.pitch =  pi/7, hfin.roll = pi/4)
 ```
 You will get a model looking like below:
 
@@ -222,4 +223,3 @@ After step 6, you probably found that the result is satisfactory. If not, it is 
 Remember, positions and rotations do not affect the volume and area estimates at this point, since there is no R function to enable 3D union of meshes easily. There is a Linux-based package rvtkStatismo that implements such a funciton but it is not for everybody.
 
 ---
-
