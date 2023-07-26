@@ -169,10 +169,10 @@ In the Plesiosaurus example, you can tell from the image above that the pectoral
 `ffin.onset = 0.45, hfin.onset = 0.65`
 
 The flippers should move down by about 160, resulting in the options:  
-`ffin.adj.up = 50, hfin.adj.up = 150`
+`ffin.adj.up = 50, hfin.adj.up = 50`
 
 The flippers should move medially (=inwards). Why? The test image does not help in this respect because the flippers are placed at the body width of where they are located along the body axis. In the test image, they are close to the midline because the neck is narrow there. So:  
-`ffin.adj.lat = -100, hfin.adj.lat = -200`
+`ffin.adj.lat = -75, hfin.adj.lat = -175`
 
 Negative values here suggest that the fins move inwards. 
 
