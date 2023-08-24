@@ -25,7 +25,7 @@ library(paleomass)
 
 This package first builds two 3D models of a marine vertebrate based on two orthogonal body silhouettes and planar views of the flippers and fins, supplied as image files. The true volume and surface area of the animal is expected to be bracketed between those of the two models. The two models have superelliptical cross-sections for the body but they differ in the superellipticla exponent. Flippers are modeled with NACA00XX foil sections. Details of the principle and its test are given in:
 
-Motani, R. Paleomass for R—bracketing body volume of marine vertebrates with 3D models. PeerJ 11:e15957 (2023)
+Motani, R. Paleomass for R—bracketing body volume of marine vertebrates with 3D models. PeerJ 11:e15957 (2023).
 
 [Link](https://peerj.com/articles/15957/)
 
