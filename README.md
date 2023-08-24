@@ -8,6 +8,12 @@ R package for volume and surface area estimation of vertebrates through bracketi
 
 This package first builds two 3D models of a marine vertebrate based on two orthogonal body silhouettes and planar views of the flippers and fins, supplied as image files. The true volume and surface area of the animal is expected to be bracketed between those of the two models. The two models have superelliptical cross-sections for the body but they differ in the superellipticla exponent. Flippers are modeled with NACA00XX foil sections. Details of the principle and its test are given in:
 
+Motani, R. Paleomass for R—bracketing body volume of marine vertebrates with 3D models. PeerJ 11:e15957 (2023)
+
+[Link](https://peerj.com/articles/15957/)
+
+The original paper that first reported the concept of bracketing the true volume using superellipses is:
+
 Motani, R. Estimating body mass from silhouettes: Testing the assumption of elliptical body cross-sections. Paleobiology 27, 735–750 (2001). 
 
 [Link](https://doi.org/10.1666/0094-8373(2001)027%3C0735:EBMFST%3E2.0.CO;2)   
